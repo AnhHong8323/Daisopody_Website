@@ -43,23 +43,20 @@
       <span class="here">Shop the catalog</span>
     </div>
     <h1>The Catalog of <em>Living Things</em></h1>
-    <p class="lead">Forty-two captive-bred species, eighty-six terrarium essentials, and the curator's notes that make each one thrive.</p>
+    <p class="lead">Thirty-four captive-bred isopod morphs and thirteen terrarium essentials, all raised and stocked in-house.</p>
     <div class="stats">
-      <div class="stat"><span class="pulse"></span><strong>128</strong>&nbsp;Live Specimens</div>
-      <div class="stat"><strong>86</strong>&nbsp;Habitat Essentials</div>
-      <div class="stat"><strong>12</strong>&nbsp;Starter Bundles</div>
+      <div class="stat"><span class="pulse"></span><strong>34</strong>&nbsp;Live Specimens</div>
+      <div class="stat"><strong>13</strong>&nbsp;Habitat Essentials</div>
+      <div class="stat"><strong>3</strong>&nbsp;Starter Bundles</div>
     </div>
   </section>
 
   <!-- TOOLBAR -->
   <div class="toolbar">
     <div class="tabs" id="tabs">
-      <button class="tab active" data-cat="all">All <span class="count">128</span></button>
-      <button class="tab" data-cat="iso">Live Isopods <span class="count">42</span></button>
-      <button class="tab" data-cat="sub">Substrate &amp; Food <span class="count">54</span></button>
-      <button class="tab" data-cat="ter">Terrarium Supplies <span class="count">86</span></button>
-      <button class="tab" data-cat="kit">Habitat Kits <span class="count">12</span></button>
-      <button class="tab" data-cat="rare">Rare Collector <span class="count">9</span></button>
+      <button class="tab active" data-cat="all">All <span class="count">47</span></button>
+      <button class="tab" data-cat="iso">Live Isopods <span class="count">34</span></button>
+      <button class="tab" data-cat="phukien">Phụ kiện <span class="count">13</span></button>
     </div>
     <div class="toolbar-right">
       <div class="sort">
@@ -98,11 +95,8 @@
           <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
         </h4>
         <div class="filter-body">
-          <label class="check"><input type="checkbox" checked/><span class="box"></span><span class="label">Live Isopods</span><span class="num">42</span></label>
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Substrate &amp; Food</span><span class="num">54</span></label>
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Terrarium Supplies</span><span class="num">86</span></label>
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Lighting &amp; Misting</span><span class="num">18</span></label>
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Habitat Kits</span><span class="num">12</span></label>
+          <label class="check"><input type="checkbox" checked/><span class="box"></span><span class="label">Live Isopods</span><span class="num">34</span></label>
+          <label class="check"><input type="checkbox" checked/><span class="box"></span><span class="label">Phụ kiện</span><span class="num">13</span></label>
         </div>
       </div>
 
@@ -183,23 +177,10 @@
     <main class="main-panel">
       <div class="active-filters">
         <span class="label">Filtering by</span>
-        <span class="pill">Live Isopods <button aria-label="Remove"><i data-lucide="x" style="width:10px;height:10px;stroke-width:2.4" aria-hidden="true"></i></button></span>
-        <span class="pill">Beginner <button aria-label="Remove"><i data-lucide="x" style="width:10px;height:10px;stroke-width:2.4" aria-hidden="true"></i></button></span>
-        <span class="pill">Southeast Asia <button aria-label="Remove"><i data-lucide="x" style="width:10px;height:10px;stroke-width:2.4" aria-hidden="true"></i></button></span>
-        <span class="pill">In stock <button aria-label="Remove"><i data-lucide="x" style="width:10px;height:10px;stroke-width:2.4" aria-hidden="true"></i></button></span>
-        <span class="results-meta">Showing <strong style="color:var(--cream)">42 of 128</strong></span>
+        <span class="results-meta">Showing <strong id="results-count" style="color:var(--cream)">47 of 47</strong></span>
       </div>
 
       <div class="products-grid" id="grid"></div>
-
-      <div class="load-more-wrap">
-        <div class="load-more-bar"><div class="fill"></div></div>
-        <div class="load-more-count">VIEWING 9 OF 42 — 33 MORE TO EXPLORE</div>
-        <button class="load-more" id="load-more">
-          LOAD NEXT 12
-          <i data-lucide="arrow-down" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
-        </button>
-      </div>
     </main>
   </div>
 
@@ -394,10 +375,17 @@
   ];
 
   function formatPrice(v) { return v.toLocaleString('vi-VN') + 'đ'; }
+  function catOf(p) { return p.sci === 'Phụ kiện' ? 'phukien' : 'iso'; }
 
   const grid = document.getElementById('grid');
+  const resultsCount = document.getElementById('results-count');
+  let activeCat = 'all';
   function renderProducts() {
-    grid.innerHTML = PRODUCTS.map((p, i) => `
+    const items = PRODUCTS
+      .map((p, i) => ({ p, i }))
+      .filter(({ p }) => activeCat === 'all' || catOf(p) === activeCat);
+    resultsCount.textContent = `${items.length} of ${PRODUCTS.length}`;
+    grid.innerHTML = items.map(({ p, i }) => `
       <article class="product" data-i="${i}">
         <div class="photo" style="${p.img ? `background-image:url('${p.img}');` : 'display:flex;align-items:center;justify-content:center;color:var(--fg-disabled);font-size:12px;'}">
           <span class="chip">${p.sci}</span>
@@ -420,9 +408,9 @@
         </div>
       </article>
     `).join('');
+    window.__renderLucide?.();
   }
   renderProducts();
-  window.__renderLucide?.();
 
   // ============ Cart ============
   let cartCount = 2;
@@ -455,6 +443,8 @@
     if (!t) return;
     document.querySelectorAll('#tabs .tab').forEach(x => x.classList.remove('active'));
     t.classList.add('active');
+    activeCat = t.dataset.cat;
+    renderProducts();
   });
 
   // ============ View toggle ============
@@ -501,22 +491,12 @@
   maxR.addEventListener('input', updatePrice);
   updatePrice();
 
-  // ============ Active filter pills remove ============
-  document.querySelectorAll('.pill button').forEach(b => {
-    b.addEventListener('click', () => b.closest('.pill').remove());
-  });
-
   // ============ Language switch ============
   document.querySelectorAll('#lang button').forEach(b => {
     b.addEventListener('click', () => {
       document.querySelectorAll('#lang button').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
     });
-  });
-
-  // ============ Load more ============
-  document.getElementById('load-more').addEventListener('click', () => {
-    showToast('Loaded 12 more specimens');
   });
 
   // ============ Clear all ============
