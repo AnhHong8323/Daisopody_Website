@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Xem trước sản phẩm theo họ — Daisopody</title>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<style>
+  body { padding: var(--space-8) var(--space-8) var(--space-32); }
+  .preview-header { max-width: var(--container-max); margin: 0 auto var(--space-16); }
+  .preview-header h1 { margin: 0 0 var(--space-3); }
+  .preview-header p { max-width: 640px; }
+
+  .family { max-width: var(--container-max); margin: 0 auto var(--space-16); }
+  .family-head {
+    display: flex; align-items: baseline; gap: var(--space-3);
+    border-bottom: 1px solid var(--border-hairline);
+    padding-bottom: var(--space-3); margin-bottom: var(--space-6);
+  }
+  .family-head h2 { margin: 0; }
+  .family-head .count { color: var(--fg-subtle); font-size: var(--fs-body-sm); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-5);
+  }
+  .card {
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-elevated);
+    transition: border-color var(--dur-base) var(--ease-out);
+  }
+  .card:hover { border-color: var(--border-strong); }
+  .card .photo {
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--moss-900-60);
+  }
+  .card .photo.empty {
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px dashed var(--border-card);
+    color: var(--fg-disabled); font-size: var(--fs-caption);
+  }
+  .card .body { padding: var(--space-3) var(--space-4) var(--space-4); }
+  .card .name { display: block; font-size: var(--fs-body-sm); font-weight: 500; color: var(--fg); }
+  .card .sci { display: block; font-size: 11px; font-style: italic; color: var(--fg-subtle); margin-top: 2px; }
+  .card .price {
+    display: inline-block; margin-top: var(--space-2);
+    font-size: var(--fs-caption); letter-spacing: var(--tracking-tag);
+    color: var(--cream); border: 1px solid var(--border-card);
+    border-radius: var(--radius-xs); padding: 2px 8px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="preview-header">
+    <span class="eyebrow">NỘI BỘ · KHÔNG PHẢI TRANG SHOP CHÍNH THỨC</span>
+    <h1 class="h1">Xem trước sản phẩm theo họ</h1>
+    <p class="p-lead">Tên và giá lấy theo danh sách bạn đã cung cấp, gom theo từng họ/thư mục.</p>
+  </div>
+
+  <div id="families"></div>
+
+<script>
+  const FAMILIES = [
+    {
+      label: "Armadillidium",
+      folder: "assets/isopod/Armadillidium/",
+      items: [
+        { file: "Badium.jpg", sci: "Armadillidium", name: "BADIUM", price: 120000 },
+        { file: "Corfu.jpg", sci: "Armadillidium", name: "CORFU", price: 50000 },
+        { file: "Gestroid.jpg", sci: "Armadillidium", name: "GESTROI", price: 100000 },
+        { file: "Granulatum.jpg", sci: "Armadillidium", name: "GRANULATUM", price: 80000 },
+        { file: "magic potion.jpg", sci: "Armadillidium", name: "MAGIC POTION", price: 100000 },
+        { file: "Orange Kluggi.jpg", sci: "Armadillidium", name: "ORANGE KLUGGI", price: 140000 },
+        { file: "orange virgo.jpg", sci: "Armadillidium", name: "ORANGE VULGARE", price: 200000 },
+        { file: "peraccea.jpg", sci: "Armadillidium", name: "PERACCAE", price: 60000 },
+        { file: "Sicily.jpg", sci: "Armadillidium", name: "SICILY", price: 200000 },
+        { file: "Zebra.jpg", sci: "Armadillidium", name: "ZEBRA", price: 150000 }
+      ]
+    },
+    {
+      label: "Cubaris",
+      folder: "assets/isopod/cubaris/",
+      items: [
+        { file: "Amber Ducky.jpg", sci: "Cubaris SP.", name: "AMBER DUCKY", price: 220000 },
+        { file: "Cappuchino.jpg", sci: "Cubaris SP.", name: "CAPPUCCINO", price: 200000 },
+        { file: "Caramel Cream.jpg", sci: "Cubaris SP.", name: "CARAMEL CREAM", price: 350000 },
+        { file: "Darkmill.jpg", sci: "Cubaris SP.", name: "DARK MILL", price: 50000 },
+        { file: "Glacier.jpg", sci: "Cubaris SP.", name: "GLACIER", price: 50000 },
+        { file: "Jupiter.jpg", sci: "Cubaris SP.", name: "JUPITER", price: 500000 },
+        { file: "lemon.jpg", sci: "Cubaris SP.", name: "LEMON BLUE", price: 550000 },
+        { file: "Little Sea.jpg", sci: "Cubaris SP.", name: "LITTLE SEA", price: 30000 },
+        { file: "Marblelize.jpg", sci: "Cubaris SP.", name: "MARBLELIZE", price: 200000 },
+        { file: "Murina Orange.jpg", sci: "Cubaris SP.", name: "MURINA ORANGE", price: 40000 },
+        { file: "Panda King.jpg", sci: "Cubaris SP.", name: "PANDA KING", price: 130000 },
+        { file: "papaya.jpg", sci: "Cubaris SP.", name: "PAPAYA", price: 50000 },
+        { file: "Red Packchong.jpg", sci: "Cubaris SP.", name: "RED PAK CHONG", price: 110000 },
+        { file: "Red Panda.jpg", sci: "Cubaris SP.", name: "RED PANDA", price: 300000 },
+        { file: "thai angle blue.png", sci: "Cubaris SP.", name: "THAI ANGLE BLUE", price: 180000 },
+        { file: "whiteside.jpg", sci: "Cubaris SP.", name: "WHITE SIDE", price: 120000 }
+      ]
+    },
+    {
+      label: "Porcellio",
+      folder: "assets/isopod/Porcellio/",
+      items: [
+        { file: "Dairy cow.jpg", sci: "Porcellio Laevis", name: "DAIRY COW", price: 30000 },
+        { file: "Haasi.jpg", sci: "Porcellio", name: "HAASI", price: 400000 },
+        { file: "Leavis Orange.jpg", sci: "Porcellio Laevis", name: "ORANGE(POWSER)", price: 30000 },
+        { file: "Sevilla.jpg", sci: "Porcellio", name: "SEVILLA/TITAN", price: 80000 },
+        { file: "Violet.jpg", sci: "Porcellio Baeticensis", name: "VIOLET", price: 350000 },
+        { file: "white laevis.jpg", sci: "Porcellio Laevis", name: "WHITE", price: 50000 }
+      ]
+    },
+    {
+      label: "Troglodillo",
+      folder: "assets/isopod/Troglodillo/",
+      items: [
+        { file: "Vex.jpg", sci: "Troglodillo", name: "VEX", price: 290000 },
+        { file: null, sci: "Troglodillo", name: "SOIL", price: 290000 }
+      ]
+    },
+    {
+      label: "Phụ kiện",
+      folder: "assets/Phu Kien/",
+      items: [
+        { file: "binhxit.jpg", sci: "Phụ kiện", name: "BÌNH XỊT", price: 15000 },
+        { file: "camchim.jpg", sci: "Phụ kiện", name: "THỨC ĂN CHUYÊN DỤNG", price: 10000 },
+        { file: "golon.jpg", sci: "Phụ kiện", name: "VỎ GỖ SỒI (L)", price: 50000 },
+        { file: "gonho.jpg", sci: "Phụ kiện", name: "VỎ GỖ SỒI (S)", price: 15000 },
+        { file: "chenanvit.jpg", sci: "Phụ kiện", name: "CHÉN ĂN", price: 15000 },
+        { file: "combo.jpg", sci: "Phụ kiện", name: "COMBO HỘP NUÔI", price: 70000 },
+        { file: "dat.jpg", sci: "Phụ kiện", name: "ĐẤT CHUYÊN DỤNG", price: 45000 },
+        { file: "don.jpg", sci: "Phụ kiện", name: "DỚN", price: 10000 },
+        { file: "hop.jpg", sci: "Phụ kiện", name: "HỘP NUÔI", price: 30000 },
+        { file: "la.jpg", sci: "Phụ kiện", name: "LÁ KHÔ", price: 10000 },
+        { file: "mongbo.jpg", sci: "Phụ kiện", name: "LÁ MÓNG BÒ TƯƠI", price: 10000 },
+        { file: "mongbo.jpg", sci: "Phụ kiện", name: "LÁ MÓNG BÒ KHÔ", price: 5000 },
+        { file: "nangmuc.jpg", sci: "Phụ kiện", name: "NANG MỰC", price: 20000 }
+      ]
+    }
+  ];
+
+  function formatPrice(v) {
+    return v.toLocaleString("vi-VN") + "đ";
+  }
+
+  const root = document.getElementById("families");
+  root.innerHTML = FAMILIES.map(fam => `
+    <section class="family">
+      <div class="family-head">
+        <h2 class="h2">${fam.label}</h2>
+        <span class="count">${fam.items.length} sản phẩm</span>
+      </div>
+      <div class="grid">
+        ${fam.items.map(p => {
+          const src = p.file ? encodeURI(fam.folder + p.file) : null;
+          return `
+          <div class="card">
+            ${src ? `<div class="photo" style="background-image:url('${src}')"></div>` : `<div class="photo empty">Chưa có ảnh</div>`}
+            <div class="body">
+              <span class="name">${p.name}</span>
+              <span class="sci">${p.sci}</span>
+              <span class="price">${formatPrice(p.price)}</span>
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    </section>
+  `).join("");
+</script>
+
+</body>
+</html>
