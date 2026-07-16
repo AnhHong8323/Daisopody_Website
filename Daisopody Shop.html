@@ -129,7 +129,7 @@
         <span class="results-meta">Showing <strong id="results-count" style="color:var(--cream)">47 of 47</strong></span>
       </div>
 
-      <div class="products-grid" id="grid"></div>
+      <div id="grid"></div>
     </main>
   </div>
 
@@ -319,18 +319,24 @@
 
   function formatPrice(v) { return v.toLocaleString('vi-VN') + 'đ'; }
   function catOf(p) { return p.sci === 'Phụ kiện' ? 'phukien' : 'iso'; }
+  function familyOf(p) {
+    if (p.sci === 'Phụ kiện') return 'Phụ kiện';
+    if (p.sci.startsWith('Armadillidium')) return 'Armadillidium';
+    if (p.sci.startsWith('Cubaris')) return 'Cubaris';
+    if (p.sci.startsWith('Porcellio')) return 'Porcellio';
+    if (p.sci.startsWith('Troglodillo')) return 'Troglodillo';
+    return p.sci;
+  }
+  const FAMILY_ORDER = ['Armadillidium', 'Cubaris', 'Porcellio', 'Troglodillo', 'Phụ kiện'];
 
   const grid = document.getElementById('grid');
   const resultsCount = document.getElementById('results-count');
   let activeCat = 'all';
   let priceMin = 0, priceMax = 600000;
-  function renderProducts() {
-    const items = PRODUCTS
-      .map((p, i) => ({ p, i }))
-      .filter(({ p }) => activeCat === 'all' || catOf(p) === activeCat)
-      .filter(({ p }) => p.price >= priceMin && p.price <= priceMax);
-    resultsCount.textContent = `${items.length} of ${PRODUCTS.length}`;
-    grid.innerHTML = items.map(({ p, i }) => `
+  let viewMode = 'grid';
+
+  function productCard(p, i) {
+    return `
       <article class="product" data-i="${i}">
         <div class="photo" style="${p.img ? `background-image:url('${p.img}');` : 'display:flex;align-items:center;justify-content:center;color:var(--fg-disabled);font-size:12px;'}">
           <span class="chip">${p.sci}</span>
@@ -352,7 +358,41 @@
           </button>
         </div>
       </article>
-    `).join('');
+    `;
+  }
+
+  function renderProducts() {
+    const items = PRODUCTS
+      .map((p, i) => ({ p, i }))
+      .filter(({ p }) => activeCat === 'all' || catOf(p) === activeCat)
+      .filter(({ p }) => p.price >= priceMin && p.price <= priceMax);
+    resultsCount.textContent = `${items.length} of ${PRODUCTS.length}`;
+
+    const groups = new Map();
+    for (const it of items) {
+      const fam = familyOf(it.p);
+      if (!groups.has(fam)) groups.set(fam, []);
+      groups.get(fam).push(it);
+    }
+    const orderedFamilies = [
+      ...FAMILY_ORDER.filter(f => groups.has(f)),
+      ...Array.from(groups.keys()).filter(f => !FAMILY_ORDER.includes(f)),
+    ];
+
+    grid.innerHTML = orderedFamilies.map(fam => {
+      const list = groups.get(fam);
+      return `
+        <section class="product-family">
+          <div class="family-head">
+            <h3>${fam}</h3>
+            <span class="count">${list.length}</span>
+          </div>
+          <div class="products-grid${viewMode === 'list' ? ' list' : ''}">
+            ${list.map(({ p, i }) => productCard(p, i)).join('')}
+          </div>
+        </section>
+      `;
+    }).join('');
     window.__renderLucide?.();
   }
   renderProducts();
@@ -398,7 +438,8 @@
     if (!b) return;
     document.querySelectorAll('#view-toggle button').forEach(x => x.classList.remove('active'));
     b.classList.add('active');
-    grid.classList.toggle('list', b.dataset.view === 'list');
+    viewMode = b.dataset.view;
+    renderProducts();
   });
 
   // ============ Filter group collapse ============

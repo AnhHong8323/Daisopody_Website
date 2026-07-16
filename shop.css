@@ -319,6 +319,21 @@ aside.filters::-webkit-scrollbar-thumb { background: var(--cream-20); border-rad
 .pill button:hover { color: var(--cream); }
 .results-meta { color: var(--cream-50); font-size: 11px; letter-spacing: 0.18em; margin-left: auto; }
 
+/* Family grouping */
+.product-family { margin-bottom: 56px; }
+.product-family:last-child { margin-bottom: 0; }
+.family-head {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--cream-10);
+}
+.family-head h3 {
+  margin: 0; font-family: var(--font-sans); font-weight: 400;
+  font-size: 20px; letter-spacing: 0.04em; color: var(--cream);
+  text-transform: uppercase;
+}
+.family-head .count { color: var(--cream-50); font-size: 12px; letter-spacing: 0.1em; }
+
 /* Grid */
 .products-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
