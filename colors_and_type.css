@@ -251,3 +251,36 @@ a:hover { opacity: 0.85; }
   font-style: italic;
   font-weight: 700;
 }
+
+/* ============================================================
+   Responsive token overrides — shared across every page
+   ============================================================ */
+@media (max-width: 1024px) {
+  :root {
+    --gutter-page: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter-page: 24px;
+    --fs-display-xl: 40px;
+    --fs-display-lg: 34px;
+    --fs-display-md: 30px;
+    --fs-display-sm: 26px;
+    --fs-headline: 22px;
+    --fs-title: 19px;
+    --fs-subtitle: 17px;
+    --fs-body-lg: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --gutter-page: 16px;
+    --fs-display-xl: 32px;
+    --fs-display-lg: 27px;
+    --fs-display-md: 25px;
+    --fs-display-sm: 21px;
+  }
+}

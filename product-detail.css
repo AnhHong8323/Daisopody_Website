@@ -34,6 +34,33 @@ svg { flex-shrink: 0; }
 .cart-btn { position: relative; width: 36px; height: 36px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; }
 .cart-btn .badge { position: absolute; top: -2px; right: -2px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 9999px; background: var(--cream); color: var(--moss-900); font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px var(--cream-50); }
 
+/* ============ MOBILE NAV ============ */
+.nav-toggle {
+  display: none;
+  background: transparent; border: none; cursor: pointer;
+  width: 36px; height: 36px; align-items: center; justify-content: center;
+  color: var(--cream);
+}
+@media (max-width: 860px) {
+  .nav-toggle { display: flex; }
+  .lang-switch { display: none; }
+  .nav {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--moss-900); border-bottom: 1px solid var(--cream-10);
+    max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+    transition: max-height 280ms var(--ease-out), opacity 200ms;
+    padding: 0 24px;
+  }
+  .nav.open { max-height: 320px; opacity: 1; visibility: visible; padding: 8px 24px 16px; }
+  .nav a { padding: 12px 4px; border-bottom: 1px solid var(--cream-10); width: 100%; }
+  .nav a.active::after { display: none; }
+}
+@media (max-width: 480px) {
+  .header-right { gap: 10px; }
+  .btn-contact { padding: 8px 12px; font-size: 10px; gap: 6px; }
+}
+
 /* ============ CRUMBS BAR ============ */
 .crumbs-bar {
   padding: 22px var(--gutter-page);
@@ -717,3 +744,152 @@ svg { flex-shrink: 0; }
   transition: opacity 250ms, transform 250ms; pointer-events: none;
 }
 .toast.show { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RESPONSIVE — tablets & phones
+   (header/nav mobile treatment lives above; this covers the
+   rest of the page body)
+   ============================================================ */
+
+/* ============ TABLET ≤1024px ============ */
+@media (max-width: 1024px) {
+  .product-main { gap: 44px; }
+  .secondary-actions { gap: 8px; }
+  .btn-secondary { padding: 12px 10px; font-size: 10px; }
+  .trust-row { gap: 12px; }
+
+  .specs-grid { gap: 44px; }
+  .care-content { gap: 40px; }
+  .pedigree-content { gap: 44px; }
+
+  .shipping-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-head { gap: 44px; }
+  .review-grid { grid-template-columns: repeat(2, 1fr); }
+  .related-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============ TABLET ≤768px ============ */
+@media (max-width: 768px) {
+  /* --- crumbs bar --- */
+  .crumbs-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .crumbs, .prev-next { flex-wrap: wrap; }
+
+  /* --- product main: stack gallery over info --- */
+  .product-main {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
+
+  /* gallery badges: shrink + stack so they never collide on a narrow image */
+  .gallery-main .badge-rare,
+  .gallery-main .badge-new {
+    font-size: 9px; padding: 5px 9px; letter-spacing: 0.14em;
+  }
+  .gallery-main .badge-rare { top: 14px; left: 14px; }
+  .gallery-main .badge-new { top: 14px; right: 14px; }
+  .gallery-main .zoom-tag { display: none; } /* hover affordance is meaningless on touch */
+  .gallery-main .arrows { opacity: 1; } /* no hover on touch, so keep controls visible */
+
+  /* thumbnails: horizontal scroll strip instead of a squeezed 5-col grid */
+  .thumb-row {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 10px;
+    padding-bottom: 4px;
+  }
+  .thumb { flex: 0 0 72px; width: 72px; }
+
+  .info h1 { font-size: 38px; }
+  .price-now { font-size: 36px; }
+
+  .pack-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-row { grid-template-columns: 1fr; gap: 14px; }
+  .secondary-actions { flex-wrap: wrap; }
+  .btn-secondary { flex: 1 1 45%; }
+
+  /* --- tabs: scroll instead of wrap/overflow --- */
+  .tabs-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 32px;
+  }
+  .tab-btn { flex: 0 0 auto; white-space: nowrap; padding: 14px 16px; }
+
+  .specs-section { padding-top: 64px; padding-bottom: 64px; }
+  .specs-grid { grid-template-columns: 1fr; gap: 32px; }
+  .specs-list { grid-template-columns: 1fr; }
+  .specs-list > div:nth-child(odd) { border-right: none; padding-right: 0; }
+  .specs-list > div:nth-child(even) { padding-left: 0; }
+
+  .care-content { grid-template-columns: 1fr; gap: 28px; }
+  .care-image { aspect-ratio: 16 / 10; }
+
+  .pedigree-content { grid-template-columns: 1fr; gap: 36px; }
+  .cert-card { padding: 24px; }
+
+  .shipping-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .reviews { padding-top: 64px; padding-bottom: 64px; }
+  .reviews-head { grid-template-columns: 1fr; gap: 24px; align-items: flex-start; }
+  .reviews-head h2 { font-size: 34px; }
+  .rating-overview { grid-template-columns: 1fr; gap: 20px; }
+  .rating-num { font-size: 52px; }
+  .review-grid { grid-template-columns: 1fr; }
+
+  .related { padding-top: 64px; padding-bottom: 64px; }
+  .related-head { flex-wrap: wrap; gap: 16px; }
+  .related-head h2 { font-size: 30px; }
+  .related-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+/* ============ PHONE ≤480px ============ */
+@media (max-width: 480px) {
+  .crumbs { font-size: 10px; gap: 8px; }
+  .prev-next { font-size: 10px; }
+  .prev-next a { padding: 5px 8px; }
+
+  .product-main { padding-top: 32px; padding-bottom: 48px; gap: 28px; }
+
+  .thumb { flex-basis: 64px; width: 64px; }
+  .thumb-row { gap: 8px; }
+
+  .info h1 { font-size: 30px; }
+  .info .sci-name { font-size: 15px; }
+
+  .pack-opt { padding: 14px 10px; }
+  .pack-grid { gap: 8px; }
+
+  .price-summary { flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px 0; }
+  .price-now { font-size: 32px; }
+  .price-unit { text-align: left; }
+
+  .qty-actions { grid-template-columns: 1fr; gap: 10px; }
+  .qty-stepper { width: 100%; justify-content: space-between; }
+
+  .secondary-actions { flex-direction: column; }
+  .btn-secondary { flex: 1 1 auto; width: 100%; }
+
+  .avail { padding: 12px 14px; font-size: 11.5px; }
+
+  .tab-btn { padding: 12px 14px; font-size: 10px; }
+
+  .specs-side { padding: 20px; }
+  .cert-card { padding: 18px; }
+  .ship-card { padding: 20px; }
+
+  .reviews-head h2 { font-size: 28px; }
+  .rating-num { font-size: 44px; }
+  .review-card { padding: 20px; }
+
+  .related-head h2 { font-size: 26px; }
+  .related-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .related-card .bd { padding: 12px 12px 14px; }
+
+  .fab { width: 48px; height: 48px; bottom: 20px; right: 20px; }
+  .toast { right: 20px; bottom: 84px; padding: 12px 18px; font-size: 11px; }
+}

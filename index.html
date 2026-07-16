@@ -84,6 +84,33 @@
     box-shadow: 0 0 8px var(--cream-50);
   }
 
+  /* ============ MOBILE NAV ============ */
+  .nav-toggle {
+    display: none;
+    background: transparent; border: none; cursor: pointer;
+    width: 36px; height: 36px; align-items: center; justify-content: center;
+    color: var(--cream);
+  }
+  @media (max-width: 860px) {
+    .nav-toggle { display: flex; }
+    .lang-switch { display: none; }
+    .nav {
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--moss-900); border-bottom: 1px solid var(--cream-10);
+      max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+      transition: max-height 280ms var(--ease-out), opacity 200ms;
+      padding: 0 24px;
+    }
+    .nav.open { max-height: 320px; opacity: 1; visibility: visible; padding: 8px 24px 16px; }
+    .nav a { padding: 12px 4px; border-bottom: 1px solid var(--cream-10); width: 100%; }
+    .nav a.active::after { display: none; }
+  }
+  @media (max-width: 480px) {
+    .header-right { gap: 10px; }
+    .btn-contact { padding: 8px 12px; font-size: 10px; gap: 6px; }
+  }
+
   /* ============ HERO ============ */
   .hero {
     position: relative; height: 760px;
@@ -930,6 +957,158 @@
   /* Reveal animation */
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
   .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ======================================================================
+     RESPONSIVE — TABLET & MOBILE
+     (Header/nav hamburger treatment already handled above; this section
+     covers hero, product slider, feature/benefit grids, spotlight, video,
+     articles, testimonials/gallery, newsletter and footer.)
+     ====================================================================== */
+
+  /* ---------- Tablet: max-width 1024px ---------- */
+  @media (max-width: 1024px) {
+    section, .spotlight, .video-sec, .newsletter { padding-top: 90px; padding-bottom: 90px; }
+
+    .categories { grid-template-columns: repeat(3, 1fr); }
+    .reasons { grid-template-columns: repeat(3, 1fr); row-gap: 40px; }
+    .reason::after { display: none; }
+
+    .products { grid-auto-columns: calc((100% - 3 * 24px) / 3); }
+
+    .spotlight-grid { grid-template-columns: 1fr; gap: 48px; }
+    .spot-media { max-width: 480px; margin: 0 auto; }
+    .spot-pedigree {
+      position: static; width: 100%; margin-top: 20px;
+      right: auto; bottom: auto;
+    }
+    .spot-copy { text-align: left; }
+
+    .video-grid { grid-template-columns: 1fr; gap: 48px; }
+    .video-player { max-width: 640px; margin: 0 auto; }
+
+    .articles { grid-template-columns: repeat(2, 1fr); }
+
+    .stories-row { grid-template-columns: 1fr; gap: 56px; }
+
+    .footer-grid {
+      grid-template-columns: 1fr 1fr; gap: 40px 32px;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  /* ---------- Mobile: max-width 768px ---------- */
+  @media (max-width: 768px) {
+    section, .spotlight, .video-sec, .newsletter { padding-top: 72px; padding-bottom: 72px; }
+
+    /* Hero */
+    .hero { height: auto; min-height: 560px; padding: 140px 0 72px; }
+    .hero h1 { font-size: 42px; }
+    .hero .sub { font-size: 15px; }
+    .hero-actions { margin-top: 36px; gap: 14px; }
+    .botanical.b-leaf-tl, .botanical.b-leaf-tr { width: 100px; }
+    .botanical.b-bug-bl, .botanical.b-branch-br { width: 110px; }
+
+    /* Section headings (hardcoded px sizes) */
+    .section-head h2 { font-size: 34px; }
+    .row-head h2 { font-size: 34px; }
+    .spot-h2 { font-size: 40px; }
+    .vs-h2 { font-size: 40px; }
+    .newsletter h3 { font-size: 38px; }
+    .quote-mark { font-size: 48px; }
+
+    /* Featured categories + why choose */
+    .categories { grid-template-columns: repeat(2, 1fr); }
+    .reasons { grid-template-columns: repeat(2, 1fr); }
+
+    /* Best sellers / slider */
+    .row-head { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .row-head .slider-controls { width: 100%; justify-content: space-between; }
+    .products { grid-auto-columns: calc((100% - 24px) / 2); }
+
+    /* Amber Ducky spotlight */
+    .spot-specs { grid-template-columns: 1fr 1fr; }
+
+    /* Video section */
+    .vp-thumbs { grid-template-columns: repeat(2, 1fr); }
+    .vp-caption-strip { flex-wrap: wrap; row-gap: 10px; bottom: 66px; }
+    .vp-title { max-width: 220px; font-size: 15px; }
+
+    /* Articles */
+    .articles { grid-template-columns: 1fr; }
+
+    /* Testimonials + gallery */
+    .gallery .g-item:nth-child(2n) { transform: none; }
+
+    /* Newsletter */
+    .form-row { flex-direction: column; max-width: 100%; }
+    .form-row input, .form-row button { width: 100%; }
+    .newsletter .bullets { gap: 14px 20px; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    .footer-brand { grid-column: auto; }
+    .footer-brand p { max-width: 100%; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+
+  /* ---------- Small phones: max-width 480px ---------- */
+  @media (max-width: 480px) {
+    section, .spotlight, .video-sec, .newsletter { padding-top: 56px; padding-bottom: 56px; }
+
+    /* Hero */
+    .hero { min-height: 480px; padding: 120px 0 56px; }
+    .hero h1 { font-size: 30px; }
+    .hero .sub { font-size: 13.5px; }
+    .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
+    .hero-actions .btn { width: 100%; }
+    .botanical { display: none; }
+
+    /* Section headings */
+    .section-head h2 { font-size: 26px; }
+    .section-head { margin-bottom: 48px; }
+    .row-head h2 { font-size: 26px; }
+    .spot-h2 { font-size: 28px; }
+    .vs-h2 { font-size: 28px; }
+    .newsletter h3 { font-size: 28px; }
+    .quote-mark { font-size: 40px; }
+
+    /* Featured categories + why choose collapse to 1 col */
+    .categories { grid-template-columns: 1fr; }
+    .cat { padding: 40px 20px 32px; }
+    .reasons { grid-template-columns: 1fr; row-gap: 32px; }
+
+    /* Best sellers / slider — 1 card per view */
+    .products { grid-auto-columns: 100%; }
+    .slider-controls .view-all { margin-left: 0; }
+
+    /* Amber Ducky spotlight */
+    .spot-specs { grid-template-columns: 1fr; }
+    .spot-spec:nth-child(odd) { border-right: none; padding-right: 0; }
+    .spot-spec:nth-child(even) { padding-left: 0; }
+    .spot-spec:nth-child(-n+2) { border-bottom: none; }
+    .spot-spec:not(:last-child) { border-bottom: 1px solid var(--cream-10); }
+    .spot-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .spot-price { margin-right: 0; }
+    .spot-meta-row { gap: 12px 16px; }
+
+    /* Video section */
+    .vp-badge { font-size: 8.5px; padding: 6px 10px; letter-spacing: 0.14em; }
+    .vp-title { max-width: 160px; font-size: 13px; }
+    .vp-thumbs { gap: 8px; }
+    .vs-meta-row { gap: 10px 12px; }
+
+    /* Testimonials + gallery */
+    .gallery { grid-template-columns: 1fr; }
+    .gallery .g-item:nth-child(2n) { transform: none; }
+    .stories .stories-h2 { font-size: 32px; }
+
+    /* Newsletter */
+    .newsletter .bullets span:not(:last-child)::after { margin-left: 14px; }
+
+    /* Footer */
+    footer { padding-top: 56px; }
+    .footer-bottom .links { flex-wrap: wrap; gap: 14px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -945,6 +1124,9 @@
       <a href="Daisopody About Us.html">About Us</a>
     </nav>
     <div class="header-right">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <i data-lucide="menu" style="width:20px;height:20px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+      </button>
       <div class="lang-switch" role="group" aria-label="Language" id="lang">
         <button class="active" data-lang="en">EN</button>
         <button data-lang="vn">VN</button>
@@ -1457,6 +1639,11 @@
 </div>
 
 <script>
+  // ============ Mobile nav toggle ============
+  document.getElementById('nav-toggle')?.addEventListener('click', () => {
+    document.querySelector('.nav')?.classList.toggle('open');
+  });
+
   // ============ Products data + slider ============
   const PRODUCTS = [
     { name:"Amber Ducky", sci:"Cubaris sp. 'Amber Ducky'", price:"$165.00", chip:"Rare", img:"assets/product-rubber-ducky.jpg" },

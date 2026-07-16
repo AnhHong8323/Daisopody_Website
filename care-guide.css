@@ -34,6 +34,33 @@ svg { flex-shrink: 0; }
 .cart-btn { position: relative; width: 36px; height: 36px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; }
 .cart-btn .badge { position: absolute; top: -2px; right: -2px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 9999px; background: var(--cream); color: var(--moss-900); font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px var(--cream-50); }
 
+/* ============ MOBILE NAV ============ */
+.nav-toggle {
+  display: none;
+  background: transparent; border: none; cursor: pointer;
+  width: 36px; height: 36px; align-items: center; justify-content: center;
+  color: var(--cream);
+}
+@media (max-width: 860px) {
+  .nav-toggle { display: flex; }
+  .lang-switch { display: none; }
+  .nav {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--moss-900); border-bottom: 1px solid var(--cream-10);
+    max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+    transition: max-height 280ms var(--ease-out), opacity 200ms;
+    padding: 0 24px;
+  }
+  .nav.open { max-height: 320px; opacity: 1; visibility: visible; padding: 8px 24px 16px; }
+  .nav a { padding: 12px 4px; border-bottom: 1px solid var(--cream-10); width: 100%; }
+  .nav a.active::after { display: none; }
+}
+@media (max-width: 480px) {
+  .header-right { gap: 10px; }
+  .btn-contact { padding: 8px 12px; font-size: 10px; gap: 6px; }
+}
+
 /* ============ HERO ============ */
 .cg-hero {
   position: relative;
@@ -637,3 +664,117 @@ svg { flex-shrink: 0; }
   transition: opacity 250ms, transform 250ms; pointer-events: none;
 }
 .toast.show { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RESPONSIVE — tablet (<=1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .cg-hero-grid { grid-template-columns: 1fr; gap: 40px; align-items: start; }
+  .cg-hero .meta { border-left: none; padding-left: 0; }
+  .cg-hero h1 { font-size: 56px; }
+
+  .fg-card { grid-template-columns: 1fr; gap: 40px; }
+  .fg-body h2 { font-size: 40px; }
+
+  .path-grid { grid-template-columns: repeat(2, 1fr); }
+  .articles-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .ref-grid { gap: 40px; }
+}
+
+/* ============================================================
+   RESPONSIVE — small tablet / large phone (<=768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  .cg-hero { padding: 80px var(--gutter-page) 64px; }
+  .cg-hero h1 { font-size: 42px; }
+  .cg-hero .meta p { font-size: 14px; }
+
+  .cg-filter { top: 81px; }
+
+  .featured-guide { padding: 64px var(--gutter-page); }
+  .fg-card { gap: 32px; }
+  .fg-photo { aspect-ratio: 4 / 3; }
+  .fg-body h2 { font-size: 32px; }
+  .fg-toc { gap: 12px 16px; }
+
+  .paths { padding: 64px var(--gutter-page); }
+  .path-grid { grid-template-columns: 1fr; }
+
+  .section-head h2 { font-size: 32px; }
+  .section-head .lead { max-width: 100%; }
+
+  .articles-section { padding: 64px var(--gutter-page); }
+  .articles-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .articles-head h2 { font-size: 32px; }
+  .articles-grid { grid-template-columns: 1fr; gap: 24px; }
+
+  .reference { padding: 64px var(--gutter-page); }
+  .ref-grid { grid-template-columns: 1fr; gap: 48px; }
+
+  .expert { padding: 64px var(--gutter-page); }
+  .qa-q { font-size: 16px; padding: 22px 0; gap: 16px; }
+  .qa-item.open .qa-a { max-height: 600px; }
+
+  .cg-newsletter { padding: 90px var(--gutter-page); }
+  .cg-newsletter h3 { font-size: 34px; }
+  .cg-form-row { flex-direction: column; }
+  .cg-form-row button { justify-content: center; }
+}
+
+/* ============================================================
+   RESPONSIVE — phones (<=480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .cg-hero { padding: 56px var(--gutter-page) 40px; }
+  .cg-hero h1 { font-size: 32px; }
+  .cg-hero-grid { gap: 24px; }
+  .cg-hero .eyebrow { font-size: 10px; }
+  .cg-hero .meta .search input { padding: 14px 16px 14px 44px; font-size: 12px; }
+  .cg-hero .meta .search .kbd { display: none; }
+
+  .cg-filter { padding: 14px var(--gutter-page); gap: 12px; }
+  .cg-tabs { gap: 6px; }
+  .cg-tab { padding: 7px 12px; font-size: 10px; }
+  .cg-filter .right { font-size: 10px; gap: 10px; }
+
+  .fg-eyebrow { font-size: 10px; }
+  .fg-body h2 { font-size: 26px; }
+  .fg-body .lead { font-size: 14px; }
+  .fg-toc { grid-template-columns: 1fr; }
+  .fg-toc .step-t { padding-bottom: 12px; }
+  .fg-actions { flex-direction: column; align-items: stretch; }
+  .btn-read, .btn-bookmark { justify-content: center; }
+
+  .section-head h2 { font-size: 26px; }
+  .path { padding: 22px; }
+  .path h3 { font-size: 20px; }
+
+  .articles-head h2 { font-size: 26px; }
+  .article-card h3 { font-size: 19px; }
+  .article-card .cover .badge-tag,
+  .article-card .cover .badge-level { font-size: 9px; padding: 4px 8px; }
+
+  .species-table .st-head,
+  .species-table .st-row { padding: 12px 14px; gap: 6px; }
+  .species-table .st-head { font-size: 8.5px; }
+  .species-table .st-row { font-size: 11.5px; }
+  .species-table .st-row .sci { font-size: 10px; }
+
+  .gauge { padding: 16px; gap: 10px; }
+  .gauge .gtitle { font-size: 13px; }
+  .gauge .gtarget { font-size: 11px; }
+  .gauge-vis { width: 84px; height: 48px; }
+  .gauge-val { font-size: 18px; }
+
+  .qa-q { font-size: 15px; gap: 12px; padding: 18px 0; }
+  .qa-q .chev { width: 30px; height: 30px; }
+  .qa-a p { font-size: 14px; }
+
+  .cg-newsletter { padding: 64px var(--gutter-page); }
+  .cg-newsletter h3 { font-size: 26px; }
+  .cg-newsletter .pitch { font-size: 14px; }
+
+  .fab { width: 48px; height: 48px; bottom: 20px; right: 16px; }
+  .toast { right: 16px; bottom: 80px; padding: 12px 18px; font-size: 11px; }
+}

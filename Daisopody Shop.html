@@ -20,6 +20,9 @@
       <a href="Daisopody About Us.html">About Us</a>
     </nav>
     <div class="header-right">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <i data-lucide="menu" style="width:20px;height:20px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+      </button>
       <div class="lang-switch" role="group" aria-label="Language" id="lang">
         <button class="active" data-lang="en">EN</button>
         <button data-lang="vn">VN</button>
@@ -258,6 +261,11 @@
 </div>
 
 <script>
+  // ============ Mobile nav toggle ============
+  document.getElementById('nav-toggle')?.addEventListener('click', () => {
+    document.querySelector('.nav')?.classList.toggle('open');
+  });
+
   // ============ Product data ============
   const PRODUCTS = [
     { name:"BADIUM", sci:"Armadillidium", price:120000, img:"assets/isopod/Armadillidium/Badium.jpg" },

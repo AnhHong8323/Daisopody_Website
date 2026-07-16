@@ -33,6 +33,33 @@ svg { flex-shrink: 0; }
 .cart-btn { position: relative; width: 36px; height: 36px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; }
 .cart-btn .badge { position: absolute; top: -2px; right: -2px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 9999px; background: var(--cream); color: var(--moss-900); font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px var(--cream-50); }
 
+/* ============ MOBILE NAV ============ */
+.nav-toggle {
+  display: none;
+  background: transparent; border: none; cursor: pointer;
+  width: 36px; height: 36px; align-items: center; justify-content: center;
+  color: var(--cream);
+}
+@media (max-width: 860px) {
+  .nav-toggle { display: flex; }
+  .lang-switch { display: none; }
+  .nav {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--moss-900); border-bottom: 1px solid var(--cream-10);
+    max-height: 0; overflow: hidden; opacity: 0; visibility: hidden;
+    transition: max-height 280ms var(--ease-out), opacity 200ms;
+    padding: 0 24px;
+  }
+  .nav.open { max-height: 320px; opacity: 1; visibility: visible; padding: 8px 24px 16px; }
+  .nav a { padding: 12px 4px; border-bottom: 1px solid var(--cream-10); width: 100%; }
+  .nav a.active::after { display: none; }
+}
+@media (max-width: 480px) {
+  .header-right { gap: 10px; }
+  .btn-contact { padding: 8px 12px; font-size: 10px; gap: 6px; }
+}
+
 /* ============ CHECKOUT HERO / STEPPER ============ */
 .checkout-hero {
   padding: 56px var(--gutter-page) 40px;
@@ -717,3 +744,121 @@ svg { flex-shrink: 0; }
   transition: opacity 250ms, transform 250ms; pointer-events: none;
 }
 .toast.show { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RESPONSIVE — TABLET (≤1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .summary {
+    position: static;
+    top: auto;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — SMALL TABLET / LARGE PHONE (≤768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  .checkout-hero { padding: 40px var(--gutter-page) 28px; }
+  .checkout-h1 { font-size: 40px; margin-bottom: 24px; }
+
+  .stepper { padding: 6px; }
+  .step { padding: 7px 12px; gap: 6px; font-size: 10px; }
+  .step .step-n { width: 20px; height: 20px; }
+  .step-sep { width: 16px; margin: 0 2px; }
+
+  .checkout-layout { padding: 40px var(--gutter-page) 80px; gap: 32px; }
+
+  .panel-h { flex-wrap: wrap; gap: 8px; margin-bottom: 24px; padding-bottom: 16px; }
+  .panel-h h2 { font-size: 28px; }
+
+  /* Cart line item: photo+info on top row, qty+price below */
+  .cart-row {
+    grid-template-columns: 88px 1fr;
+    grid-template-areas:
+      "photo info"
+      "qty   price";
+    gap: 14px 16px;
+    padding: 20px 0;
+  }
+  .cart-row .photo { grid-area: photo; width: 88px; }
+  .cart-row .info { grid-area: info; }
+  .cart-row .row-chip { flex-wrap: wrap; row-gap: 4px; }
+  .qty-stepper { grid-area: qty; justify-self: start; }
+  .cart-row .price-col { grid-area: price; justify-self: end; min-width: 0; }
+
+  .cart-empty-foot { flex-wrap: wrap; gap: 16px; }
+
+  .form-grid { grid-template-columns: 1fr; }
+  .address-grid { grid-template-columns: 1fr 1fr; }
+  .channel-grid { grid-template-columns: 1fr; }
+  .pay-grid { grid-template-columns: 1fr; }
+
+  .confirm-grid { grid-template-columns: 1fr; }
+  .confirm-block { padding: 18px 18px; }
+  .confirm-channel { max-width: 100%; flex-wrap: wrap; }
+
+  .contact-buttons { grid-template-columns: 1fr; }
+
+  .success-body { padding: 40px 24px 28px; }
+  .success-body h3 { font-size: 28px; }
+  .success-foot { padding: 20px 24px 24px; }
+  .success-foot .info-row { flex-wrap: wrap; gap: 10px 18px; }
+}
+
+/* ============================================================
+   RESPONSIVE — PHONE (≤480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .checkout-hero { padding: 32px var(--gutter-page) 24px; }
+  .checkout-eyebrow { font-size: 9.5px; letter-spacing: 0.22em; margin-bottom: 14px; }
+  .checkout-h1 { font-size: 30px; margin-bottom: 20px; }
+
+  /* Stepper: keep numbered circles + separators, hide text labels so it never overflows */
+  .stepper { padding: 5px; }
+  .step { padding: 6px 8px; gap: 0; }
+  .step span:not(.step-n) { display: none; }
+  .step .step-n { width: 22px; height: 22px; }
+  .step-sep { width: 12px; margin: 0 2px; }
+
+  .checkout-layout { padding: 32px var(--gutter-page) 60px; gap: 28px; }
+
+  .panel-h h2 { font-size: 24px; }
+  .panel-h .meta { font-size: 10px; }
+
+  /* Cart line item — tighter, smaller thumbnail, tap targets kept ≥32px */
+  .cart-row { grid-template-columns: 72px 1fr; gap: 12px 14px; padding: 16px 0; }
+  .cart-row .photo { width: 72px; }
+  .cart-row .nm { font-size: 15px; }
+  .cart-row .row-actions { gap: 12px; flex-wrap: wrap; }
+  .qty-stepper { width: 104px; }
+  .qty-stepper button { width: 32px; height: 32px; }
+  .cart-row .price-col { min-width: 0; }
+  .cart-row .price { font-size: 15px; }
+
+  .cart-empty-foot { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .cart-empty-foot .clear-btn { padding: 10px 16px; }
+
+  .form-block { margin-bottom: 28px; }
+  .address-grid { grid-template-columns: 1fr; }
+
+  .channel-opt { padding: 14px 12px; gap: 10px; }
+  .pay-opt { padding: 16px 14px; }
+
+  .summary { padding: 20px; }
+  .summary h3 { font-size: 20px; margin-bottom: 18px; padding-bottom: 14px; }
+  .tot-row.total .v { font-size: 26px; }
+
+  .contact-buttons { gap: 10px; }
+
+  .success-body { padding: 32px 18px 24px; }
+  .success-check { width: 72px; height: 72px; }
+  .success-body h3 { font-size: 22px; }
+  .order-id { padding: 8px 14px; flex-wrap: wrap; justify-content: center; }
+
+  .toast { left: 16px; right: 16px; bottom: 16px; justify-content: center; }
+}
