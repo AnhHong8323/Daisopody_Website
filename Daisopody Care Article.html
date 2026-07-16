@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Four-Layer Bioactive Build — Daisopody</title>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<link rel="stylesheet" href="care-article.css"/>
+</head>
+<body>
+<div class="reading-progress" id="progress"></div>
+
+<div class="page" data-screen-label="Daisopody Care Article">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="Daisopody Homepage.html" class="brand-mark"><span class="mark-dot"></span>DAISOPODY</a>
+    <nav class="nav">
+      <a href="Daisopody Homepage.html">Home</a>
+      <a href="Daisopody Shop.html">Shop</a>
+      <a href="Daisopody Care Guide.html" class="active">Care Guide</a>
+      <a href="Daisopody About Us.html">About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switch" role="group" aria-label="Language" id="lang">
+        <button class="active" data-lang="en">EN</button>
+        <button data-lang="vn">VN</button>
+      </div>
+      <button class="btn-contact">
+        <i data-lucide="phone" style="width:13px;height:13px;color:#182B25;stroke-width:1.8" aria-hidden="true"></i>
+        CONTACT
+      </button>
+      <a href="Daisopody Cart.html" class="cart-btn" aria-label="Cart">
+        <i data-lucide="shopping-bag" style="width:20px;height:20px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        <span class="badge">2</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- CRUMBS / ACTIONS -->
+  <div class="crumbs-bar">
+    <div class="crumbs">
+      <a href="Daisopody Homepage.html">Home</a><span class="sep">/</span>
+      <a href="Daisopody Care Guide.html">Care guide</a><span class="sep">/</span>
+      <a href="Daisopody Care Guide.html">Setup &amp; build</a><span class="sep">/</span>
+      <span class="here">The Four-Layer Bioactive Build</span>
+    </div>
+    <div class="actions-row">
+      <button class="a-btn" id="bookmark-top">
+        <i data-lucide="bookmark" style="width:12px;height:12px;stroke-width:1.7" aria-hidden="true"></i>
+        SAVE
+      </button>
+      <button class="a-btn">
+        <i data-lucide="share-2" style="width:12px;height:12px;stroke-width:1.7" aria-hidden="true"></i>
+        SHARE
+      </button>
+      <button class="a-btn">
+        <i data-lucide="printer" style="width:12px;height:12px;stroke-width:1.7" aria-hidden="true"></i>
+        PRINT
+      </button>
+    </div>
+  </div>
+
+  <!-- ARTICLE HEAD -->
+  <section class="article-head">
+    <div class="article-tag-row">
+      <span class="pill-cat">TUTORIAL</span>
+      <span>SETUP &amp; BUILD</span>
+      <span class="sep">·</span>
+      <span>INTERMEDIATE</span>
+      <span class="sep">·</span>
+      <span>14 MIN READ</span>
+    </div>
+    <h1 class="article-h1">The Four-Layer<br/><em>Bioactive Build</em></h1>
+    <p class="article-deck">A drainage-up walkthrough of the substrate pattern our facility uses for every Cubaris colony — calibrated for tropical humidity and seven-year culture longevity.</p>
+
+    <div class="byline">
+      <div class="author">
+        <div class="ava" style="background-image:url('assets/about-team.jpg');"></div>
+        <div>
+          <div class="who">Linh Nguyen</div>
+          <div class="role">HEAD KEEPER · DA LAT FACILITY</div>
+        </div>
+      </div>
+      <span class="meta-dot"></span>
+      <div class="pub">
+        <span class="k">PUBLISHED</span>
+        <span class="v">12 May 2026</span>
+      </div>
+      <span class="meta-dot"></span>
+      <div class="pub">
+        <span class="k">UPDATED</span>
+        <span class="v">18 May 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO IMAGE -->
+  <div class="hero-img" style="background-image:url('assets/care-guide-2.jpg');">
+    <div class="caption">
+      <span class="label">
+        <i data-lucide="aperture" style="width:11px;height:11px;stroke-width:1.7" aria-hidden="true"></i>
+        ROOM 2 · DA LAT FACILITY
+      </span>
+      <span>Photograph · Hà Vu · May 2026</span>
+    </div>
+  </div>
+
+  <!-- ARTICLE LAYOUT -->
+  <div class="article-layout">
+
+    <!-- TOC -->
+    <aside class="toc" id="toc">
+      <div class="h">In this build</div>
+      <ol>
+        <li><a href="#why-four-layers" class="active">Why four layers</a></li>
+        <li><a href="#drainage">The drainage bed</a></li>
+        <li><a href="#barrier">Charcoal barrier</a></li>
+        <li><a href="#substrate">Substrate blend</a></li>
+        <li><a href="#cleanup">Cleanup crew &amp; moss</a></li>
+        <li><a href="#first-week">The first week</a></li>
+        <li><a href="#troubleshoot">When it goes wrong</a></li>
+      </ol>
+    </aside>
+
+    <!-- BODY -->
+    <article class="body">
+
+      <p class="lead-p">After five years of running Cubaris cultures through three rooms and four climate zones, we've settled on one substrate pattern. Not because it's the only one that works — but because it's the one we can troubleshoot from a single page of notes when something goes sideways at 6 AM.</p>
+
+      <h2 id="why-four-layers">Why <em>four</em> layers</h2>
+      <p>The point of a bioactive build isn't that it looks pretty in a Hanoian apartment. The point is that it <strong>buffers humidity</strong> without your intervention. A bare-substrate enclosure swings 30% rH between morning and night. A correctly-layered one swings 4%.</p>
+      <p>The four layers each do one job. Drainage holds excess water out of the substrate. Barrier prevents that water from wicking back up. Substrate stores and slow-releases moisture. Cleanup crew + moss prevent the substrate from going anaerobic.</p>
+
+      <div class="callout">
+        <span class="ic">
+          <i data-lucide="info" style="width:22px;height:22px;stroke-width:1.5" aria-hidden="true"></i>
+        </span>
+        <div>
+          <div class="cl-eyebrow">FACILITY NOTE</div>
+          <h4>Skip a layer and the next one fails.</h4>
+          <p>The four layers are a system. Pull out the charcoal barrier and your substrate goes sour within six months. Skip the springtails and you'll fight mold for the entire life of the culture. The build only works whole.</p>
+        </div>
+      </div>
+
+      <h2 id="drainage">1 · The <em>drainage bed</em></h2>
+      <p>LECA (expanded clay) sits at the bottom of the enclosure at a depth of <strong>2 – 3 cm</strong>. Its job is to hold excess water below the substrate line so the topsoil can be moist without being saturated.</p>
+
+      <h3>Material specs</h3>
+      <ul class="bullet-list">
+        <li>LECA, 8 – 16 mm grade. We use the cheap brick-clay variety — quality of LECA doesn't matter much here.</li>
+        <li>Wash it twice before use. Brand-new LECA carries a dust layer that will cloud the drainage water for weeks.</li>
+        <li>For enclosures larger than 30 cm cubed, install a false-bottom mesh above the LECA to keep substrate from migrating down.</li>
+      </ul>
+
+      <figure class="fig fig-wide">
+        <div class="ph" style="background-image:url('assets/about-facility-2.jpg');"></div>
+        <figcaption><span class="ix">FIG. 01</span> A four-layer build halfway through assembly. LECA is washed and seated; charcoal barrier and screen are visible at the right; substrate awaits the moss layer.</figcaption>
+      </figure>
+
+      <h2 id="barrier">2 · The <em>charcoal barrier</em></h2>
+      <p>Above the drainage layer, a thin band of activated charcoal sits between two layers of fiberglass screen. Activated charcoal — the kind you'd find in an aquarium filter — does two things: it filters anything leaching through the substrate, and it provides a final barrier against root and substrate migration.</p>
+      <p>This is the most-skipped layer, and the layer whose absence keepers most often blame on bad luck. <span class="em">The pattern is unambiguous</span>: cultures with the charcoal barrier run for 5+ years. Cultures without it average 14 months before substrate replacement.</p>
+
+      <div class="pull-quote">
+        <p>Skip the charcoal and you're not building a bioactive culture. You're building a moss garden with isopods in it — and it will die.</p>
+        <span class="pq-cite">Hà Vu · Cubaris Lead · Room 2</span>
+      </div>
+
+      <h2 id="substrate">3 · The <em>substrate</em> blend</h2>
+      <p>Our standard substrate is a four-component blend, mixed weekly in the substrate kitchen and rested for 48 hours before use. The exact ratios are climate-dependent.</p>
+
+      <div class="data-table">
+        <div class="dt-head">
+          <span>Component</span><span>Tropical Cubaris</span><span>Mediterranean</span><span>Temperate</span>
+        </div>
+        <div class="dt-row">
+          <span class="nm">Coco coir <i>fine grind, washed</i></span>
+          <span>45%</span><span>35%</span><span>50%</span>
+        </div>
+        <div class="dt-row">
+          <span class="nm">Leaf litter <i>oak, magnolia, cherry</i></span>
+          <span>25%</span><span>30%</span><span>30%</span>
+        </div>
+        <div class="dt-row">
+          <span class="nm">Sphagnum <i>chopped, hydrated</i></span>
+          <span>20%</span><span>15%</span><span>10%</span>
+        </div>
+        <div class="dt-row">
+          <span class="nm">Lime &amp; calcium meal</span>
+          <span>10%</span><span>20%</span><span>10%</span>
+        </div>
+      </div>
+
+      <h3>Three things we don't compromise on</h3>
+      <ol class="num-list">
+        <li>
+          <div>
+            <span class="li-t">Leaf litter must be sourced &amp; cured.</span>
+            <span class="li-d">Never collect from anywhere near a road, lawn-care zone, or commercial nursery. We cure all leaf litter at 60°C for 48 h before adding to the blend.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="li-t">Coco coir gets washed three times.</span>
+            <span class="li-d">Most commercial coir is salt-rich from coastal processing. Three washes drops salt content below 0.1% TDS, where it stops being a problem.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="li-t">Calcium goes into the substrate, not on top of it.</span>
+            <span class="li-d">Surface calcium gets eaten in two days then ignored. Substrate-blended calcium releases gradually as the springtails turn over the top layer.</span>
+          </div>
+        </li>
+      </ol>
+
+      <h2 id="cleanup">4 · The <em>cleanup crew</em> &amp; live moss</h2>
+      <p>Springtails (<em>Folsomia candida</em>) seed the substrate before the isopods arrive — typically 5 – 7 days in advance. Their job is to consume mold spores before colonies can establish.</p>
+      <p>Live moss goes in last: cushion moss along the humid corner, sphagnum strands in the cooler half. The moss isn't decorative. It's a humidity indicator — when the cushion moss browns, your humidity is wrong.</p>
+
+      <div class="compare">
+        <div class="c-do">
+          <span class="c-label">DO</span>
+          <h4>Seed springtails one full week ahead.</h4>
+          <p>Gives the population time to spread through the substrate before isopods compete for the same fungal food sources.</p>
+        </div>
+        <div class="c-dont">
+          <span class="c-label">DON'T</span>
+          <h4>Add isopods and springtails simultaneously.</h4>
+          <p>The springtail population can't establish fast enough. You'll be fighting mold blooms for the first month.</p>
+        </div>
+      </div>
+
+      <h2 id="first-week">The <em>first week</em></h2>
+      <p>You'll be tempted to add the isopods immediately after the substrate is in. Don't. The bioactive build needs <strong>72 hours minimum</strong> to settle and for the humidity to stabilise before any animals go in. Seven days is better.</p>
+      <p>During that window: mist twice daily, watch the moss for browning, check the hygrometer at the same hour every day. If the humidity is more than ±5% off your target at 72 hours, something in the build is wrong — pull the lid, identify it, fix it.</p>
+
+      <figure class="fig">
+        <div class="ph" style="background-image:url('assets/care-guide-1.jpg');"></div>
+        <figcaption><span class="ix">FIG. 02</span> Days 4 – 7. Springtails are visible across the substrate surface. Moss is green and saturated. Hygrometer reads target ±2%. Build is ready.</figcaption>
+      </figure>
+
+      <h2 id="troubleshoot">When it goes <em>wrong</em></h2>
+      <p>It will go wrong. It goes wrong for us. The substrate kitchen runs four batches a month and one batch per quarter, on average, has to be remixed because we missed a ratio.</p>
+
+      <h3>The three failure modes you'll see</h3>
+      <ol class="num-list">
+        <li>
+          <div>
+            <span class="li-t">White mold bloom in week 2 – 3.</span>
+            <span class="li-d">Almost always: springtail population too low. Solution: re-seed 500 ct of springtails. Bloom will visibly recede within 5 – 7 days.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="li-t">Substrate goes sour (sulfur smell).</span>
+            <span class="li-d">Drainage is failing. Check that LECA isn't sitting in standing water. If it is, pull the enclosure apart and rebuild — the substrate is not recoverable.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="li-t">Humidity drops 10% within a week.</span>
+            <span class="li-d">Usually a ventilation issue, not a substrate issue. Reduce screen area by 50%. Substrate alone cannot compensate for over-ventilation.</span>
+          </div>
+        </li>
+      </ol>
+
+      <p>None of this is unrecoverable. A bioactive culture is forgiving — what kills cultures isn't bad days, it's a year of small wrong things compounding. The notebook discipline matters more than the substrate ratio.</p>
+
+      <div class="callout">
+        <span class="ic">
+          <i data-lucide="clipboard-check" style="width:22px;height:22px;color:currentColor;stroke-width:1.5" aria-hidden="true"></i>
+        </span>
+        <div>
+          <div class="cl-eyebrow">DOWNLOAD</div>
+          <h4>The four-layer build checklist · PDF</h4>
+          <p>One page. Material list, ratios, day-by-day setup timing, and the three failure modes with fixes. Print it. Tape it inside your terrarium cabinet door. <a href="#">Get the PDF →</a></p>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- RIGHT RAIL -->
+    <aside class="right-rail">
+
+      <div class="rail-card">
+        <div class="h">Reading <span class="pct" id="rail-pct">0%</span></div>
+        <div class="read-stats">
+          <div class="rs-row"><span>Length</span><span class="v">14 min</span></div>
+          <div class="rs-row"><span>Chapters</span><span class="v">7</span></div>
+          <div class="rs-row"><span>Difficulty</span><span class="v">Intermediate</span></div>
+          <div class="read-bar"><div class="fill" id="rail-fill"></div></div>
+        </div>
+      </div>
+
+      <div class="rail-card author-card">
+        <div class="h">Written by</div>
+        <div class="who-row">
+          <div class="ava" style="background-image:url('assets/about-team.jpg');"></div>
+          <div>
+            <div class="who">Linh Nguyen</div>
+            <div class="role">HEAD KEEPER</div>
+          </div>
+        </div>
+        <p class="bio">Co-founder of Daisopody. Runs the Da Lat facility. Has personally built every culture pattern we use.</p>
+        <button class="follow">FOLLOW
+          <i data-lucide="plus" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="rail-card share-card">
+        <div class="h">Share</div>
+        <div class="share-row">
+          <button class="s-btn" aria-label="Copy link"><i data-lucide="link-2" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i></button>
+          <button class="s-btn" aria-label="Email"><i data-lucide="mail" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i></button>
+          <button class="s-btn" aria-label="X"><i data-lucide="twitter" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i></button>
+          <button class="s-btn" aria-label="Facebook"><i data-lucide="facebook" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="rail-card kit-card">
+        <div class="kit-img" style="background-image:url('assets/care-guide-2.jpg');"></div>
+        <h4>Build it with the right kit</h4>
+        <p class="kit-sub">Everything in this article, pre-measured. Shipped from Da Lat.</p>
+        <div class="kit-foot">
+          <span class="price">$58<em>.00</em></span>
+          <a href="Daisopody Shop.html" class="shop">SHOP NOW
+            <i data-lucide="arrow-right" style="width:10px;height:10px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- ARTICLE FOOT (helpful + tags + author + comments) -->
+  <section class="article-foot">
+
+    <div class="foot-actions">
+      <div class="helpful">
+        WAS THIS HELPFUL?
+        <button id="helpful-yes">
+          <i data-lucide="thumbs-up" style="width:12px;height:12px;stroke-width:1.7" aria-hidden="true"></i>
+          YES
+        </button>
+        <button id="helpful-no">
+          <i data-lucide="thumbs-up" style="width:12px;height:12px;stroke-width:1.7" aria-hidden="true"></i>
+          NEEDS WORK
+        </button>
+        <span class="count" id="helpful-count">128 of 134 found this helpful</span>
+      </div>
+    </div>
+
+    <div class="tag-row">
+      <span class="label">FILED UNDER</span>
+      <a class="t" href="#">SETUP &amp; BUILD</a>
+      <a class="t" href="#">CUBARIS</a>
+      <a class="t" href="#">SUBSTRATE</a>
+      <a class="t" href="#">BIOACTIVE</a>
+      <a class="t" href="#">HUMIDITY</a>
+      <a class="t" href="#">SPRINGTAILS</a>
+    </div>
+
+    <div class="author-detail">
+      <div class="ava-lg" style="background-image:url('assets/about-team.jpg');"></div>
+      <div>
+        <h4>Linh Nguyen</h4>
+        <div class="role">HEAD KEEPER · CO-FOUNDER</div>
+        <p class="author-bio">Linh founded Daisopody in 2021 with two cultures of Porcellio laevis and a notebook. She now runs the Da Lat facility and has personally calibrated every substrate pattern, climate target, and culture protocol we publish.</p>
+        <div class="author-meta">
+          <span><strong>22</strong>&nbsp;essays</span>
+          <span><strong>4,800</strong>&nbsp;followers</span>
+          <span>HEAD KEEPER SINCE&nbsp;<strong>2021</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="comments">
+      <h3>Reader <em>questions</em><span class="ct">· 12 comments</span></h3>
+      <form class="comment-form" onsubmit="event.preventDefault(); commented(this)">
+        <input type="text" placeholder="Ask Linh a question about this build…" required/>
+        <button type="submit">POST
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+        </button>
+      </form>
+
+      <div class="comment-list">
+        <div class="comment">
+          <div class="ava" style="background-image:url('assets/about-facility-1.jpg');"></div>
+          <div>
+            <div class="c-head">
+              <span class="c-name">Marcus T.</span>
+              <span class="c-when">2 DAYS AGO</span>
+            </div>
+            <p class="c-body">Quick question on the charcoal layer — I have aquarium-grade activated charcoal but it's the granular kind, not the pellet kind. Will granular work or does the size matter?</p>
+            <div class="c-foot">
+              <button><i data-lucide="thumbs-up" style="width:10px;height:10px;stroke-width:1.7" aria-hidden="true"></i> 8</button>
+              <button>REPLY</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="ava" style="background-image:url('assets/about-team.jpg');"></div>
+          <div>
+            <div class="c-head">
+              <span class="c-name">Linh Nguyen</span>
+              <span class="c-keeper">KEEPER</span>
+              <span class="c-when">2 DAYS AGO</span>
+            </div>
+            <p class="c-body">Granular is fine — actually slightly preferred because it packs more uniformly between screens. The 1 – 3 mm grade is what we use. Just make sure it's <em>activated</em>, not regular charcoal: regular won't do the adsorption work.</p>
+            <div class="c-foot">
+              <button><i data-lucide="thumbs-up" style="width:10px;height:10px;stroke-width:1.7" aria-hidden="true"></i> 22</button>
+              <button>REPLY</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="ava" style="background-image:url('assets/about-facility-3.jpg');"></div>
+          <div>
+            <div class="c-head">
+              <span class="c-name">Sarah J.</span>
+              <span class="c-when">3 DAYS AGO</span>
+            </div>
+            <p class="c-body">This is the third time I've followed this guide and the fourth time my colony has survived past month 6. Don't change a thing.</p>
+            <div class="c-foot">
+              <button><i data-lucide="thumbs-up" style="width:10px;height:10px;stroke-width:1.7" aria-hidden="true"></i> 15</button>
+              <button>REPLY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PREV / NEXT -->
+  <section class="nextprev">
+    <a class="np-card prev" href="#">
+      <span class="dir">
+        <i data-lucide="chevron-left" style="width:11px;height:11px;stroke-width:1.8" aria-hidden="true"></i>
+        PREVIOUS · TUTORIAL
+      </span>
+      <h3>How to <em>start</em> your first isopod colony</h3>
+      <span class="nm-meta">SETUP · 8 MIN · LINH NGUYEN</span>
+    </a>
+    <a class="np-card next" href="#">
+      <span class="dir">
+        NEXT · SPECIES NOTES
+        <i data-lucide="chevron-right" style="width:11px;height:11px;stroke-width:1.8" aria-hidden="true"></i>
+      </span>
+      <h3>Care guide: rare <em>Cubaris morphs</em></h3>
+      <span class="nm-meta">HUSBANDRY · 6 MIN · HÀ VU</span>
+    </a>
+  </section>
+
+  <!-- RELATED -->
+  <section class="related">
+    <div class="related-head">
+      <div>
+        <h2>More from <em>Linh</em></h2>
+        <div class="sub">Three more long-reads from the same keeper.</div>
+      </div>
+      <a href="Daisopody Care Guide.html" class="view-all">ALL ESSAYS BY LINH
+        <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+      </a>
+    </div>
+    <div class="related-grid">
+      <a class="r-card" href="#">
+        <div class="cv" style="background-image:url('assets/about-facility-2.jpg');">
+          <span class="tag">HUSBANDRY</span>
+        </div>
+        <div class="meta"><span>HUSBANDRY</span><span class="sep">·</span><span>11 MIN</span></div>
+        <h3>Calcium cycles, cuttlebone, and the <em>molting window</em></h3>
+      </a>
+      <a class="r-card" href="#">
+        <div class="cv" style="background-image:url('assets/about-facility-3.jpg');">
+          <span class="tag">SETUP</span>
+        </div>
+        <div class="meta"><span>SETUP</span><span class="sep">·</span><span>6 MIN</span></div>
+        <h3>Choosing your <em>first enclosure</em>: glass vs. acrylic</h3>
+      </a>
+      <a class="r-card" href="#">
+        <div class="cv" style="background-image:url('assets/blog-cover-2.jpg');">
+          <span class="tag">TROUBLESHOOTING</span>
+        </div>
+        <div class="meta"><span>TROUBLESHOOTING</span><span class="sep">·</span><span>9 MIN</span></div>
+        <h3>Diagnosing a <em>stalled colony</em>: the five-minute audit</h3>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="cg-newsletter">
+    <div class="eyebrow">SUBSCRIBE</div>
+    <h3>One essay,<br/><em>every other Sunday</em>.</h3>
+    <p class="pitch">A fortnightly long-form note from our keepers — usually a single deep care topic, never product pushes. Currently going out to 4,200 readers.</p>
+    <form class="cg-form-row" onsubmit="event.preventDefault(); subscribed(this)">
+      <input type="email" placeholder="your.email@daisopody.com" required/>
+      <button type="submit">SUBSCRIBE
+        <i data-lucide="arrow-right" style="width:12px;height:12px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+      </button>
+    </form>
+  </section>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><i data-lucide="check" style="width:14px;height:14px;color:#182B25;stroke-width:2" aria-hidden="true"></i><span id="toast-msg">Saved</span></div>
+
+<script>
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // Reading progress
+  const progress = document.getElementById('progress');
+  const railFill = document.getElementById('rail-fill');
+  const railPct = document.getElementById('rail-pct');
+  function updateProgress() {
+    const article = document.querySelector('article.body');
+    if (!article) return;
+    const rect = article.getBoundingClientRect();
+    const viewH = window.innerHeight;
+    const total = article.offsetHeight + rect.top - viewH;
+    const scrolled = -rect.top;
+    const pct = Math.max(0, Math.min(1, scrolled / Math.max(1, total + viewH * 0.5)));
+    progress.style.width = (pct * 100) + '%';
+    railFill.style.width = (pct * 100) + '%';
+    railPct.textContent = Math.round(pct * 100) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // TOC active state
+  const headings = [...document.querySelectorAll('article.body h2[id]')];
+  const tocLinks = [...document.querySelectorAll('.toc a')];
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        tocLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  headings.forEach(h => obs.observe(h));
+
+  // Bookmark
+  document.getElementById('bookmark-top').addEventListener('click', (e) => {
+    const b = e.currentTarget;
+    b.classList.toggle('on');
+    showToast(b.classList.contains('on') ? 'Saved to your bookmarks' : 'Removed from bookmarks');
+  });
+
+  // Helpful
+  let helpfulSet = false;
+  document.getElementById('helpful-yes').addEventListener('click', (e) => {
+    if (helpfulSet) return; helpfulSet = true;
+    document.querySelectorAll('.helpful button').forEach(x => x.classList.remove('on'));
+    e.currentTarget.classList.add('on');
+    document.getElementById('helpful-count').textContent = '129 of 135 found this helpful';
+    showToast('Thanks — feedback recorded');
+  });
+  document.getElementById('helpful-no').addEventListener('click', (e) => {
+    if (helpfulSet) return; helpfulSet = true;
+    document.querySelectorAll('.helpful button').forEach(x => x.classList.remove('on'));
+    e.currentTarget.classList.add('on');
+    showToast('Thanks — feedback recorded');
+  });
+
+  // Comment
+  function commented(form) {
+    form.querySelector('input').value = '';
+    showToast('Comment posted · awaiting review');
+  }
+
+  // Subscribe
+  function subscribed(form) {
+    form.querySelector('input').value = '';
+    showToast('Subscribed · check your inbox');
+  }
+
+  // Language
+  document.querySelectorAll('#lang button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#lang button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+</script>
+
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script>
+  if (window.lucide) { lucide.createIcons(); }
+  // Re-render when new icons are added dynamically
+  window.__renderLucide = () => { if (window.lucide) lucide.createIcons(); };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Care Guide — Daisopody</title>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<link rel="stylesheet" href="care-guide.css"/>
+</head>
+<body>
+<div class="page" data-screen-label="Daisopody Care Guide">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="Daisopody Homepage.html" class="brand-mark"><span class="mark-dot"></span>DAISOPODY</a>
+    <nav class="nav">
+      <a href="Daisopody Homepage.html">Home</a>
+      <a href="Daisopody Shop.html">Shop</a>
+      <a href="Daisopody Care Guide.html" class="active">Care Guide</a>
+      <a href="Daisopody About Us.html">About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switch" role="group" aria-label="Language" id="lang">
+        <button class="active" data-lang="en">EN</button>
+        <button data-lang="vn">VN</button>
+      </div>
+      <button class="btn-contact">
+        <i data-lucide="phone" style="width:13px;height:13px;color:#182B25;stroke-width:1.8" aria-hidden="true"></i>
+        CONTACT
+      </button>
+      <a href="Daisopody Cart.html" class="cart-btn" aria-label="Cart">
+        <i data-lucide="shopping-bag" style="width:20px;height:20px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        <span class="badge" id="cart-badge-top">2</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="cg-hero" data-screen-label="01 Hero">
+    <div class="crumbs">
+      <a href="Daisopody Homepage.html">Home</a>
+      <span class="sep">/</span>
+      <span class="here">Care guide</span>
+    </div>
+    <div class="cg-hero-grid">
+      <div>
+        <div class="eyebrow">FIELD NOTES · CARE LIBRARY · ESSAYS</div>
+        <h1>Keep them <em>thriving</em>,<br/>not just alive.</h1>
+      </div>
+      <div class="meta">
+        <p>Forty-eight expert essays, step-by-step builds, and species notes — written by working keepers, calibrated for the climate you actually live in.</p>
+        <div class="search">
+          <i data-lucide="search" style="width:16px;height:16px;stroke-width:1.8" aria-hidden="true"></i>
+          <input type="search" placeholder="Search: humidity, calcium, springtails…"/>
+          <span class="kbd">⌘ K</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="cg-filter">
+    <div class="cg-tabs">
+      <button class="cg-tab active">All <span class="count">48</span></button>
+      <button class="cg-tab">Setup &amp; Build <span class="count">12</span></button>
+      <button class="cg-tab">Husbandry <span class="count">16</span></button>
+      <button class="cg-tab">Species Notes <span class="count">14</span></button>
+      <button class="cg-tab">Troubleshooting <span class="count">6</span></button>
+    </div>
+    <div class="right">
+      LEVEL
+      <div class="level-toggle" id="level-toggle">
+        <button class="active">All</button>
+        <button>Beginner</button>
+        <button>Intermediate</button>
+        <button>Advanced</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED GUIDE -->
+  <section class="featured-guide" data-screen-label="02 Featured Guide">
+    <div class="fg-eyebrow"><span class="pulse-dot"></span>FEATURED THIS WEEK · LONG READ</div>
+    <div class="fg-card">
+      <div class="fg-photo" style="background-image:url('assets/care-guide-2.jpg');">
+        <span class="tag">Tutorial</span>
+        <div class="reading-bar">
+          <span>14 min</span>
+          <div class="bar"></div>
+          <span>5 chapters</span>
+        </div>
+      </div>
+      <div class="fg-body">
+        <div class="fg-meta">
+          <span>SETUP &amp; BUILD</span><span class="sep">·</span>
+          <span>UPDATED MAY 12, 2026</span><span class="sep">·</span>
+          <span>INTERMEDIATE</span>
+        </div>
+        <h2>The Four-Layer<br/><em>Bioactive Build</em></h2>
+        <p class="lead">A drainage-up walkthrough of the build pattern our facility uses for every Cubaris colony — calibrated for tropical humidity and seven-year culture longevity.</p>
+        <div class="fg-toc">
+          <span class="step-num">01</span>
+          <span class="step-t">Drainage layer · LECA bed and false-bottom mesh</span>
+          <span class="step-num">02</span>
+          <span class="step-t">Barrier layer · activated charcoal and screen</span>
+          <span class="step-num">03</span>
+          <span class="step-t">Substrate · coco-coir, leaf litter, sphagnum ratios</span>
+          <span class="step-num">04</span>
+          <span class="step-t">Cleanup crew &amp; live moss seeding window</span>
+        </div>
+        <div class="fg-author">
+          <div class="ava" style="background-image:url('assets/about-team.jpg');"></div>
+          <div>
+            <div class="who">Linh Nguyen</div>
+            <div class="role">HEAD KEEPER · DA LAT FACILITY</div>
+          </div>
+        </div>
+        <div class="fg-actions">
+          <button class="btn-read" onclick="window.location='Daisopody Care Article.html'">READ THE BUILD
+            <i data-lucide="arrow-right" style="width:14px;height:14px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+          </button>
+          <button class="btn-bookmark" id="bookmark-fg">
+            <i data-lucide="bookmark" style="width:14px;height:14px;stroke-width:1.8" aria-hidden="true"></i>
+            SAVE FOR LATER
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNING PATHS -->
+  <section class="paths" data-screen-label="03 Learning Paths">
+    <div class="section-head">
+      <div class="eyebrow">STRUCTURED LEARNING</div>
+      <h2>Pick a <em>path</em>.</h2>
+      <p class="lead">Sequenced reading lists that build a complete mental model — most keepers finish a path in 4–6 weeks.</p>
+    </div>
+    <div class="path-grid">
+
+      <div class="path">
+        <div class="path-head">
+          <div class="path-icon">
+            <i data-lucide="clock" style="width:26px;height:26px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+          </div>
+          <span class="path-level">
+            BEGINNER
+            <span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+          </span>
+        </div>
+        <h3>Your first <em>30 days</em></h3>
+        <p class="ptag">From unboxing to first molt. Eight essays plus daily checklist — designed for the keeper who has never owned an invertebrate before.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="fill" style="width:0%"></div></div>
+          <div class="progress-meta"><span>8 ESSAYS · 1 H 40 M</span><span>NOT STARTED</span></div>
+        </div>
+      </div>
+
+      <div class="path">
+        <div class="path-head">
+          <div class="path-icon">
+            <i data-lucide="trending-up" style="width:26px;height:26px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+          </div>
+          <span class="path-level">
+            INTERMEDIATE
+            <span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+          </span>
+        </div>
+        <h3>Scaling your <em>colony</em></h3>
+        <p class="ptag">Breeding rates, calcium cycles, generation tracking and culture splits — the operational essays for keepers running 3+ active cultures.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="fill" style="width:42%"></div></div>
+          <div class="progress-meta"><span>11 ESSAYS · 2 H 30 M</span><span class="complete">42% COMPLETE</span></div>
+        </div>
+      </div>
+
+      <div class="path">
+        <div class="path-head">
+          <div class="path-icon">
+            <i data-lucide="star" style="width:26px;height:26px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+          </div>
+          <span class="path-level">
+            ADVANCED
+            <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+          </span>
+        </div>
+        <h3>Working with <em>rare morphs</em></h3>
+        <p class="ptag">Pedigree-grade husbandry: humidity buffers, micronutrient profiles, and lineage tracking for Cubaris and other slow-breeding collectors.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="fill" style="width:18%"></div></div>
+          <div class="progress-meta"><span>9 ESSAYS · 3 H 10 M</span><span class="complete">18% COMPLETE</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARTICLES GRID -->
+  <section class="articles-section" data-screen-label="04 Library">
+    <div class="articles-head">
+      <div>
+        <h2>The <em>library</em></h2>
+        <div class="sub">Every essay, sorted by recency. Bookmark as you read.</div>
+      </div>
+      <div class="right">
+        <a href="#" class="view-link">VIEW ALL ESSAYS
+          <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="articles-grid">
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/care-guide-1.jpg');">
+          <span class="badge-tag">Guide</span>
+          <span class="badge-level">Beginner</span>
+        </div>
+        <div class="meta"><span>SETUP</span><span class="sep">·</span><span>8 MIN</span><span class="sep">·</span><span>MAY 8</span></div>
+        <h3>How to start your first isopod colony</h3>
+        <p>Substrate prep, first feeding, and the three checks to do every Saturday morning until your colony reaches population stability.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/care-guide-2.jpg');">
+          <span class="badge-tag">Tutorial</span>
+          <span class="badge-level">Intermediate</span>
+        </div>
+        <div class="meta"><span>SETUP</span><span class="sep">·</span><span>12 MIN</span><span class="sep">·</span><span>APR 28</span></div>
+        <h3>Terrarium setup: the four-layer bioactive build</h3>
+        <p>The drainage-up build that keeps cultures alive for years. Material list, ratios, and the cleanup-crew timing window.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/care-guide-3.jpg');">
+          <span class="badge-tag">Species Notes</span>
+          <span class="badge-level">Advanced</span>
+        </div>
+        <div class="meta"><span>HUSBANDRY</span><span class="sep">·</span><span>6 MIN</span><span class="sep">·</span><span>APR 21</span></div>
+        <h3>Care guide: rare Cubaris morphs</h3>
+        <p>Humidity, calcium, and ventilation targets for advanced collector species like Rubber Ducky, Magic Potion, and Panda King.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/blog-hero.jpg');">
+          <span class="badge-tag">Husbandry</span>
+          <span class="badge-level">Beginner</span>
+        </div>
+        <div class="meta"><span>HUSBANDRY</span><span class="sep">·</span><span>5 MIN</span><span class="sep">·</span><span>APR 14</span></div>
+        <h3>Feeding schedules that work in tropical climates</h3>
+        <p>Why twice-weekly is wrong for HCMC, what fish food substitutes work, and how to time feeds around molting cycles.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/blog-cover-2.jpg');">
+          <span class="badge-tag">Troubleshooting</span>
+          <span class="badge-level">Intermediate</span>
+        </div>
+        <div class="meta"><span>TROUBLESHOOTING</span><span class="sep">·</span><span>9 MIN</span><span class="sep">·</span><span>APR 6</span></div>
+        <h3>Diagnosing a stalled colony: the five-minute audit</h3>
+        <p>Slowed breeding, sluggish movement, or mold blooms? Run this five-step audit before changing anything in the enclosure.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/about-facility-1.jpg');">
+          <span class="badge-tag">Species Notes</span>
+          <span class="badge-level">Beginner</span>
+        </div>
+        <div class="meta"><span>SPECIES</span><span class="sep">·</span><span>7 MIN</span><span class="sep">·</span><span>MAR 30</span></div>
+        <h3>Porcellio laevis: the Dairy Cow handbook</h3>
+        <p>Everything we know about the perfect starter species — temperature tolerance, brood frequency, and what makes the marbling pop.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/about-facility-2.jpg');">
+          <span class="badge-tag">Husbandry</span>
+          <span class="badge-level">Intermediate</span>
+        </div>
+        <div class="meta"><span>HUSBANDRY</span><span class="sep">·</span><span>11 MIN</span><span class="sep">·</span><span>MAR 22</span></div>
+        <h3>Calcium cycles, cuttlebone, and the molting window</h3>
+        <p>How much calcium is too much, when supplementation actually helps, and what to look for in the 48 hours before a molt.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/about-facility-3.jpg');">
+          <span class="badge-tag">Setup</span>
+          <span class="badge-level">Beginner</span>
+        </div>
+        <div class="meta"><span>SETUP</span><span class="sep">·</span><span>6 MIN</span><span class="sep">·</span><span>MAR 15</span></div>
+        <h3>Choosing your first enclosure: glass vs. acrylic</h3>
+        <p>Why cube proportions beat tall enclosures, what ventilation strip pattern keeps humidity stable, and when to skip the lid altogether.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+      <article class="article-card">
+        <div class="cover" style="background-image:url('assets/about-team.jpg');">
+          <span class="badge-tag">Species Notes</span>
+          <span class="badge-level">Advanced</span>
+        </div>
+        <div class="meta"><span>SPECIES</span><span class="sep">·</span><span>10 MIN</span><span class="sep">·</span><span>MAR 8</span></div>
+        <h3>Introducing the Amber Ducky: a keeper's notes</h3>
+        <p>Four generations of selective breeding, what changed in the F3 line, and the humidity calibration that finally stabilized the morph.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </span>
+      </article>
+
+    </div>
+
+    <div class="pagination">
+      <button aria-label="Previous">
+        <i data-lucide="chevron-left" style="width:14px;height:14px;stroke-width:1.8" aria-hidden="true"></i>
+      </button>
+      <button class="current">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="ellipsis">…</button>
+      <button>6</button>
+      <button aria-label="Next">
+        <i data-lucide="chevron-right" style="width:14px;height:14px;stroke-width:1.8" aria-hidden="true"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- QUICK REFERENCE -->
+  <section class="reference" data-screen-label="05 Quick Reference">
+    <div class="section-head">
+      <div class="eyebrow">QUICK REFERENCE</div>
+      <h2>The keeper's <em>cheat sheet</em></h2>
+      <p class="lead">Pin this — the targets we hit at our facility, distilled to one screen.</p>
+    </div>
+
+    <div class="ref-grid">
+
+      <!-- Species table -->
+      <div>
+        <div style="color:var(--cream-60); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:16px;">Species at a glance</div>
+        <div class="species-table">
+          <div class="st-head">
+            <span>Species</span>
+            <span>Difficulty</span>
+            <span>Humidity</span>
+            <span>Temp</span>
+          </div>
+          <div class="st-row">
+            <div>
+              <div class="name">Dairy Cow</div>
+              <div class="sci">Porcellio laevis</div>
+            </div>
+            <div class="difficulty"><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div>
+            <span>60–70%</span>
+            <span>20–26°C</span>
+          </div>
+          <div class="st-row">
+            <div>
+              <div class="name">Zebra Isopod</div>
+              <div class="sci">Armadillidium maculatum</div>
+            </div>
+            <div class="difficulty"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div>
+            <span>50–65%</span>
+            <span>18–24°C</span>
+          </div>
+          <div class="st-row">
+            <div>
+              <div class="name">Rubber Ducky</div>
+              <div class="sci">Cubaris sp. 'Rubber Ducky'</div>
+            </div>
+            <div class="difficulty"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div>
+            <span>75–85%</span>
+            <span>22–26°C</span>
+          </div>
+          <div class="st-row">
+            <div>
+              <div class="name">Amber Ducky</div>
+              <div class="sci">Cubaris sp. 'Amber Ducky'</div>
+            </div>
+            <div class="difficulty"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div>
+            <span>75–85%</span>
+            <span>22–26°C</span>
+          </div>
+          <div class="st-row">
+            <div>
+              <div class="name">Magic Potion</div>
+              <div class="sci">Cubaris sp. 'Magic Potion'</div>
+            </div>
+            <div class="difficulty"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div>
+            <span>80–90%</span>
+            <span>22–25°C</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gauges -->
+      <div>
+        <div style="color:var(--cream-60); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:16px;">Daily targets</div>
+        <div class="gauges">
+
+          <div class="gauge">
+            <div class="label-block">
+              <span class="glabel">HUMIDITY</span>
+              <span class="gtitle">Relative humidity</span>
+              <span class="gtarget">Target: 70–85% for most Cubaris</span>
+            </div>
+            <div class="gauge-vis">
+              <svg viewBox="0 0 110 60">
+                <path d="M 8 52 A 47 47 0 0 1 102 52" fill="none" stroke="rgba(255,242,187,0.15)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 8 52 A 47 47 0 0 1 92 22" fill="none" stroke="#FFF2BB" stroke-width="4" stroke-linecap="round" filter="url(#glow1)"/>
+                <defs><filter id="glow1"><feGaussianBlur stdDeviation="2.5"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+              </svg>
+              <div class="gauge-val">78<span class="unit">%</span></div>
+            </div>
+          </div>
+
+          <div class="gauge">
+            <div class="label-block">
+              <span class="glabel">TEMPERATURE</span>
+              <span class="gtitle">Ambient enclosure</span>
+              <span class="gtarget">Target: 22–25°C, no daily swing over 3°C</span>
+            </div>
+            <div class="gauge-vis">
+              <svg viewBox="0 0 110 60">
+                <path d="M 8 52 A 47 47 0 0 1 102 52" fill="none" stroke="rgba(255,242,187,0.15)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 8 52 A 47 47 0 0 1 76 11" fill="none" stroke="#FFF2BB" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+              <div class="gauge-val">24<span class="unit">°C</span></div>
+            </div>
+          </div>
+
+          <div class="gauge">
+            <div class="label-block">
+              <span class="glabel">VENTILATION</span>
+              <span class="gtitle">Air exchange index</span>
+              <span class="gtarget">Target: 40–60 for tropical species</span>
+            </div>
+            <div class="gauge-vis">
+              <svg viewBox="0 0 110 60">
+                <path d="M 8 52 A 47 47 0 0 1 102 52" fill="none" stroke="rgba(255,242,187,0.15)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 8 52 A 47 47 0 0 1 55 5" fill="none" stroke="#FFF2BB" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+              <div class="gauge-val">52<span class="unit">AEI</span></div>
+            </div>
+          </div>
+
+          <div class="gauge">
+            <div class="label-block">
+              <span class="glabel">FEED FREQUENCY</span>
+              <span class="gtitle">Tropical climate</span>
+              <span class="gtarget">Once per week + calcium top-up</span>
+            </div>
+            <div class="gauge-vis">
+              <svg viewBox="0 0 110 60">
+                <path d="M 8 52 A 47 47 0 0 1 102 52" fill="none" stroke="rgba(255,242,187,0.15)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 8 52 A 47 47 0 0 1 30 12" fill="none" stroke="#FFF2BB" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+              <div class="gauge-val">1<span class="unit">/wk</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERT Q&A -->
+  <section class="expert" data-screen-label="06 Expert Q&A">
+    <div class="section-head">
+      <div class="eyebrow">ASK THE KEEPER</div>
+      <h2>The questions <em>we get most</em>.</h2>
+      <p class="lead">Pulled from our WhatsApp support thread — answered by our facility leads, on the record.</p>
+    </div>
+
+    <div class="qa-list" id="qa">
+
+      <div class="qa-item open">
+        <div class="qa-q">
+          <div>
+            <span class="q-tag">HUMIDITY · BEGINNER</span>
+            My substrate looks wet but the hygrometer reads 55% — which one do I trust?
+          </div>
+          <div class="chev"><i data-lucide="plus" style="width:14px;height:14px;color:#FFF2BB;stroke-width:2" aria-hidden="true"></i></div>
+        </div>
+        <div class="qa-a">
+          <p>Trust the hygrometer — but only after calibration. Cheap probes drift 8–12% within their first three months. Recalibrate using the salt-jar test (saturated salt + sealed container = 75% rH at 25°C), then mount the probe an inch above substrate level, not on the wall. Substrate appearance is a lagging indicator.</p>
+          <p>If the calibrated reading is still 55%, your enclosure is dry despite damp-looking substrate. Likely your ventilation is too aggressive — try halving the screen area before adding more water.</p>
+          <div class="expert-sig">
+            <div class="ava" style="background-image:url('assets/about-team.jpg');"></div>
+            LINH NGUYEN · HEAD KEEPER
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">
+          <div>
+            <span class="q-tag">FEEDING · INTERMEDIATE</span>
+            How often should I feed a Cubaris colony in HCMC's climate?
+          </div>
+          <div class="chev"><i data-lucide="plus" style="width:14px;height:14px;color:#FFF2BB;stroke-width:2" aria-hidden="true"></i></div>
+        </div>
+        <div class="qa-a"></div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">
+          <div>
+            <span class="q-tag">MOLTING · BEGINNER</span>
+            One of my isopods looks white and unmoving — is it dying?
+          </div>
+          <div class="chev"><i data-lucide="plus" style="width:14px;height:14px;color:#FFF2BB;stroke-width:2" aria-hidden="true"></i></div>
+        </div>
+        <div class="qa-a"></div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">
+          <div>
+            <span class="q-tag">BREEDING · ADVANCED</span>
+            When should I split a thriving Rubber Ducky culture?
+          </div>
+          <div class="chev"><i data-lucide="plus" style="width:14px;height:14px;color:#FFF2BB;stroke-width:2" aria-hidden="true"></i></div>
+        </div>
+        <div class="qa-a"></div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">
+          <div>
+            <span class="q-tag">TROUBLESHOOTING · INTERMEDIATE</span>
+            White mold is taking over my substrate — should I clean it out?
+          </div>
+          <div class="chev"><i data-lucide="plus" style="width:14px;height:14px;color:#FFF2BB;stroke-width:2" aria-hidden="true"></i></div>
+        </div>
+        <div class="qa-a"></div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q">
+          <div>
+            <span class="q-tag">SHIPPING · BEGINNER</span>
+            My order just arrived. What should I do in the first hour?
+          </div>
+          <div class="chev"><i data-lucide="plus" style="width:14px;height:14px;color:#FFF2BB;stroke-width:2" aria-hidden="true"></i></div>
+        </div>
+        <div class="qa-a"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="cg-newsletter">
+    <div class="eyebrow">SUBSCRIBE</div>
+    <h3>One essay,<br/><em>every other Sunday</em>.</h3>
+    <p class="pitch">A fortnightly long-form note from our keepers — usually a single deep care topic, never product pushes. Currently going out to 4,200 readers.</p>
+    <form class="cg-form-row" onsubmit="event.preventDefault(); subscribed(this)">
+      <input type="email" placeholder="your.email@daisopody.com" required/>
+      <button type="submit">SUBSCRIBE
+        <i data-lucide="arrow-right" style="width:12px;height:12px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+      </button>
+    </form>
+  </section>
+
+</div>
+
+<!-- FAB + Toast -->
+<a href="Daisopody Cart.html" class="fab" aria-label="Cart"><i data-lucide="shopping-bag" style="width:22px;height:22px;color:#182B25;stroke-width:1.8" aria-hidden="true"></i><span class="badge">2</span></a>
+<div class="toast" id="toast"><i data-lucide="check" style="width:14px;height:14px;color:#182B25;stroke-width:2" aria-hidden="true"></i><span id="toast-msg">Bookmarked</span></div>
+
+<script>
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // Filter pills
+  document.querySelectorAll('.cg-tabs .cg-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.cg-tabs .cg-tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+    });
+  });
+  document.querySelectorAll('#level-toggle button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#level-toggle button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+
+  // Q&A accordion
+  document.querySelectorAll('#qa .qa-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.qa-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('#qa .qa-item').forEach(x => x.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Language switch
+  document.querySelectorAll('#lang button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#lang button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+
+  // Bookmark
+  document.getElementById('bookmark-fg').addEventListener('click', (e) => {
+    const b = e.currentTarget;
+    b.classList.toggle('on');
+    showToast(b.classList.contains('on') ? 'Saved to your bookmarks' : 'Removed from bookmarks');
+  });
+
+  // Subscribe
+  function subscribed(form) {
+    form.querySelector('input').value = '';
+    showToast('Subscribed · check your inbox');
+  }
+
+  // Keyboard shortcut for search
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      document.querySelector('.cg-hero input[type=search]').focus();
+    }
+  });
+</script>
+
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script>
+  if (window.lucide) { lucide.createIcons(); }
+  // Re-render when new icons are added dynamically
+  window.__renderLucide = () => { if (window.lucide) lucide.createIcons(); };
+</script>
+
+</body>
+</html>

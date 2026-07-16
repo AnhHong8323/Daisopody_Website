@@ -1,0 +1,253 @@
+/* ============================================================
+   Daisopody — Natural-Luxury Design Tokens
+   Strict 2-color palette: Dark Moss Green + Light Yellow/Cream
+   ============================================================ */
+
+/* Inter from Google Fonts — Daisopody uses Inter Light heavily for
+   editorial headlines and Bold/Italic for serif-substitute moments.
+   No new colors outside the 2-color palette. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,700&display=swap");
+
+:root {
+  /* ---------- BASE COLOR PALETTE ---------- */
+  /* Surfaces */
+  --moss-900:        #182B25;  /* primary background, "Dark Moss Green" */
+  --moss-900-90:     rgba(24, 43, 37, 0.9);  /* sticky header glass */
+  --moss-900-60:     rgba(24, 43, 37, 0.6);  /* gradient mid-stop */
+  --moss-900-30:     rgba(24, 43, 37, 0.3);  /* photo wash top */
+  --moss-900-02:     rgba(255, 242, 187, 0.02); /* hairline panel tint */
+
+  /* Cream — the ONLY accent */
+  --cream:           #FFF2BB;  /* primary fg, accents, CTAs */
+  --cream-90:        rgba(255, 242, 187, 0.9);
+  --cream-80:        rgba(255, 242, 187, 0.8);  /* secondary text on dark */
+  --cream-70:        rgba(255, 242, 187, 0.7);  /* paragraph body */
+  --cream-60:        rgba(255, 242, 187, 0.6);  /* tertiary / metadata */
+  --cream-50:        rgba(255, 242, 187, 0.5);  /* low-emphasis links, footer */
+  --cream-40:        rgba(255, 242, 187, 0.4);  /* divider dots */
+  --cream-30:        rgba(255, 242, 187, 0.3);  /* prominent borders */
+  --cream-20:        rgba(255, 242, 187, 0.2);  /* card borders */
+  --cream-15:        rgba(255, 242, 187, 0.15); /* soft shadow */
+  --cream-10:        rgba(255, 242, 187, 0.1);  /* hairline section dividers */
+
+  /* ---------- SEMANTIC TOKENS ---------- */
+  --bg:              var(--moss-900);
+  --bg-elevated:     var(--moss-900-02);
+  --header-bg:       var(--moss-900-90);
+  --fg:              var(--cream);
+  --fg-muted:        var(--cream-70);
+  --fg-subtle:       var(--cream-60);
+  --fg-disabled:     var(--cream-50);
+
+  --border-hairline: var(--cream-10);   /* section dividers */
+  --border-card:     var(--cream-20);   /* card / outline button */
+  --border-strong:   var(--cream-30);   /* form fields, focused */
+
+  --link:            var(--cream);
+  --link-quiet:      var(--cream-50);
+
+  /* CTA — filled cream button uses moss text on cream */
+  --btn-primary-bg:   var(--cream);
+  --btn-primary-fg:   var(--moss-900);
+  --btn-outline-fg:   var(--cream);
+  --btn-outline-bd:   var(--cream);
+
+  /* ---------- TYPOGRAPHY ---------- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Display: Inter Light w/ wide negative letter-spacing for editorial feel */
+  --display-family: var(--font-sans);
+  --display-weight: 300;
+
+  /* Eyebrow/label: tracked uppercase */
+  --eyebrow-family: var(--font-sans);
+  --eyebrow-weight: 500;
+
+  /* Type scale (px) — matches Figma usage */
+  --fs-display-xl: 72px;  /* hero h1 */
+  --fs-display-lg: 60px;  /* article h1 */
+  --fs-display-md: 48px;  /* page h1 */
+  --fs-display-sm: 36px;  /* section h2 */
+  --fs-headline:   30px;  /* card h2 */
+  --fs-title:      24px;  /* brand mark / h3 */
+  --fs-subtitle:   20px;  /* h4 */
+  --fs-body-lg:    18px;
+  --fs-body:       16px;
+  --fs-body-sm:    14px;  /* meta, nav, button */
+  --fs-caption:    12px;  /* category chips, tags */
+
+  /* Line height — Daisopody uses generous leading */
+  --lh-tight: 1.0;
+  --lh-snug:  1.25;       /* 90/72 hero */
+  --lh-normal: 1.4;
+  --lh-relaxed: 1.625;    /* 26/16 paragraphs */
+  --lh-airy:   2.0;       /* 72/36 about-page statement */
+
+  /* Tracking — wide-tracked uppercase is a signature */
+  --tracking-display: -0.025em; /* tight on big light type */
+  --tracking-normal:  0;
+  --tracking-eyebrow: 0.2em;    /* 2.8px / 14px */
+  --tracking-button:  0.1em;    /* 1.4px / 14px */
+  --tracking-tag:     0.1em;    /* 1.2px / 12px */
+  --tracking-brand:   0.1em;    /* 2.4px / 24px brand mark */
+  --tracking-statement: 0.1em;  /* 1.6px / 16px tagline */
+
+  /* ---------- SPACING ---------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Layout */
+  --container-max: 1280px;
+  --gutter:        24px;
+  --gutter-page:   127px; /* outer page padding seen in Figma frames */
+
+  /* ---------- RADII ---------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;   /* buttons, inputs, cards */
+  --radius-md: 8px;   /* feature panels */
+  --radius-full: 9999px; /* pills, circular FAB & avatars */
+
+  /* ---------- SHADOWS / GLOW ---------- */
+  /* Daisopody uses cream-tinted GLOW, never gray drop shadows */
+  --glow-sm:  0 0 8px 0 var(--cream);
+  --glow-md:  0 0 10px 0 var(--cream-20);
+  --glow-lg:  0 0 15px 0 rgba(255, 242, 187, 0.3);
+  --glow-xl:  0 0 20px 0 rgba(255, 242, 187, 0.4);
+  --glow-2xl: 0 0 30px 0 rgba(255, 242, 187, 0.4);
+
+  /* Protection gradient — fades the hero photo into the moss bg */
+  --hero-gradient:
+    linear-gradient(180deg, var(--moss-900) 0%, var(--moss-900-60) 50%, var(--moss-900-30) 100%);
+  --section-gradient:
+    linear-gradient(180deg, var(--moss-900-30) 0%, transparent 100%);
+  --hairline-gradient:
+    linear-gradient(180deg, transparent 0%, var(--cream-50) 50%, transparent 100%);
+
+  /* ---------- MOTION ---------- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 400ms;
+}
+
+/* ============================================================
+   Base element styles — set bg, default text, link defaults
+   ============================================================ */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--cream); color: var(--moss-900); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { opacity: 0.85; }
+
+/* ============================================================
+   Semantic typography classes
+   ============================================================ */
+.h-display,
+.h1-display {
+  font-family: var(--display-family);
+  font-weight: var(--display-weight);
+  font-size: var(--fs-display-xl);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-display);
+  color: var(--fg);
+}
+
+.h1 {
+  font-weight: 300;
+  font-size: var(--fs-display-md);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  color: var(--fg);
+}
+
+.h2 {
+  font-weight: 300;
+  font-size: var(--fs-display-sm);
+  line-height: 1.111;
+  color: var(--fg);
+}
+
+.h3 {
+  font-weight: 300;
+  font-size: var(--fs-subtitle);
+  line-height: 1.4;
+  letter-spacing: 0.025em;
+  color: var(--fg);
+}
+
+.eyebrow {
+  font-weight: 500;
+  font-size: var(--fs-body-sm);
+  line-height: 1.43;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: none; /* labels are already cased in Figma */
+  color: var(--fg-subtle);
+}
+
+.tag {
+  font-weight: 400;
+  font-size: var(--fs-caption);
+  line-height: 1.625;
+  letter-spacing: var(--tracking-tag);
+  color: var(--fg);
+}
+
+.brand-mark {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-title);
+  line-height: 1.333;
+  letter-spacing: var(--tracking-brand);
+  color: var(--fg);
+}
+
+.p, p {
+  font-weight: 300;
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-muted);
+}
+
+.p-lead {
+  font-weight: 300;
+  font-size: var(--fs-subtitle);
+  line-height: 1.4;
+  color: var(--cream-80);
+}
+
+.p-meta {
+  font-weight: 400;
+  font-size: var(--fs-body-sm);
+  line-height: 1.43;
+  letter-spacing: 0.025em;
+  color: var(--fg-subtle);
+}
+
+/* Italic accent — used very sparingly for emphasis (e.g. "Micro-World") */
+.italic-accent {
+  font-style: italic;
+  font-weight: 700;
+}

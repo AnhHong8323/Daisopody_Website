@@ -1,0 +1,1683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Daisopody — Premium Isopods &amp; Bioactive Ecosystems</title>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; overflow-x: hidden; }
+  button { font-family: inherit; }
+  svg { flex-shrink: 0; }
+
+  .page { max-width: 1440px; margin: 0 auto; position: relative; }
+
+  /* ============ HEADER ============ */
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    height: 81px;
+    background: var(--header-bg);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-hairline);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 var(--gutter-page); gap: 32px;
+  }
+  .brand-mark { display: inline-flex; align-items: center; gap: 10px; }
+  .brand-mark .mark-dot {
+    width: 9px; height: 9px; border-radius: 9999px; background: var(--cream);
+    box-shadow: 0 0 10px var(--cream);
+  }
+  .nav { display: flex; gap: 36px; align-items: center; }
+  .nav a {
+    font-size: 13px; font-weight: 400; letter-spacing: 0.1em;
+    color: var(--cream-70); position: relative; padding: 4px 0;
+    transition: color 200ms;
+  }
+  .nav a.active { color: var(--cream); }
+  .nav a:hover { color: var(--cream); opacity: 1; }
+  .nav a.active::after {
+    content: ""; position: absolute; left: 50%; bottom: -6px;
+    width: 4px; height: 4px; border-radius: 9999px; background: var(--cream);
+    transform: translateX(-50%); box-shadow: 0 0 6px var(--cream);
+  }
+
+  .header-right { display: flex; align-items: center; gap: 18px; }
+  .lang-switch {
+    display: flex; align-items: center;
+    border: 1px solid var(--cream-20);
+    border-radius: 9999px; padding: 3px;
+  }
+  .lang-switch button {
+    font-weight: 500; font-size: 11px; letter-spacing: 0.1em;
+    padding: 5px 12px; border-radius: 9999px; border: none; cursor: pointer;
+    background: transparent; color: var(--cream-70);
+    transition: background 200ms, color 200ms;
+  }
+  .lang-switch button.active { background: var(--cream); color: var(--moss-900); font-weight: 600; }
+
+  .btn-contact {
+    background: var(--cream); border: 1px solid var(--cream);
+    color: var(--moss-900); border-radius: 9999px;
+    font-weight: 700; font-size: 11.5px; letter-spacing: 0.14em;
+    padding: 11px 18px 11px 18px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 10px;
+    box-shadow: 0 0 18px 0 rgba(255, 242, 187, 0.4);
+    transition: box-shadow 200ms, transform 200ms;
+  }
+  .btn-contact:hover { box-shadow: 0 0 28px 0 rgba(255, 242, 187, 0.6); transform: translateY(-1px); }
+  .btn-contact .arrow { transition: transform 200ms var(--ease-out); }
+  .btn-contact:hover .arrow { transform: translateX(2px); }
+
+  .cart-btn {
+    position: relative; width: 36px; height: 36px; border-radius: 9999px;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent; border: none; cursor: pointer;
+  }
+  .cart-btn .badge {
+    position: absolute; top: -2px; right: -2px;
+    min-width: 16px; height: 16px; padding: 0 4px;
+    border-radius: 9999px; background: var(--cream); color: var(--moss-900);
+    font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 8px var(--cream-50);
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative; height: 760px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .hero-photo {
+    position: absolute; inset: 0;
+    background: url('assets/hero-isopod-macro.jpg') center/cover;
+    opacity: 0.42;
+    animation: heroBreath 14s var(--ease-in-out) infinite;
+  }
+  @keyframes heroBreath {
+    0%, 100% { transform: scale(1.02); }
+    50% { transform: scale(1.08); }
+  }
+  .hero-gradient {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 40%, transparent 0%, var(--moss-900-60) 60%, var(--moss-900) 100%),
+      linear-gradient(180deg, var(--moss-900) 0%, transparent 30%, transparent 70%, var(--moss-900) 100%);
+  }
+
+  /* Floating botanical line-art */
+  .botanical {
+    position: absolute; pointer-events: none; opacity: 0.14;
+    color: var(--cream);
+  }
+  .botanical.b-leaf-tl { top: 60px; left: 8%; width: 160px; transform: rotate(-18deg); animation: float1 9s ease-in-out infinite; }
+  .botanical.b-leaf-tr { top: 80px; right: 6%; width: 180px; transform: rotate(24deg); animation: float2 11s ease-in-out infinite; }
+  .botanical.b-bug-bl  { bottom: 70px; left: 7%; width: 140px; transform: rotate(-12deg); animation: float3 13s ease-in-out infinite; }
+  .botanical.b-branch-br { bottom: 50px; right: 9%; width: 200px; transform: rotate(8deg); animation: float1 12s ease-in-out infinite; }
+  @keyframes float1 { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-12px) rotate(var(--r,0deg)); } }
+  @keyframes float2 { 0%,100% { transform: translate(0,0) rotate(24deg); } 50% { transform: translate(6px,-10px) rotate(26deg); } }
+  @keyframes float3 { 0%,100% { transform: translate(0,0) rotate(-12deg); } 50% { transform: translate(-8px,-8px) rotate(-14deg); } }
+
+  .hero-inner {
+    position: relative; z-index: 2; text-align: center;
+    padding: 0 var(--gutter-page); max-width: 1100px;
+  }
+  .eyebrow-brand {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.3em;
+    color: var(--cream-80); margin-bottom: 28px;
+  }
+  .eyebrow-brand .tick {
+    width: 28px; height: 1px; background: var(--cream-30);
+  }
+  .hero h1 {
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 76px; line-height: 1.08;
+    letter-spacing: -0.025em; color: var(--cream);
+    margin: 0 auto; max-width: 980px; text-wrap: balance;
+  }
+  .hero h1 em { font-style: italic; font-weight: 700; }
+  .hero .sub {
+    margin: 28px auto 0;
+    max-width: 580px; color: var(--cream-70);
+    font-size: 16px; line-height: 1.7;
+    font-style: italic; font-weight: 300;
+  }
+  .hero-actions {
+    margin-top: 48px;
+    display: inline-flex; gap: 20px; align-items: center; flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    color: var(--cream-50); font-size: 10px; letter-spacing: 0.3em;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    z-index: 2;
+  }
+  .hero-scroll .line {
+    width: 1px; height: 36px;
+    background: linear-gradient(180deg, transparent, var(--cream-50));
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(0.7); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    font-weight: 700; font-size: 13px; letter-spacing: 0.16em;
+    padding: 16px 28px; border-radius: 9999px; cursor: pointer;
+    transition: transform 220ms var(--ease-out), box-shadow 220ms, background 220ms;
+    border: 1px solid transparent; text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--cream); color: var(--moss-900); border-color: var(--cream);
+    box-shadow: 0 0 22px 0 rgba(255,242,187,0.4);
+  }
+  .btn-primary:hover { box-shadow: 0 0 36px 0 rgba(255,242,187,0.65); transform: translateY(-1px); opacity: 1; }
+  .btn-primary .arrow-pill { display: inline-flex; transition: transform 220ms; }
+  .btn-primary:hover .arrow-pill { transform: translateX(3px); }
+  .btn-outline {
+    background: transparent; color: var(--cream); border-color: var(--cream);
+  }
+  .btn-outline:hover { background: var(--cream-10); box-shadow: 0 0 22px rgba(255,242,187,0.2); opacity: 1; }
+  .btn-text {
+    background: transparent; color: var(--cream);
+    padding: 16px 8px; position: relative; border-radius: 0; border: none;
+    font-weight: 400; letter-spacing: 0.16em;
+  }
+  .btn-text::after {
+    content: ""; position: absolute; left: 8px; right: 8px; bottom: 12px;
+    height: 1px; background: var(--cream-30); transition: background 220ms;
+  }
+  .btn-text:hover::after { background: var(--cream); }
+  .btn-text svg { transition: transform 220ms; }
+  .btn-text:hover svg { transform: translateX(3px); }
+
+  /* ============ SECTIONS ============ */
+  section { padding: 120px var(--gutter-page); border-top: 1px solid var(--border-hairline); position: relative; }
+  section.no-border { border-top: none; }
+  .section-head { text-align: center; margin-bottom: 72px; }
+  .section-head .eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.3em;
+    color: var(--cream-60); margin-bottom: 20px;
+  }
+  .section-head .eyebrow::before,
+  .section-head .eyebrow::after {
+    content: ""; width: 28px; height: 1px; background: var(--cream-20);
+  }
+  .section-head h2 {
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 48px; line-height: 1.1;
+    letter-spacing: -0.025em; color: var(--cream); margin: 0;
+    text-wrap: balance;
+  }
+  .section-head h2 em { font-style: italic; font-weight: 700; }
+  .section-head p {
+    margin-top: 18px; color: var(--cream-60);
+    font-size: 15px; line-height: 1.6; max-width: 580px;
+    margin-left: auto; margin-right: auto;
+  }
+
+  /* ============ FEATURED CATEGORIES (5 BLOCKS) ============ */
+  .categories {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+  }
+  .cat {
+    border: 1px solid var(--cream-20);
+    border-radius: 8px;
+    padding: 56px 20px 44px;
+    display: flex; flex-direction: column; align-items: center; gap: 24px;
+    transition: border-color 250ms, background 250ms, transform 250ms;
+    cursor: pointer; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cat::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--cream-10), transparent 60%);
+    opacity: 0; transition: opacity 300ms;
+  }
+  .cat:hover::before { opacity: 1; }
+  .cat:hover { border-color: var(--cream-30); transform: translateY(-2px); }
+  .cat .icon-frame {
+    width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+  }
+  .cat .label {
+    color: var(--cream); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    line-height: 1.5; position: relative; z-index: 1;
+  }
+  .cat .meta {
+    font-size: 10px; letter-spacing: 0.25em; color: var(--cream-50);
+    text-transform: uppercase; position: relative; z-index: 1;
+  }
+
+  /* ============ WHY CHOOSE (horizontal) ============ */
+  .reasons {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .reason {
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    text-align: center; padding: 0 8px;
+    position: relative;
+  }
+  .reason:not(:last-child)::after {
+    content: ""; position: absolute; right: -16px; top: 14px;
+    width: 1px; height: 32px; background: var(--cream-10);
+  }
+  .reason .icon-frame {
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reason .label {
+    color: var(--cream); font-size: 13px; font-weight: 400;
+    letter-spacing: 0.04em; line-height: 1.5; max-width: 160px;
+  }
+
+  /* ============ BEST SELLERS ============ */
+  .row-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 56px; gap: 32px;
+  }
+  .row-head h2 {
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 48px; line-height: 1; letter-spacing: -0.025em;
+    color: var(--cream); margin: 0;
+  }
+  .row-head h2 em { font-style: italic; font-weight: 700; }
+  .row-head .sub { color: var(--cream-60); font-size: 14px; margin-top: 12px; line-height: 1.6; }
+  .row-head .slider-controls { display: flex; gap: 12px; align-items: center; }
+  .slider-controls .ctrl {
+    width: 44px; height: 44px; border-radius: 9999px;
+    border: 1px solid var(--cream-30); background: transparent;
+    color: var(--cream); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 200ms, border-color 200ms, transform 200ms;
+  }
+  .slider-controls .ctrl:hover { background: var(--cream); color: var(--moss-900); }
+  .slider-controls .ctrl:hover svg { stroke: var(--moss-900); }
+  .slider-controls .ctrl:disabled { opacity: 0.3; cursor: not-allowed; }
+  .slider-controls .view-all {
+    font-size: 12px; letter-spacing: 0.18em; color: var(--cream);
+    margin-left: 16px; display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .slider-wrap { overflow: hidden; }
+  .products {
+    display: grid; grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 4 * 24px) / 4);
+    gap: 24px;
+    transition: transform 500ms var(--ease-out);
+  }
+  .product {
+    border: 1px solid var(--cream-20);
+    border-radius: 8px; overflow: hidden;
+    background: var(--moss-900-02);
+    transition: border-color 250ms, transform 250ms;
+    position: relative;
+  }
+  .product:hover { border-color: var(--cream-30); transform: translateY(-3px); }
+  .product .photo {
+    aspect-ratio: 4 / 5;
+    background-size: cover; background-position: center;
+    position: relative;
+    transition: filter 300ms;
+  }
+  .product:hover .photo { filter: brightness(1.08); }
+  .product .chip {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--moss-900-90); color: var(--cream);
+    font-size: 10px; font-weight: 500; letter-spacing: 0.18em;
+    padding: 5px 10px; border-radius: 9999px;
+    border: 1px solid var(--cream-30);
+    text-transform: uppercase;
+  }
+  .product .quick-add {
+    position: absolute; right: 14px; bottom: 14px;
+    width: 38px; height: 38px; border-radius: 9999px;
+    background: var(--cream); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 220ms, transform 220ms;
+    box-shadow: 0 0 18px rgba(255,242,187,0.5);
+  }
+  .product:hover .quick-add { opacity: 1; transform: translateY(0); }
+  .product .body {
+    padding: 22px 22px 24px;
+    display: flex; flex-direction: column; gap: 6px;
+    border-top: 1px solid var(--cream-10);
+  }
+  .product .name {
+    font-family: var(--font-sans); font-weight: 400;
+    font-size: 17px; letter-spacing: 0.01em;
+    color: var(--cream); line-height: 1.3;
+  }
+  .product .sci {
+    font-style: italic; font-weight: 300;
+    font-size: 12.5px; line-height: 1.4;
+    color: var(--cream-60);
+  }
+  .product .price {
+    margin-top: 10px;
+    color: var(--cream); font-weight: 500; font-size: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============ AMBER DUCKY SPOTLIGHT ============ */
+  .spotlight {
+    position: relative;
+    padding: 140px var(--gutter-page);
+    border-top: 1px solid var(--border-hairline);
+    overflow: hidden;
+  }
+  .spotlight-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 50% 60% at 30% 50%, rgba(244, 175, 95, 0.08), transparent 65%),
+      radial-gradient(ellipse 50% 60% at 80% 30%, var(--cream-10), transparent 60%);
+  }
+  .spotlight-grid {
+    position: relative;
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .spot-media { position: relative; }
+  .spot-photo {
+    aspect-ratio: 4 / 5;
+    background-size: cover; background-position: center;
+    border-radius: 12px;
+    border: 1px solid var(--cream-20);
+    box-shadow: 0 0 60px rgba(255,242,187,0.08);
+    position: relative;
+  }
+  .spot-photo::after {
+    content: ""; position: absolute; inset: 0; border-radius: 12px;
+    background: linear-gradient(180deg, transparent 60%, var(--moss-900-60));
+    pointer-events: none;
+  }
+  .spot-pedigree {
+    position: absolute; right: -32px; bottom: -28px;
+    width: 280px;
+    background: var(--moss-900);
+    border: 1px solid var(--cream-20);
+    border-radius: 10px;
+    padding: 20px 22px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .ped-row { display: flex; flex-direction: column; gap: 4px; }
+  .ped-row:not(:last-child) { padding-bottom: 14px; border-bottom: 1px solid var(--cream-10); }
+  .ped-k { font-size: 9.5px; letter-spacing: 0.25em; color: var(--cream-50); text-transform: uppercase; }
+  .ped-v { font-size: 13px; color: var(--cream); font-weight: 500; }
+
+  .spot-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.3em; color: var(--cream-70);
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  .spot-dot {
+    width: 8px; height: 8px; border-radius: 9999px; background: var(--cream);
+    box-shadow: 0 0 10px var(--cream);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.3); } }
+
+  .spot-h2 {
+    margin: 0 0 24px;
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 64px; line-height: 1.04; letter-spacing: -0.028em;
+    color: var(--cream); text-wrap: balance;
+  }
+  .spot-h2 em { font-style: italic; font-weight: 700; }
+  .spot-lead {
+    color: var(--cream-80); font-size: 17px; line-height: 1.6;
+    margin: 0 0 16px; font-weight: 300; max-width: 520px;
+  }
+  .spot-body {
+    color: var(--cream-60); font-size: 14px; line-height: 1.7;
+    margin: 0 0 36px; max-width: 520px;
+  }
+
+  .spot-specs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    margin-bottom: 36px;
+    border-top: 1px solid var(--cream-10);
+    border-bottom: 1px solid var(--cream-10);
+  }
+  .spot-spec {
+    padding: 16px 0;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .spot-spec:nth-child(odd) { border-right: 1px solid var(--cream-10); padding-right: 24px; }
+  .spot-spec:nth-child(even) { padding-left: 24px; }
+  .spot-spec:nth-child(-n+2) { border-bottom: 1px solid var(--cream-10); }
+  .spot-spec .k {
+    font-size: 10px; letter-spacing: 0.22em; color: var(--cream-50);
+    text-transform: uppercase;
+  }
+  .spot-spec .v { color: var(--cream); font-size: 14px; font-weight: 400; }
+
+  .spot-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .spot-price {
+    display: flex; flex-direction: column; gap: 2px;
+    margin-right: 8px;
+  }
+  .sp-current {
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 36px; letter-spacing: -0.02em; color: var(--cream); line-height: 1;
+  }
+  .sp-current .cents { font-size: 18px; color: var(--cream-70); }
+  .sp-unit {
+    font-size: 10px; letter-spacing: 0.22em; color: var(--cream-50);
+    text-transform: uppercase;
+  }
+
+  .spot-meta-row {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    margin-top: 28px;
+    color: var(--cream-60); font-size: 10.5px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .spot-meta-row span { display: inline-flex; align-items: center; gap: 8px; }
+
+  /* ============ VIDEO SECTION ============ */
+  .video-sec {
+    padding: 140px var(--gutter-page);
+    border-top: 1px solid var(--border-hairline);
+    position: relative;
+    overflow: hidden;
+  }
+  .video-sec::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 50% at 0% 50%, var(--cream-10), transparent 60%);
+    pointer-events: none;
+  }
+  .video-grid {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1.35fr; gap: 80px;
+    align-items: center;
+  }
+  .vs-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.3em; color: var(--cream-70);
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  .vs-eyebrow .rec {
+    width: 8px; height: 8px; border-radius: 9999px;
+    background: var(--cream); box-shadow: 0 0 10px var(--cream);
+    animation: vsRec 1.4s ease-in-out infinite;
+  }
+  @keyframes vsRec { 0%, 100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.4); } }
+
+  .vs-h2 {
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 64px; line-height: 1.04; letter-spacing: -0.028em;
+    color: var(--cream); margin: 0 0 24px;
+    text-wrap: balance;
+  }
+  .vs-h2 em { font-style: italic; font-weight: 700; }
+  .vs-lead {
+    color: var(--cream-70); font-size: 16px; line-height: 1.7;
+    margin: 0 0 36px; max-width: 480px;
+  }
+
+  .vs-chapters {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--cream-10);
+  }
+  .vs-chap {
+    display: grid; grid-template-columns: 48px 1fr;
+    gap: 16px; align-items: center;
+    padding: 16px 4px;
+    background: transparent; border: none; border-bottom: 1px solid var(--cream-10);
+    text-align: left; cursor: pointer; font-family: inherit;
+    transition: color 200ms, background 200ms;
+    color: var(--cream-70);
+  }
+  .vs-chap:hover { color: var(--cream); background: var(--cream-10); }
+  .vs-chap.active { color: var(--cream); }
+  .vs-chap.active .ch-n { color: var(--cream); }
+  .ch-n {
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 20px; letter-spacing: -0.02em; color: var(--cream-50);
+    line-height: 1;
+  }
+  .ch-t {
+    font-size: 14.5px; color: inherit; font-weight: 400; line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .ch-d {
+    font-size: 10.5px; letter-spacing: 0.2em; color: var(--cream-50);
+    text-transform: uppercase; font-variant-numeric: tabular-nums;
+  }
+
+  .vs-meta-row {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-top: 28px;
+    font-size: 10.5px; letter-spacing: 0.22em; color: var(--cream-60); text-transform: uppercase;
+  }
+  .vs-meta-row strong { color: var(--cream); font-weight: 500; }
+  .vs-meta-row .dot-sep {
+    width: 3px; height: 3px; border-radius: 9999px; background: var(--cream-30);
+  }
+
+  /* Player */
+  .video-player { display: flex; flex-direction: column; gap: 18px; }
+  .vp-frame {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background-size: cover; background-position: center;
+    border-radius: 14px; border: 1px solid var(--cream-20);
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(255,242,187,0.06);
+  }
+  .vp-overlay {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(24,43,37,0.45) 0%, transparent 30%, transparent 60%, rgba(24,43,37,0.85) 100%);
+  }
+  .vp-badge {
+    position: absolute; top: 18px; left: 18px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 12px; border-radius: 9999px;
+    background: var(--moss-900-90); border: 1px solid var(--cream-30);
+    color: var(--cream); font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 500;
+    z-index: 2;
+  }
+
+  .vp-play {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 88px; height: 88px; border-radius: 9999px;
+    background: var(--cream); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 32px rgba(255,242,187,0.45);
+    z-index: 3;
+    transition: transform 220ms var(--ease-out), box-shadow 220ms;
+  }
+  .vp-play:hover { transform: translate(-50%, -50%) scale(1.06); box-shadow: 0 0 48px rgba(255,242,187,0.7); }
+  .vp-play-ring {
+    position: absolute; inset: -10px;
+    border-radius: 9999px;
+    border: 1px solid var(--cream-30);
+    animation: ring 2.4s ease-out infinite;
+  }
+  @keyframes ring {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    100% { transform: scale(1.35); opacity: 0; }
+  }
+  .vp-frame.playing .vp-play { transform: translate(-50%, -50%) scale(0.85); opacity: 0; pointer-events: none; }
+  .vp-frame.playing .vp-overlay { background: linear-gradient(180deg, transparent 0%, transparent 70%, rgba(24,43,37,0.8) 100%); }
+
+  .vp-caption-strip {
+    position: absolute; left: 24px; right: 24px; bottom: 60px;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+    z-index: 2;
+  }
+  .vp-title {
+    color: var(--cream); font-family: var(--font-sans); font-weight: 400;
+    font-size: 18px; letter-spacing: -0.005em;
+    text-shadow: 0 1px 14px rgba(0,0,0,0.4);
+    max-width: 360px;
+  }
+  .vp-tools { display: flex; gap: 8px; }
+  .vp-tool {
+    width: 32px; height: 32px; border-radius: 9999px;
+    border: 1px solid var(--cream-30); background: var(--moss-900-90);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 200ms;
+  }
+  .vp-tool:hover { background: var(--cream); border-color: var(--cream); }
+  .vp-tool:hover svg, .vp-tool:hover i { color: var(--moss-900) !important; }
+
+  .vp-scrubber {
+    position: absolute; left: 24px; right: 24px; bottom: 22px;
+    display: flex; align-items: center; gap: 16px;
+    z-index: 2;
+  }
+  .vp-scrub-track {
+    flex: 1; position: relative; height: 28px;
+    display: flex; align-items: center;
+    cursor: pointer;
+  }
+  .vp-scrub-track::before {
+    content: ""; position: absolute; left: 0; right: 0; height: 2px;
+    background: rgba(255,242,187,0.25); border-radius: 2px;
+  }
+  .vp-scrub-fill {
+    position: absolute; left: 0; height: 2px; width: 0%;
+    background: var(--cream); border-radius: 2px;
+    box-shadow: 0 0 8px var(--cream-50);
+    transition: width 100ms linear;
+  }
+  .vp-scrub-thumb {
+    position: absolute; left: 0; width: 12px; height: 12px;
+    border-radius: 9999px; background: var(--cream);
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px var(--cream-50);
+    transition: left 100ms linear;
+  }
+  .vp-marker {
+    position: absolute; top: 50%; transform: translate(-50%, -50%);
+    width: 5px; height: 5px; border-radius: 9999px;
+    background: var(--cream-30);
+  }
+  .vp-times {
+    color: var(--cream); font-size: 11px; letter-spacing: 0.16em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* Episode thumbnails */
+  .vp-thumbs {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  }
+  .vp-thumb-card {
+    background: transparent; border: 1px solid var(--cream-20);
+    border-radius: 8px; padding: 0; overflow: hidden;
+    cursor: pointer; font-family: inherit;
+    display: flex; flex-direction: column;
+    transition: border-color 200ms, transform 200ms;
+  }
+  .vp-thumb-card:hover { border-color: var(--cream-30); transform: translateY(-2px); }
+  .vp-thumb-card.active {
+    border-color: var(--cream);
+    box-shadow: 0 0 0 1px var(--cream), 0 0 14px rgba(255,242,187,0.25);
+  }
+  .vp-th {
+    aspect-ratio: 16/10;
+    background-size: cover; background-position: center;
+    border-bottom: 1px solid var(--cream-10);
+  }
+  .vp-th-label {
+    padding: 10px 12px;
+    font-size: 9.5px; letter-spacing: 0.22em; color: var(--cream-70);
+    text-transform: uppercase; text-align: left;
+  }
+  .vp-thumb-card.active .vp-th-label { color: var(--cream); }
+
+  /* ============ EDUCATIONAL ============ */
+  .articles {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  }
+  .article { display: flex; flex-direction: column; gap: 20px; cursor: pointer; }
+  .article .cover {
+    aspect-ratio: 4/3; border-radius: 8px;
+    background-size: cover; background-position: center;
+    transition: filter 300ms, transform 400ms;
+    position: relative; overflow: hidden;
+  }
+  .article .cover::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, var(--moss-900-60));
+  }
+  .article:hover .cover { filter: brightness(1.08); }
+  .article .meta {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--cream-50); font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .article .meta .line { width: 24px; height: 1px; background: var(--cream-30); }
+  .article h3 {
+    margin: 0; font-family: var(--font-sans); font-weight: 300;
+    font-size: 26px; line-height: 1.25; color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+  .article p { color: var(--cream-60); font-size: 14px; line-height: 1.65; margin: 0; }
+  .article .read-more {
+    display: inline-flex; gap: 8px; align-items: center;
+    color: var(--cream); font-size: 11px; letter-spacing: 0.22em;
+    margin-top: 4px; transition: gap 200ms;
+  }
+  .article:hover .read-more { gap: 14px; }
+
+  /* ============ TESTIMONIALS + GALLERY ============ */
+  .stories-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start;
+  }
+  .stories .stories-h2 {
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 48px; line-height: 1.1; letter-spacing: -0.025em;
+    color: var(--cream); margin: 0 0 40px 0;
+  }
+  .stories .stories-h2 em { font-style: italic; font-weight: 700; }
+  .quote-mark {
+    color: var(--cream-30); font-size: 64px; line-height: 0.6;
+    font-style: italic; font-weight: 700;
+    margin-bottom: 32px; font-family: Georgia, serif;
+  }
+  .quote {
+    border-top: 1px solid var(--cream-10);
+    padding: 28px 0;
+    color: var(--cream-70); font-size: 15px; line-height: 1.75;
+    font-style: italic; font-weight: 300;
+  }
+  .quote:last-child { border-bottom: 1px solid var(--cream-10); }
+  .quote .author {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 18px; color: var(--cream);
+    font-size: 11px; letter-spacing: 0.22em;
+    font-style: normal; font-weight: 500;
+  }
+  .quote .author .ava {
+    width: 32px; height: 32px; border-radius: 9999px;
+    background-size: cover; background-position: center;
+    border: 1px solid var(--cream-30);
+  }
+  .quote .author .meta-sm {
+    color: var(--cream-50); font-size: 10px; letter-spacing: 0.2em; margin-top: 2px; font-weight: 400;
+  }
+
+  .gallery-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 28px;
+  }
+  .gallery-head .eyebrow {
+    color: var(--cream-60); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+  }
+  .gallery-head .count { color: var(--cream-50); font-size: 11px; letter-spacing: 0.18em; }
+  .gallery {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .gallery .g-item {
+    aspect-ratio: 1/1;
+    background-size: cover; background-position: center;
+    border-radius: 8px; position: relative; cursor: pointer;
+    overflow: hidden;
+  }
+  .gallery .g-item:nth-child(2n) { transform: translateY(40px); }
+  .gallery .g-item::after {
+    content: ""; position: absolute; inset: 0; background: var(--moss-900-30);
+    opacity: 0; transition: opacity 250ms;
+  }
+  .gallery .g-item:hover::after { opacity: 1; }
+  .gallery .g-item .tag-handle {
+    position: absolute; bottom: 12px; left: 12px;
+    color: var(--cream); font-size: 10px; letter-spacing: 0.2em;
+    background: var(--moss-900-90); padding: 4px 10px; border-radius: 9999px;
+    border: 1px solid var(--cream-20); z-index: 1;
+  }
+
+  /* ============ NEWSLETTER ============ */
+  .newsletter {
+    padding: 140px var(--gutter-page);
+    text-align: center; position: relative;
+    border-top: 1px solid var(--border-hairline);
+    overflow: hidden;
+  }
+  .newsletter::before {
+    content: ""; position: absolute; left: 50%; top: 60px;
+    transform: translateX(-50%);
+    width: 1px; height: 48px;
+    background: linear-gradient(180deg, transparent, var(--cream-50), transparent);
+  }
+  .newsletter .eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 11px; letter-spacing: 0.3em; color: var(--cream-60); margin-bottom: 22px;
+    margin-top: 24px;
+  }
+  .newsletter h3 {
+    font-family: var(--font-sans); font-weight: 300;
+    font-size: 56px; color: var(--cream); margin: 0 0 20px;
+    letter-spacing: -0.025em; line-height: 1.1;
+  }
+  .newsletter h3 em { font-style: italic; font-weight: 700; }
+  .newsletter .pitch {
+    max-width: 560px; margin: 0 auto 16px;
+    color: var(--cream-70); font-size: 15px; line-height: 1.7;
+  }
+  .newsletter .bullets {
+    display: inline-flex; gap: 28px; flex-wrap: wrap; justify-content: center;
+    color: var(--cream-60); font-size: 10.5px; letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .newsletter .bullets span { display: inline-flex; align-items: center; gap: 10px; }
+  .newsletter .bullets span:not(:last-child)::after { content: "•"; margin-left: 28px; color: var(--cream-30); }
+
+  .form-row {
+    display: flex; gap: 12px; max-width: 540px; margin: 0 auto;
+  }
+  .form-row input {
+    flex: 1; background: transparent;
+    border: 1px solid var(--cream-30);
+    border-radius: 9999px; padding: 16px 24px;
+    color: var(--cream); font-family: var(--font-sans);
+    font-size: 14px; outline: none;
+    transition: border-color 200ms, background 200ms;
+  }
+  .form-row input::placeholder { color: var(--cream-50); }
+  .form-row input:focus { border-color: var(--cream); }
+  .newsletter .small { margin-top: 18px; color: var(--cream-50); font-size: 11px; letter-spacing: 0.12em; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 80px var(--gutter-page) 32px;
+    border-top: 1px solid var(--border-hairline);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr 1.3fr; gap: 48px;
+    margin-bottom: 64px;
+  }
+  .footer-brand .name { font-weight: 700; font-size: 22px; letter-spacing: 0.18em; color: var(--cream); }
+  .footer-brand p { margin: 18px 0 24px; color: var(--cream-60); font-size: 13px; line-height: 1.7; max-width: 280px; }
+  .footer-brand .socials { display: flex; gap: 10px; }
+  .footer-brand .socials a {
+    width: 36px; height: 36px; border-radius: 9999px;
+    border: 1px solid var(--cream-20);
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 200ms, background 200ms;
+  }
+  .footer-brand .socials a:hover { border-color: var(--cream); background: var(--cream-10); opacity: 1; }
+  .footer-col h4 { font-size: 11px; letter-spacing: 0.25em; color: var(--cream); font-weight: 500; margin: 0 0 22px; text-transform: uppercase; }
+  .footer-col a, .footer-col span { display: block; color: var(--cream-60); font-size: 13px; margin-bottom: 14px; line-height: 1.4; }
+  .footer-col a:hover { color: var(--cream); opacity: 1; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    padding-top: 28px; border-top: 1px solid var(--cream-10);
+    color: var(--cream-50); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .footer-bottom .links { display: flex; gap: 28px; }
+  .footer-bottom .links a { color: var(--cream-50); }
+  .footer-bottom .links a:hover { color: var(--cream); }
+
+  /* FAB */
+  .fab {
+    position: fixed; bottom: 32px; right: 32px;
+    width: 56px; height: 56px; border-radius: 9999px;
+    background: var(--cream); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 24px rgba(255,242,187,0.5);
+    z-index: 40;
+    transition: transform 200ms, box-shadow 200ms;
+  }
+  .fab:hover { transform: scale(1.08); box-shadow: 0 0 32px rgba(255,242,187,0.7); }
+  .fab .badge {
+    position: absolute; top: -2px; right: -2px;
+    min-width: 18px; height: 18px; padding: 0 5px;
+    border-radius: 9999px; background: var(--moss-900); color: var(--cream);
+    border: 1px solid var(--cream);
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 100px; right: 32px;
+    background: var(--cream); color: var(--moss-900);
+    padding: 14px 22px; border-radius: 9999px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+    box-shadow: 0 0 24px rgba(255,242,187,0.5);
+    z-index: 60;
+    display: inline-flex; align-items: center; gap: 10px;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 250ms, transform 250ms;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<div class="page" data-screen-label="Daisopody Homepage">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="brand-mark"><span class="mark-dot"></span>DAISOPODY</div>
+    <nav class="nav" id="topnav">
+      <a href="#home" class="active">Home</a>
+      <a href="Daisopody Shop.html">Shop</a>
+      <a href="Daisopody Care Guide.html">Care Guide</a>
+      <a href="Daisopody About Us.html">About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switch" role="group" aria-label="Language" id="lang">
+        <button class="active" data-lang="en">EN</button>
+        <button data-lang="vn">VN</button>
+      </div>
+      <button class="btn-contact">
+        <i data-lucide="phone" style="width:13px;height:13px;color:#182B25;stroke-width:1.8" aria-hidden="true"></i>
+        CONTACT
+        <i data-lucide="arrow-right" style="width:12px;height:12px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+      </button>
+      <a href="Daisopody Cart.html" class="cart-btn" aria-label="Cart" id="cart-btn-top">
+        <i data-lucide="shopping-bag" style="width:20px;height:20px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        <span class="badge" id="cart-badge-top">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero no-border" id="home">
+    <div class="hero-photo"></div>
+    <div class="hero-gradient"></div>
+
+    <div class="hero-inner">
+      <div class="eyebrow-brand"><span class="tick"></span>EST. 2021 · CURATED INVERTEBRATES<span class="tick"></span></div>
+      <h1 id="hero-h1">Premium Isopods &amp;<br/><em>Bioactive Ecosystems</em></h1>
+      <p class="sub" id="hero-sub">Khám phá thế giới isopod độc đáo cùng phụ kiện nuôi dưỡng chuyên nghiệp.</p>
+      <div class="hero-actions">
+        <a href="Daisopody Shop.html" class="btn btn-primary">SHOP NOW
+          <span class="arrow-pill"><i data-lucide="arrow-right" style="width:16px;height:16px;color:#182B25;stroke-width:2" aria-hidden="true"></i></span>
+        </a>
+        <a href="#care" class="btn btn-outline">BEGINNER GUIDE</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><span>SCROLL</span><div class="line"></div></div>
+  </section>
+
+  <!-- FEATURED CATEGORIES -->
+  <section id="shop" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">FEATURED CATEGORIES</div>
+      <h2>Everything for your <em>micro-world</em></h2>
+      <p>From rare collector species to expert-blended substrate — every component of a thriving bioactive setup, curated in one place.</p>
+    </div>
+    <div class="categories">
+      <a class="cat" href="#">
+        <div class="icon-frame">
+          <i data-lucide="bug" style="width:44px;height:44px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <div class="label">Live Isopods</div>
+        <div class="meta">42 SPECIES</div>
+      </a>
+      <a class="cat" href="#">
+        <div class="icon-frame">
+          <i data-lucide="package" style="width:44px;height:44px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <div class="label">Terrarium Supplies</div>
+        <div class="meta">86 ITEMS</div>
+      </a>
+      <a class="cat" href="#">
+        <div class="icon-frame">
+          <i data-lucide="sprout" style="width:44px;height:44px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <div class="label">Feeding &amp; Substrate</div>
+        <div class="meta">54 PRODUCTS</div>
+      </a>
+      <a class="cat" href="#">
+        <div class="icon-frame">
+          <i data-lucide="home" style="width:44px;height:44px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <div class="label">Habitat Kits</div>
+        <div class="meta">12 BUNDLES</div>
+      </a>
+      <a class="cat" href="#">
+        <div class="icon-frame">
+          <i data-lucide="star" style="width:44px;height:44px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <div class="label">Rare Collector Species</div>
+        <div class="meta">CURATOR'S PICK</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- WHY DAISOPODY -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">WHY CHOOSE DAISOPODY</div>
+      <h2>A standard the hobby <em>deserves</em></h2>
+    </div>
+    <div class="reasons">
+      <div class="reason">
+        <div class="icon-frame">
+          <i data-lucide="heart" style="width:40px;height:40px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <span class="label">Healthy captive-bred colonies</span>
+      </div>
+      <div class="reason">
+        <div class="icon-frame">
+          <i data-lucide="droplet" style="width:40px;height:40px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <span class="label">Premium substrate blends</span>
+      </div>
+      <div class="reason">
+        <div class="icon-frame">
+          <i data-lucide="truck" style="width:40px;height:40px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <span class="label">Safe shipping nationwide</span>
+      </div>
+      <div class="reason">
+        <div class="icon-frame">
+          <i data-lucide="headphones" style="width:40px;height:40px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <span class="label">Expert keeper support</span>
+      </div>
+      <div class="reason">
+        <div class="icon-frame">
+          <i data-lucide="book-open" style="width:40px;height:40px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        </div>
+        <span class="label">Beginner-friendly guides</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section id="species" class="reveal">
+    <div class="row-head">
+      <div>
+        <div class="section-head" style="text-align:left;margin-bottom:0">
+          <div class="eyebrow" style="margin-bottom:14px">BEST SELLERS</div>
+        </div>
+        <h2>Most sought-after <em>specimens</em></h2>
+        <div class="sub">Curator's picks from this season's healthiest colonies.</div>
+      </div>
+      <div class="slider-controls">
+        <button class="ctrl" id="prev" aria-label="Previous">
+          <i data-lucide="chevron-left" style="width:16px;height:16px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+        </button>
+        <button class="ctrl" id="next" aria-label="Next">
+          <i data-lucide="chevron-right" style="width:16px;height:16px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+        </button>
+        <a href="#" class="view-all">VIEW CATALOG
+          <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <div class="slider-wrap">
+      <div class="products" id="products"></div>
+    </div>
+  </section>
+
+  <!-- INSIDE THE FACILITY · VIDEO -->
+  <section class="video-sec reveal" id="video" data-screen-label="Inside the Facility · Video">
+    <div class="video-grid">
+      <div class="video-copy">
+        <div class="vs-eyebrow"><span class="rec"></span>INSIDE THE FACILITY · DA LAT</div>
+        <h2 class="vs-h2">A quiet day in<br/><em>Room 2</em>.</h2>
+        <p class="vs-lead">Six minutes inside the climate-stabilised culture room where our Cubaris colonies live — feeding rounds, the substrate kitchen, and how a single keeper carries the morning notebook.</p>
+
+        <div class="vs-chapters">
+          <button class="vs-chap active" data-t="0:00">
+            <span class="ch-n">01</span>
+            <div>
+              <div class="ch-t">Morning check &amp; humidity log</div>
+              <div class="ch-d">0:00 — 1:24</div>
+            </div>
+          </button>
+          <button class="vs-chap" data-t="1:24">
+            <span class="ch-n">02</span>
+            <div>
+              <div class="ch-t">The substrate kitchen</div>
+              <div class="ch-d">1:24 — 3:08</div>
+            </div>
+          </button>
+          <button class="vs-chap" data-t="3:08">
+            <span class="ch-n">03</span>
+            <div>
+              <div class="ch-t">Feeding the Rubber Duckies</div>
+              <div class="ch-d">3:08 — 4:42</div>
+            </div>
+          </button>
+          <button class="vs-chap" data-t="4:42">
+            <span class="ch-n">04</span>
+            <div>
+              <div class="ch-t">Closing the notebook</div>
+              <div class="ch-d">4:42 — 6:12</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="vs-meta-row">
+          <span><strong>6:12</strong> RUNTIME</span>
+          <span class="dot-sep"></span>
+          <span>FILMED MAY 2026</span>
+          <span class="dot-sep"></span>
+          <span>4K · SUBTITLED EN / VN</span>
+        </div>
+      </div>
+
+      <div class="video-player" id="video-player">
+        <div class="vp-frame" id="vp-frame" style="background-image:url('assets/about-facility-2.jpg');">
+          <div class="vp-overlay"></div>
+          <div class="vp-badge">
+            <i data-lucide="circle" style="width:8px;height:8px;color:#FFF2BB;fill:#FFF2BB;stroke:none" aria-hidden="true"></i>
+            EPISODE 04 · KEEPER FIELD NOTES
+          </div>
+          <button class="vp-play" id="vp-play" aria-label="Play video">
+            <span class="vp-play-ring"></span>
+            <i data-lucide="play" style="width:36px;height:36px;color:#182B25;fill:#182B25;stroke:none;margin-left:4px" aria-hidden="true"></i>
+          </button>
+          <div class="vp-caption-strip">
+            <div class="vp-title">A Quiet Day in Room 2 · with Linh Nguyen</div>
+            <div class="vp-tools">
+              <button class="vp-tool" id="vp-mute" aria-label="Sound"><i data-lucide="volume-2" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.7" aria-hidden="true"></i></button>
+              <button class="vp-tool" aria-label="Closed captions"><i data-lucide="captions" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.7" aria-hidden="true"></i></button>
+              <button class="vp-tool" aria-label="Fullscreen"><i data-lucide="maximize-2" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.7" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="vp-scrubber">
+            <div class="vp-scrub-track">
+              <div class="vp-scrub-fill" id="vp-fill"></div>
+              <div class="vp-scrub-thumb" id="vp-thumb"></div>
+              <span class="vp-marker" style="left:23%"></span>
+              <span class="vp-marker" style="left:50%"></span>
+              <span class="vp-marker" style="left:76%"></span>
+            </div>
+            <div class="vp-times"><span id="vp-current">0:00</span> / 6:12</div>
+          </div>
+        </div>
+
+        <div class="vp-thumbs">
+          <button class="vp-thumb-card" data-img="assets/about-facility-2.jpg">
+            <div class="vp-th" style="background-image:url('assets/about-facility-2.jpg');"></div>
+            <span class="vp-th-label">EP 04 · ROOM 2</span>
+          </button>
+          <button class="vp-thumb-card" data-img="assets/about-facility-3.jpg">
+            <div class="vp-th" style="background-image:url('assets/about-facility-3.jpg');"></div>
+            <span class="vp-th-label">EP 03 · KITCHEN</span>
+          </button>
+          <button class="vp-thumb-card" data-img="assets/about-facility-1.jpg">
+            <div class="vp-th" style="background-image:url('assets/about-facility-1.jpg');"></div>
+            <span class="vp-th-label">EP 02 · QUARANTINE</span>
+          </button>
+          <button class="vp-thumb-card" data-img="assets/hero-isopod-macro.jpg">
+            <div class="vp-th" style="background-image:url('assets/hero-isopod-macro.jpg');"></div>
+            <span class="vp-th-label">EP 01 · MACRO</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMBER DUCKY SPOTLIGHT -->
+  <section class="spotlight reveal" id="amber-ducky" data-screen-label="Amber Ducky Spotlight">
+    <div class="spotlight-bg"></div>
+    <div class="spotlight-grid">
+      <div class="spot-media">
+        <div class="spot-photo" style="background-image:url('assets/product-rubber-ducky.jpg');"></div>
+        <div class="spot-pedigree">
+          <div class="ped-row">
+            <span class="ped-k">LINEAGE</span>
+            <span class="ped-v">F4 captive · Da Lat colony</span>
+          </div>
+          <div class="ped-row">
+            <span class="ped-k">FIRST DESCRIBED</span>
+            <span class="ped-v">2022 · Thailand</span>
+          </div>
+          <div class="ped-row">
+            <span class="ped-k">MORPH STABILITY</span>
+            <span class="ped-v">92% pattern fidelity</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spot-copy">
+        <div class="spot-eyebrow"><span class="spot-dot"></span>NEW THIS SEASON · MAY 2026</div>
+        <h2 class="spot-h2">Introducing the<br/><em>Amber Ducky</em>.</h2>
+        <p class="spot-lead">A warm-toned sibling to the legendary Rubber Ducky — selectively bred over four generations for honey-amber segments and a richer mahogany base.</p>
+        <p class="spot-body">Slow-growing and quietly architectural, the Amber Ducky thrives in stable bioactive cultures at 22–26°C. Each specimen ships from our Da Lat facility with a signed pedigree card tracing its lineage back to the F1 founders.</p>
+
+        <div class="spot-specs">
+          <div class="spot-spec">
+            <span class="k">Care Level</span>
+            <span class="v">Advanced · Lvl 03</span>
+          </div>
+          <div class="spot-spec">
+            <span class="k">Humidity</span>
+            <span class="v">75 – 85% rH</span>
+          </div>
+          <div class="spot-spec">
+            <span class="k">Mature size</span>
+            <span class="v">14 – 18 mm</span>
+          </div>
+          <div class="spot-spec">
+            <span class="k">Brood frequency</span>
+            <span class="v">Every 60 – 80 days</span>
+          </div>
+        </div>
+
+        <div class="spot-actions">
+          <div class="spot-price">
+            <span class="sp-current">$165<span class="cents">.00</span></span>
+            <span class="sp-unit">/ count of 5</span>
+          </div>
+      <a href="Daisopody Product Detail.html" class="btn btn-primary">RESERVE A COUNT
+            <span class="arrow-pill"><i data-lucide="arrow-right" style="width:16px;height:16px;color:#182B25;stroke-width:2" aria-hidden="true"></i></span>
+          </a>
+          <a href="Daisopody Product Detail.html" class="btn btn-outline">FULL CARE NOTES</a>
+        </div>
+
+        <div class="spot-meta-row">
+          <span><i data-lucide="check" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i> Captive-bred · F4 generation</span>
+            <span><i data-lucide="check" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i> Live arrival guaranteed</span>
+            <span><i data-lucide="check" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i> Signed pedigree included</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATIONAL -->
+  <section id="care" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">THE MICRO-WORLD LIBRARY</div>
+      <h2>Care guides &amp; <em>field notes</em></h2>
+      <p>Expert essays and step-by-step builds — written by keepers, for keepers.</p>
+    </div>
+    <div class="articles">
+      <article class="article">
+        <div class="cover" style="background-image:url('assets/care-guide-1.jpg');"></div>
+        <div class="meta"><span class="line"></span><span>GUIDE</span><span>·</span><span>8 MIN READ</span></div>
+        <h3>How to Start an Isopod Colony</h3>
+        <p>From substrate prep to first molt — a step-by-step framework for new keepers ready to commit.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+        </span>
+      </article>
+      <article class="article">
+        <div class="cover" style="background-image:url('assets/care-guide-2.jpg');"></div>
+        <div class="meta"><span class="line"></span><span>TUTORIAL</span><span>·</span><span>12 MIN READ</span></div>
+        <h3>Terrarium Setup Basics</h3>
+        <p>The four-layer bioactive build that keeps cultures alive for years, not weeks. Materials, tools, and pitfalls.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+        </span>
+      </article>
+      <article class="article">
+        <div class="cover" style="background-image:url('assets/care-guide-3.jpg');"></div>
+        <div class="meta"><span class="line"></span><span>CARE GUIDE</span><span>·</span><span>6 MIN READ</span></div>
+        <h3>Care Guide: Rare Species</h3>
+        <p>Humidity, calcium, and ventilation targets for advanced collector species like Cubaris and Armadillidium.</p>
+        <span class="read-more">READ ESSAY
+          <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+        </span>
+      </article>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS + GALLERY -->
+  <section id="stories" class="reveal">
+    <div class="stories-row">
+      <div class="stories">
+        <div class="quote-mark">"</div>
+        <div class="eyebrow" style="font-size:11px;letter-spacing:0.3em;color:var(--cream-60);margin-bottom:18px;text-transform:uppercase">COLLECTOR STORIES</div>
+        <h2 class="stories-h2">Trusted by serious <em>keepers</em></h2>
+        <div class="quote">
+          The Rubber Duckies arrived perfectly healthy. The packaging was meticulous, and the captive-bred quality is undeniably top-tier. My bioactive setup has never looked better.
+          <div class="author">
+            <div class="ava" style="background-image:url('assets/about-team.jpg');"></div>
+            <div>
+              MARCUS T.
+              <div class="meta-sm">ENTHUSIAST · HANOI</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote">
+          Daisopody's premium substrate blend completely transformed my colony's breeding rate. The customer support team helped me fine-tune my humidity levels — patient, expert, kind.
+          <div class="author">
+            <div class="ava" style="background-image:url('assets/about-facility-3.jpg');"></div>
+            <div>
+              SARAH J.
+              <div class="meta-sm">BREEDER · HO CHI MINH</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote">
+          The Beginner Guide PDF is honestly better than half the books on the hobby. I started with the Dairy Cow starter and now I'm three colonies deep.
+          <div class="author">
+            <div class="ava" style="background-image:url('assets/about-facility-1.jpg');"></div>
+            <div>
+              LINH N.
+              <div class="meta-sm">NEW KEEPER · DA NANG</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="gallery-head">
+          <div class="eyebrow">CUSTOMER TERRARIUM GALLERY</div>
+          <div class="count">#daisopodylife · 2.4k posts</div>
+        </div>
+        <div class="gallery">
+          <div class="g-item" style="background-image:url('assets/about-facility-1.jpg');">
+            <span class="tag-handle">@KEEPER.MOSS</span>
+          </div>
+          <div class="g-item" style="background-image:url('assets/about-facility-2.jpg');">
+            <span class="tag-handle">@BIOACTIVE.VN</span>
+          </div>
+          <div class="g-item" style="background-image:url('assets/about-facility-3.jpg');">
+            <span class="tag-handle">@TERRA.SAIGON</span>
+          </div>
+          <div class="g-item" style="background-image:url('assets/blog-cover-2.jpg');">
+            <span class="tag-handle">@CUBARIS.LAB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="eyebrow">JOIN COLLECTOR CLUB</div>
+    <h3>The micro-world,<br/><em>in your inbox</em></h3>
+    <p class="pitch">Subscribe for new rare species alerts, exclusive promotions, and care essays from our terrarium specialists. No spam — ever.</p>
+    <div class="bullets">
+      <span>NEW RARE SPECIES ALERTS</span>
+      <span>EARLY ACCESS DROPS</span>
+      <span>EXCLUSIVE PROMOTIONS</span>
+    </div>
+    <form class="form-row" id="news-form" onsubmit="event.preventDefault(); subscribed(this)">
+      <input type="email" placeholder="your.email@daisopody.com" required/>
+      <button class="btn btn-primary" type="submit">SUBSCRIBE
+        <span class="arrow-pill"><i data-lucide="arrow-right" style="width:14px;height:14px;color:#182B25;stroke-width:2" aria-hidden="true"></i></span>
+      </button>
+    </form>
+    <div class="small" id="news-confirm" style="opacity:0;transition:opacity 250ms">Welcome to the club. Check your inbox.</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">DAISOPODY</div>
+        <p>Premium isopods &amp; bioactive ecosystems. Elevating the standard for exotic invertebrate keeping since 2021.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">
+            <i data-lucide="instagram" style="width:16px;height:16px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <i data-lucide="youtube" style="width:16px;height:16px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <i data-lucide="facebook" style="width:16px;height:16px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <i data-lucide="music-2" style="width:16px;height:16px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#">Live Isopods</a>
+        <a href="#">Terrarium Supplies</a>
+        <a href="#">Habitat Kits</a>
+        <a href="#">Substrate &amp; Food</a>
+        <a href="#">Rare Species</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Care Guides</a>
+        <a href="#">Beginner Pack</a>
+        <a href="#">FAQ</a>
+        <a href="#">Blog</a>
+        <a href="#">Wholesale</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Our Facility</a>
+        <a href="#">Press</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@daisopody.com">hello@daisopody.com</a>
+        <span>+84 28 3823 1102</span>
+        <span>Mon – Fri · 9 AM – 5 PM ICT</span>
+        <span>District 3, Ho Chi Minh City</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 DAISOPODY · ALL RIGHTS RESERVED</div>
+      <div class="links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Floating cart FAB -->
+<a href="Daisopody Cart.html" class="fab" aria-label="Cart" id="fab">
+  <i data-lucide="shopping-bag" style="width:22px;height:22px;color:#182B25;stroke-width:1.8" aria-hidden="true"></i>
+  <span class="badge" id="cart-badge-fab">0</span>
+</a>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i data-lucide="check" style="width:14px;height:14px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+  <span id="toast-msg">Added to cart</span>
+</div>
+
+<script>
+  // ============ Products data + slider ============
+  const PRODUCTS = [
+    { name:"Amber Ducky", sci:"Cubaris sp. 'Amber Ducky'", price:"$165.00", chip:"Rare", img:"assets/product-rubber-ducky.jpg" },
+    { name:"Rubber Ducky", sci:"Cubaris sp. 'Rubber Ducky'", price:"$120.00", chip:"Advanced", img:"assets/product-rubber-ducky.jpg" },
+    { name:"Dairy Cow",    sci:"Porcellio laevis",            price:"$25.00",  chip:"Beginner", img:"assets/product-dairy-cow.jpg" },
+    { name:"Springtails",  sci:"Folsomia candida",            price:"$15.00",  chip:"Beginner", img:"assets/product-3.jpg" },
+    { name:"Zebra Isopod", sci:"Armadillidium maculatum",     price:"$45.00",  chip:"Intermediate", img:"assets/product-detail.jpg" },
+    { name:"Magic Potion", sci:"Cubaris sp. 'Magic Potion'",  price:"$185.00", chip:"Rare",     img:"assets/blog-hero.jpg" },
+    { name:"Panda King",   sci:"Cubaris sp. 'Panda King'",    price:"$165.00", chip:"Expert",   img:"assets/care-guide-1.jpg" },
+    { name:"Premium Moss Kit", sci:"Sphagnum & cushion blend", price:"$30.00", chip:"Substrate", img:"assets/care-guide-2.jpg" },
+    { name:"Cork Bark Hides", sci:"Quercus suber, cured",     price:"$22.00",  chip:"Habitat", img:"assets/blog-cover-2.jpg" },
+    { name:"Feeding Supplements", sci:"Calcium & protein mix", price:"$12.00", chip:"Food",    img:"assets/care-guide-3.jpg" },
+    { name:"Bioactive Substrate", sci:"Coco-coir & leaf litter", price:"$28.00", chip:"Substrate", img:"assets/about-facility-2.jpg" },
+    { name:"Display Vivarium", sci:"30 × 30 × 30 cm cube",      price:"$120.00", chip:"Habitat", img:"assets/about-facility-3.jpg" },
+  ];
+
+  const container = document.getElementById('products');
+  PRODUCTS.forEach((p, i) => {
+    const el = document.createElement('article');
+    el.className = 'product';
+    el.innerHTML = `
+      <div class="photo" style="background-image:url('${p.img}');">
+        <span class="chip">${p.chip}</span>
+        <button class="quick-add" data-i="${i}" aria-label="Add to cart">
+          <i data-lucide="plus" style="width:14px;height:14px;color:#182B25;stroke-width:2.2" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="body">
+        <div class="name">${p.name}</div>
+        <div class="sci">${p.sci}</div>
+        <div class="price">${p.price}</div>
+      </div>`;
+    container.appendChild(el);
+  });
+  window.__renderLucide?.();
+
+  // Slider mechanics
+  let slidePos = 0;
+  const maxSlide = Math.max(0, PRODUCTS.length - 4);
+  function applySlide() {
+    const card = container.children[0];
+    if (!card) return;
+    const offset = (card.offsetWidth + 24) * slidePos;
+    container.style.transform = `translateX(-${offset}px)`;
+    document.getElementById('prev').disabled = slidePos === 0;
+    document.getElementById('next').disabled = slidePos >= maxSlide;
+  }
+  document.getElementById('prev').addEventListener('click', () => { slidePos = Math.max(0, slidePos - 1); applySlide(); });
+  document.getElementById('next').addEventListener('click', () => { slidePos = Math.min(maxSlide, slidePos + 1); applySlide(); });
+  window.addEventListener('resize', applySlide);
+  setTimeout(applySlide, 100);
+
+  // ============ Cart ============
+  let cartCount = 0;
+  function addToCart(name) {
+    cartCount++;
+    document.getElementById('cart-badge-top').textContent = cartCount;
+    document.getElementById('cart-badge-fab').textContent = cartCount;
+    showToast(`Added: ${name}`);
+  }
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.quick-add');
+    if (btn) {
+      const p = PRODUCTS[+btn.dataset.i];
+      addToCart(p.name);
+    }
+    if (e.target.closest('#amber-add')) {
+      addToCart('Amber Ducky · count of 5');
+    }
+  });
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // ============ Language switch ============
+  const COPY = {
+    en: {
+      h1: 'Premium Isopods &<br/><em>Bioactive Ecosystems</em>',
+      sub: 'Captive-bred specimens, expert-curated terrarium kits, and lifetime support — for the serious invertebrate keeper.',
+    },
+    vn: {
+      h1: 'Isopod cao cấp &<br/><em>Hệ sinh thái bioactive</em>',
+      sub: 'Khám phá thế giới isopod độc đáo cùng phụ kiện nuôi dưỡng chuyên nghiệp.',
+    }
+  };
+  document.querySelectorAll('#lang button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#lang button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      const lang = b.dataset.lang;
+      document.getElementById('hero-h1').innerHTML = COPY[lang].h1;
+      document.getElementById('hero-sub').textContent = COPY[lang].sub;
+    });
+  });
+
+  // ============ Nav active state ============
+  document.querySelectorAll('#topnav a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelectorAll('#topnav a').forEach(x => x.classList.remove('active'));
+      a.classList.add('active');
+    });
+  });
+
+  // ============ Newsletter ============
+  function subscribed(form) {
+    form.querySelector('input').value = '';
+    const c = document.getElementById('news-confirm');
+    c.style.opacity = 1;
+    setTimeout(() => c.style.opacity = 0, 4000);
+    showToast('Subscribed to Collector Club');
+  }
+
+  // ============ Video player (Inside the Facility) ============
+  (function initVideo() {
+    const frame = document.getElementById('vp-frame');
+    const playBtn = document.getElementById('vp-play');
+    const fill = document.getElementById('vp-fill');
+    const thumb = document.getElementById('vp-thumb');
+    const currentEl = document.getElementById('vp-current');
+    const track = document.querySelector('.vp-scrub-track');
+    const mute = document.getElementById('vp-mute');
+    if (!frame || !playBtn) return;
+
+    const TOTAL = 372; // 6:12 in seconds
+    let current = 0;
+    let playing = false;
+    let interval = null;
+
+    const fmt = (s) => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+    function updateScrubber() {
+      const pct = Math.max(0, Math.min(100, (current/TOTAL)*100));
+      fill.style.width = pct + '%';
+      thumb.style.left = pct + '%';
+      currentEl.textContent = fmt(current);
+    }
+    function play() {
+      playing = true;
+      frame.classList.add('playing');
+      interval = setInterval(() => {
+        current += 1;
+        if (current >= TOTAL) { current = 0; pause(); return; }
+        updateScrubber();
+        // Update active chapter
+        const chaps = [0, 84, 188, 282];
+        let ai = 0;
+        for (let i=0;i<chaps.length;i++) if (current >= chaps[i]) ai = i;
+        document.querySelectorAll('.vs-chap').forEach((c,i)=>c.classList.toggle('active', i===ai));
+      }, 100);
+    }
+    function pause() {
+      playing = false;
+      frame.classList.remove('playing');
+      if (interval) clearInterval(interval);
+      interval = null;
+    }
+    playBtn.addEventListener('click', play);
+    frame.addEventListener('click', (e) => {
+      if (playing && !e.target.closest('.vp-tool') && !e.target.closest('.vp-scrub-track')) pause();
+    });
+    track.addEventListener('click', (e) => {
+      const r = track.getBoundingClientRect();
+      current = Math.max(0, Math.min(TOTAL, ((e.clientX - r.left) / r.width) * TOTAL));
+      updateScrubber();
+    });
+
+    // Chapter clicks → seek
+    const chapTimes = [0, 84, 188, 282];
+    document.querySelectorAll('.vs-chap').forEach((c, i) => {
+      c.addEventListener('click', () => {
+        current = chapTimes[i];
+        updateScrubber();
+        document.querySelectorAll('.vs-chap').forEach(x => x.classList.remove('active'));
+        c.classList.add('active');
+        if (!playing) play();
+      });
+    });
+
+    // Mute toggle (visual only)
+    let muted = false;
+    mute.addEventListener('click', () => {
+      muted = !muted;
+      mute.innerHTML = `<i data-lucide="${muted ? 'volume-x' : 'volume-2'}" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.7" aria-hidden="true"></i>`;
+      window.__renderLucide?.();
+    });
+
+    // Thumbnail switching
+    document.querySelectorAll('.vp-thumb-card').forEach((card, i) => {
+      if (i === 0) card.classList.add('active');
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.vp-thumb-card').forEach(x => x.classList.remove('active'));
+        card.classList.add('active');
+        frame.style.backgroundImage = `url('${card.dataset.img}')`;
+        current = 0;
+        updateScrubber();
+        pause();
+      });
+    });
+
+    updateScrubber();
+  })();
+
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script>
+  if (window.lucide) { lucide.createIcons(); }
+  // Re-render when new icons are added dynamically
+  window.__renderLucide = () => { if (window.lucide) lucide.createIcons(); };
+</script>
+
+</body>
+</html>

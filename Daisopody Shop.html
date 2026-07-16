@@ -1,0 +1,508 @@
+ init<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Shop — Daisopody</title>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<link rel="stylesheet" href="shop.css"/>
+</head>
+<body>
+<div class="page" data-screen-label="Daisopody Shop">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="Daisopody Homepage.html" class="brand-mark"><span class="mark-dot"></span>DAISOPODY</a>
+    <nav class="nav" id="topnav">
+      <a href="Daisopody Homepage.html">Home</a>
+      <a href="Daisopody Shop.html" class="active">Shop</a>
+      <a href="Daisopody Care Guide.html">Care Guide</a>
+      <a href="Daisopody About Us.html">About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switch" role="group" aria-label="Language" id="lang">
+        <button class="active" data-lang="en">EN</button>
+        <button data-lang="vn">VN</button>
+      </div>
+      <button class="btn-contact">
+        <i data-lucide="phone" style="width:13px;height:13px;color:#182B25;stroke-width:1.8" aria-hidden="true"></i>
+        CONTACT
+      </button>
+      <a href="Daisopody Cart.html" class="cart-btn" aria-label="Cart">
+        <i data-lucide="shopping-bag" style="width:20px;height:20px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        <span class="badge" id="cart-badge-top">2</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- SHOP HERO -->
+  <section class="shop-hero" data-screen-label="01 Shop Hero">
+    <div class="crumbs">
+      <a href="Daisopody Homepage.html">Home</a>
+      <span class="sep">/</span>
+      <span class="here">Shop the catalog</span>
+    </div>
+    <h1>The Catalog of <em>Living Things</em></h1>
+    <p class="lead">Forty-two captive-bred species, eighty-six terrarium essentials, and the curator's notes that make each one thrive.</p>
+    <div class="stats">
+      <div class="stat"><span class="pulse"></span><strong>128</strong>&nbsp;Live Specimens</div>
+      <div class="stat"><strong>86</strong>&nbsp;Habitat Essentials</div>
+      <div class="stat"><strong>12</strong>&nbsp;Starter Bundles</div>
+    </div>
+  </section>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all">All <span class="count">128</span></button>
+      <button class="tab" data-cat="iso">Live Isopods <span class="count">42</span></button>
+      <button class="tab" data-cat="sub">Substrate &amp; Food <span class="count">54</span></button>
+      <button class="tab" data-cat="ter">Terrarium Supplies <span class="count">86</span></button>
+      <button class="tab" data-cat="kit">Habitat Kits <span class="count">12</span></button>
+      <button class="tab" data-cat="rare">Rare Collector <span class="count">9</span></button>
+    </div>
+    <div class="toolbar-right">
+      <div class="sort">
+        SORT BY
+        <select id="sort">
+          <option>Featured</option>
+          <option>Newest arrivals</option>
+          <option>Price · Low to high</option>
+          <option>Price · High to low</option>
+          <option>Most popular</option>
+        </select>
+      </div>
+      <div class="view-toggle" id="view-toggle">
+        <button class="active" data-view="grid" aria-label="Grid view">
+          <i data-lucide="layout-grid" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </button>
+        <button data-view="list" aria-label="List view">
+          <i data-lucide="list" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="shop-layout">
+
+    <!-- FILTERS -->
+    <aside class="filters">
+      <div class="filter-head">
+        <span class="title">Refine</span>
+        <button class="clear" id="clear-all">Clear all</button>
+      </div>
+
+      <div class="filter-group">
+        <h4>Category
+          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
+        </h4>
+        <div class="filter-body">
+          <label class="check"><input type="checkbox" checked/><span class="box"></span><span class="label">Live Isopods</span><span class="num">42</span></label>
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Substrate &amp; Food</span><span class="num">54</span></label>
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Terrarium Supplies</span><span class="num">86</span></label>
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Lighting &amp; Misting</span><span class="num">18</span></label>
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Habitat Kits</span><span class="num">12</span></label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Care level
+          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
+        </h4>
+        <div class="filter-body">
+          <div class="chips">
+            <button class="chip-toggle active">Beginner</button>
+            <button class="chip-toggle">Intermediate</button>
+            <button class="chip-toggle">Advanced</button>
+            <button class="chip-toggle">Expert</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Price range
+          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
+        </h4>
+        <div class="filter-body">
+          <div class="price-range">
+            <div class="price-track">
+              <div class="rail"></div>
+              <div class="fill" id="price-fill"></div>
+              <input type="range" id="price-min" min="0" max="300" value="15" step="5"/>
+              <input type="range" id="price-max" min="0" max="300" value="220" step="5"/>
+            </div>
+            <div class="price-vals"><span id="price-min-val">15</span><span id="price-max-val">220</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Coloration
+          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
+        </h4>
+        <div class="filter-body">
+          <div class="swatches" id="swatches">
+            <button class="swatch active" style="background:#F4D55B" title="Yellow"></button>
+            <button class="swatch" style="background:#F89A6E" title="Orange"></button>
+            <button class="swatch" style="background:#C2A77A" title="Tan"></button>
+            <button class="swatch" style="background:#7C8569" title="Olive"></button>
+            <button class="swatch" style="background:#444A3B" title="Charcoal"></button>
+            <button class="swatch" style="background:#EFE7D2" title="Cream"></button>
+            <button class="swatch" style="background:#9C6D5A" title="Rust"></button>
+            <button class="swatch" style="background:#23241F" title="Ink"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Origin
+          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
+        </h4>
+        <div class="filter-body">
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Vietnam (captive)</span><span class="num">38</span></label>
+          <label class="check"><input type="checkbox" checked/><span class="box"></span><span class="label">Southeast Asia</span><span class="num">22</span></label>
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Europe</span><span class="num">14</span></label>
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Americas</span><span class="num">9</span></label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Availability
+          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
+        </h4>
+        <div class="filter-body">
+          <label class="check"><input type="checkbox" checked/><span class="box"></span><span class="label">In stock</span><span class="num">98</span></label>
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Pre-order</span><span class="num">18</span></label>
+          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Waitlist only</span><span class="num">12</span></label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-panel">
+      <div class="active-filters">
+        <span class="label">Filtering by</span>
+        <span class="pill">Live Isopods <button aria-label="Remove"><i data-lucide="x" style="width:10px;height:10px;stroke-width:2.4" aria-hidden="true"></i></button></span>
+        <span class="pill">Beginner <button aria-label="Remove"><i data-lucide="x" style="width:10px;height:10px;stroke-width:2.4" aria-hidden="true"></i></button></span>
+        <span class="pill">Southeast Asia <button aria-label="Remove"><i data-lucide="x" style="width:10px;height:10px;stroke-width:2.4" aria-hidden="true"></i></button></span>
+        <span class="pill">In stock <button aria-label="Remove"><i data-lucide="x" style="width:10px;height:10px;stroke-width:2.4" aria-hidden="true"></i></button></span>
+        <span class="results-meta">Showing <strong style="color:var(--cream)">42 of 128</strong></span>
+      </div>
+
+      <div class="products-grid" id="grid"></div>
+
+      <div class="load-more-wrap">
+        <div class="load-more-bar"><div class="fill"></div></div>
+        <div class="load-more-count">VIEWING 9 OF 42 — 33 MORE TO EXPLORE</div>
+        <button class="load-more" id="load-more">
+          LOAD NEXT 12
+          <i data-lucide="arrow-down" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- STARTER PACKS -->
+  <section class="packs" data-screen-label="02 Starter Packs">
+    <div class="head">
+      <div class="eyebrow">START AS A PAIR</div>
+      <h2>Curator-built <em>starter packs</em></h2>
+    </div>
+    <div class="pack-grid">
+
+      <div class="pack">
+        <div class="pack-icon">
+          <i data-lucide="bug" style="width:44px;height:44px;color:#FFF2BB;stroke-width:1.4" aria-hidden="true"></i>
+        </div>
+        <h3>First Colony <em>Starter</em></h3>
+        <p class="pack-sub">Everything a new keeper needs to launch a self-sustaining bioactive culture in under an hour.</p>
+        <ul class="includes">
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>10 Dairy Cow isopods (Porcellio laevis)</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>Premium substrate (2 L bioactive blend)</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>Cork bark hide &amp; sphagnum moss</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>Calcium &amp; protein supplement set</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>Beginner Guide PDF + WhatsApp support</li>
+        </ul>
+        <div class="pack-foot">
+          <div class="pack-price">
+            $58.00
+            <span class="save">SAVE $14 vs ÀLA CARTE</span>
+          </div>
+          <button class="pack-cta">ADD PACK
+            <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="pack featured">
+        <div class="pack-icon">
+          <i data-lucide="package" style="width:44px;height:44px;color:#FFF2BB;stroke-width:1.4" aria-hidden="true"></i>
+        </div>
+        <h3>Bioactive <em>Vivarium</em></h3>
+        <p class="pack-sub">A complete display-grade terrarium built by our specialists — ships fully cycled and colony-ready.</p>
+        <ul class="includes">
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>30 × 30 × 30 cm low-iron glass cube</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>4-layer drainage + substrate system</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>20 Zebra Isopods + springtail seeder</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>Live moss, ferns &amp; cured driftwood</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>LED grow bar + automatic mister</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>30-day specialist check-in calls</li>
+        </ul>
+        <div class="pack-foot">
+          <div class="pack-price">
+            $385.00
+            <span class="save">SAVE $84 vs ÀLA CARTE</span>
+          </div>
+          <button class="pack-cta">ADD PACK
+            <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="pack">
+        <div class="pack-icon">
+          <i data-lucide="star" style="width:44px;height:44px;color:#FFF2BB;stroke-width:1.4" aria-hidden="true"></i>
+        </div>
+        <h3>Collector's <em>Trio</em></h3>
+        <p class="pack-sub">Three sought-after rare species curated together, including pedigree documentation and lineage notes.</p>
+        <ul class="includes">
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>5 Rubber Duckies (Cubaris sp.)</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>5 Magic Potion (Cubaris sp.)</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>5 Panda King (Cubaris sp.)</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>Signed pedigree certificates</li>
+          <li><i data-lucide="check" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>Premium calcium-rich substrate</li>
+        </ul>
+        <div class="pack-foot">
+          <div class="pack-price">
+            $420.00
+            <span class="save">LIMITED · 6 LEFT</span>
+          </div>
+          <button class="pack-cta">JOIN WAITLIST
+            <i data-lucide="arrow-right" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust" data-screen-label="03 Trust">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <i data-lucide="truck" style="width:32px;height:32px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+      </div>
+      <div>
+        <div class="t">Live arrival guarantee</div>
+        <div class="s">Insulated boxes · 2-day priority shipping nationwide</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <i data-lucide="heart" style="width:32px;height:32px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+      </div>
+      <div>
+        <div class="t">Captive-bred only</div>
+        <div class="s">No wild-caught specimens · ethical lineages traced</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <i data-lucide="clock" style="width:32px;height:32px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+      </div>
+      <div>
+        <div class="t">Lifetime support</div>
+        <div class="s">Specialist help via WhatsApp · 9 AM – 8 PM ICT</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">
+        <i data-lucide="file-text" style="width:32px;height:32px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+      </div>
+      <div>
+        <div class="t">Pedigree included</div>
+        <div class="s">Lineage cards for every collector species</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Floating cart FAB -->
+<a href="Daisopody Cart.html" class="fab" aria-label="Cart" id="fab">
+  <i data-lucide="shopping-bag" style="width:22px;height:22px;color:#182B25;stroke-width:1.8" aria-hidden="true"></i>
+  <span class="badge" id="cart-badge-fab">2</span>
+</a>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <i data-lucide="check" style="width:14px;height:14px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+  <span id="toast-msg">Added to cart</span>
+</div>
+
+<script>
+  // ============ Product data ============
+  const PRODUCTS = [
+    { name:"Rubber Ducky",       sci:"Cubaris sp. 'Rubber Ducky'", price:120, old:null, chip:"Advanced",     level:"Lvl 03", img:"assets/isopod/cubaris/Amber%20Ducky.jpg", stock:"low",  origin:"Vietnam",     desc:"The crown jewel of designer Cubaris. Vivid yellow segments contrast a deep slate body — slow growing, slow breeding, always in demand.", rare:false },
+    { name:"Dairy Cow",          sci:"Porcellio laevis",            price:25,  old:null, chip:"Beginner",     level:"Lvl 01", img:"assets/isopod/Porcellio/Dairy%20cow.jpg", stock:"in",   origin:"Vietnam",     desc:"The perfect first colony. Hardy, prolific, forgiving. Striking black-and-cream marbling on every specimen.", rare:false },
+    { name:"Zebra Isopod",       sci:"Armadillidium maculatum",     price:45,  old:55,   chip:"Intermediate", level:"Lvl 02", img:"assets/isopod/Armadillidium/Zebra.jpg", stock:"in",   origin:"Europe",      desc:"Crisp black stripes on bone-white. A keeper's favorite display species that thrives at moderate humidity.", rare:false },
+    { name:"Magic Potion",       sci:"Cubaris sp. 'Magic Potion'",  price:185, old:null, chip:"Expert",       level:"Lvl 04", img:"assets/isopod/cubaris/magic%20potion.jpg", stock:"low",  origin:"SE Asia",     desc:"Iridescent violet-to-amber shift. Sensitive to humidity swings — recommended for keepers with at least one stable Cubaris culture.", rare:true },
+    { name:"Springtail Culture", sci:"Folsomia candida",            price:15,  old:null, chip:"Beginner",     level:"Lvl 01", img:"assets/isopod/Porcellio/Sevilla.jpg", stock:"in",   origin:"Vietnam",     desc:"The cleanup crew for any bioactive setup. 500 ct starter culture with breeding substrate.", rare:false },
+    { name:"Premium Moss Kit",   sci:"Sphagnum &amp; cushion blend",    price:30,  old:null, chip:"Substrate",    level:"Essential", img:"assets/isopod/Porcellio/Violet.jpg", stock:"in",   origin:"Vietnam",     desc:"Hand-harvested sphagnum and cushion moss — pre-cleaned and hydrated. Two-month supply for a 30 cm setup.", rare:false },
+    { name:"Calcium Supplement", sci:"Crushed cuttlebone &amp; oyster",  price:12,  old:null, chip:"Food",         level:"Essential", img:"assets/isopod/Armadillidium/Orange%20Kluggi.jpg", stock:"in",   origin:"Vietnam",     desc:"Critical for molting and exoskeleton health. Bag of 250 g — typically lasts 4–6 months per colony.", rare:false },
+    { name:"Panda King",         sci:"Cubaris sp. 'Panda King'",    price:165, old:null, chip:"Expert",       level:"Lvl 04", img:"assets/isopod/cubaris/Panda%20King.jpg", stock:"out",  origin:"SE Asia",     desc:"Bold panda-style markings on a powder-white body. Currently on waitlist — joining now reserves the next captive-bred batch.", rare:true },
+    { name:"Cork Bark Hides",    sci:"Quercus suber, cured",        price:22,  old:null, chip:"Habitat",      level:"Essential", img:"assets/isopod/Troglodillo/Vex.jpg", stock:"in",   origin:"Europe",      desc:"Cured and ant-treated cork pieces in three sizes. The single best hide material for moisture-retention species.", rare:false },
+  ];
+
+  const grid = document.getElementById('grid');
+  function renderProducts() {
+    grid.innerHTML = PRODUCTS.map((p, i) => `
+      <article class="product" data-i="${i}">
+        <div class="photo" style="background-image:url('${p.img}');">
+          <span class="chip">${p.chip}</span>
+          ${p.rare ? '<span class="rare-flag">Rare</span>' : ''}
+          <button class="heart" aria-label="Save">
+            <i data-lucide="heart" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="body">
+          <div class="top-row">
+            <span class="name">${p.name}</span>
+            <span class="level">${p.level}</span>
+          </div>
+          <span class="sci">${p.sci}</span>
+          <div class="stats-row">
+            <span><i data-lucide="sun" style="width:11px;height:11px;stroke-width:1.8" aria-hidden="true"></i> 75% rH</span>
+            <span><i data-lucide="thermometer" style="width:11px;height:11px;stroke-width:1.8" aria-hidden="true"></i> 22–26°C</span>
+            <span>${p.origin}</span>
+          </div>
+          <p class="desc">${p.desc}</p>
+          <div class="price-row">
+            <span class="price">${p.old ? `<span class="old">$${p.old}.00</span>` : ''}$${p.price}.00</span>
+            <span class="stock ${p.stock}"><span class="dot"></span>${p.stock === 'in' ? 'In stock' : p.stock === 'low' ? 'Low stock' : 'Waitlist'}</span>
+          </div>
+          <button class="add-btn" data-i="${i}">
+            ${p.stock === 'out' ? 'JOIN WAITLIST' : 'ADD TO CART'}
+            <i data-lucide="shopping-bag" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+          </button>
+        </div>
+      </article>
+    `).join('');
+  }
+  renderProducts();
+  window.__renderLucide?.();
+
+  // ============ Cart ============
+  let cartCount = 2;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+  document.addEventListener('click', (e) => {
+    const add = e.target.closest('.add-btn');
+    if (add) {
+      const p = PRODUCTS[+add.dataset.i];
+      cartCount++;
+      document.getElementById('cart-badge-top').textContent = cartCount;
+      document.getElementById('cart-badge-fab').textContent = cartCount;
+      showToast(`Added: ${p.name}`);
+      return;
+    }
+    const heart = e.target.closest('.heart');
+    if (heart) { heart.classList.toggle('on'); return; }
+    const pack = e.target.closest('.pack-cta');
+    if (pack) { showToast('Pack added to cart'); cartCount++; document.getElementById('cart-badge-top').textContent = cartCount; document.getElementById('cart-badge-fab').textContent = cartCount; return; }
+  });
+
+  // ============ Tabs ============
+  document.getElementById('tabs').addEventListener('click', (e) => {
+    const t = e.target.closest('.tab');
+    if (!t) return;
+    document.querySelectorAll('#tabs .tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+  });
+
+  // ============ View toggle ============
+  document.getElementById('view-toggle').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-view]');
+    if (!b) return;
+    document.querySelectorAll('#view-toggle button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    grid.classList.toggle('list', b.dataset.view === 'list');
+  });
+
+  // ============ Filter group collapse ============
+  document.querySelectorAll('.filter-group h4').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('collapsed'));
+  });
+
+  // ============ Chip toggles ============
+  document.querySelectorAll('.chip-toggle').forEach(c => {
+    c.addEventListener('click', () => c.classList.toggle('active'));
+  });
+
+  // ============ Swatches ============
+  document.getElementById('swatches').addEventListener('click', (e) => {
+    const s = e.target.closest('.swatch');
+    if (!s) return;
+    s.classList.toggle('active');
+  });
+
+  // ============ Price slider ============
+  const minR = document.getElementById('price-min');
+  const maxR = document.getElementById('price-max');
+  const fill = document.getElementById('price-fill');
+  const minV = document.getElementById('price-min-val');
+  const maxV = document.getElementById('price-max-val');
+  function updatePrice() {
+    let lo = +minR.value, hi = +maxR.value;
+    if (lo > hi - 10) { if (event && event.target === minR) lo = hi - 10; else hi = lo + 10; minR.value = lo; maxR.value = hi; }
+    minV.textContent = lo; maxV.textContent = hi;
+    const maxV2 = +maxR.max;
+    fill.style.left = (lo / maxV2 * 100) + '%';
+    fill.style.right = (100 - hi / maxV2 * 100) + '%';
+  }
+  minR.addEventListener('input', updatePrice);
+  maxR.addEventListener('input', updatePrice);
+  updatePrice();
+
+  // ============ Active filter pills remove ============
+  document.querySelectorAll('.pill button').forEach(b => {
+    b.addEventListener('click', () => b.closest('.pill').remove());
+  });
+
+  // ============ Language switch ============
+  document.querySelectorAll('#lang button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#lang button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+
+  // ============ Load more ============
+  document.getElementById('load-more').addEventListener('click', () => {
+    showToast('Loaded 12 more specimens');
+  });
+
+  // ============ Clear all ============
+  document.getElementById('clear-all').addEventListener('click', () => {
+    document.querySelectorAll('.active-filters .pill').forEach(p => p.remove());
+    document.querySelectorAll('.check input').forEach(i => i.checked = false);
+    document.querySelectorAll('.chip-toggle').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  });
+</script>
+
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script>
+  if (window.lucide) { lucide.createIcons(); }
+  // Re-render when new icons are added dynamically
+  window.__renderLucide = () => { if (window.lucide) lucide.createIcons(); };
+</script>
+
+</body>
+</html>

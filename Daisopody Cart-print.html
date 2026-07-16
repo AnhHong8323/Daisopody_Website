@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cart — Daisopody</title>
+<link rel="stylesheet" href="colors_and_type.css"/>
+<link rel="stylesheet" href="cart.css"/>
+<style>
+@media print {
+  @page {
+    size: A3 portrait;
+    margin: 8mm;
+  }
+
+  html, body {
+    background: var(--moss-900) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  body, .page, .checkout-layout, .panel, .summary, .modal, .modal-bg,
+  .cart-row, .form-block, .confirm-block, .success-body, .success-foot {
+    background-color: var(--moss-900) !important;
+  }
+
+  /* Remove fixed/sticky chrome */
+  .site-header { position: static !important; }
+  .summary { position: static !important; top: auto !important; }
+  .toast, .fab { display: none !important; }
+
+  /* Show ALL step panels stacked for the full flow */
+  .panel { display: block !important; break-inside: avoid; }
+  .panel + .panel { margin-top: 56px; break-before: page; }
+
+  /* Force the success modal to render as the final page, inline */
+  .modal-bg {
+    display: block !important;
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    inset: auto !important;
+    break-before: page;
+  }
+  .modal-bg::before {
+    content: "STEP 4 · CONFIRMATION";
+    display: block;
+    text-align: center;
+    color: var(--cream-60);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 32px 0 20px;
+    border-top: 1px solid var(--cream-10);
+    margin: 0 var(--gutter-page);
+  }
+  .modal {
+    box-shadow: none !important;
+    margin: 0 auto !important;
+    border: 1px solid var(--cream-30) !important;
+    width: min(640px, 100%) !important;
+    max-height: none !important;
+    overflow: visible !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .modal-close { display: none !important; }
+  .modal-glow { display: none !important; }
+  .success-check::before, .success-check::after { display: none !important; }
+
+  /* Re-layout the checkout grid into a stack so panels and summary print full-width */
+  .checkout-layout {
+    display: block !important;
+    padding: 24px var(--gutter-page) 48px !important;
+  }
+  .summary {
+    margin: 56px 0 0 !important;
+    max-width: 480px;
+    break-before: page;
+  }
+
+  /* Disable animations + transitions across the board */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Avoid breaking key blocks across pages */
+  .cart-row, .confirm-block, .form-block, .panel-h,
+  .checkout-hero, .summary, .success-body { break-inside: avoid; }
+
+  /* Hide the channel-detail blocks that aren't active (none would be filled anyway) */
+  .channel-detail:not(.show) { display: none !important; }
+
+  /* Keep page background filled on every printed page */
+  html { background: var(--moss-900) !important; }
+}
+</style>
+</head>
+<body>
+<div class="page" data-screen-label="Daisopody Cart Flow">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="Daisopody Homepage.html" class="brand-mark"><span class="mark-dot"></span>DAISOPODY</a>
+    <nav class="nav">
+      <a href="Daisopody Homepage.html">Home</a>
+      <a href="Daisopody Shop.html">Shop</a>
+      <a href="Daisopody Care Guide.html">Care Guide</a>
+      <a href="Daisopody About Us.html">About Us</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switch" role="group" aria-label="Language" id="lang">
+        <button class="active" data-lang="en">EN</button>
+        <button data-lang="vn">VN</button>
+      </div>
+      <button class="btn-contact">
+        <i data-lucide="phone" style="width:13px;height:13px;color:#182B25;stroke-width:1.8" aria-hidden="true"></i>
+        CONTACT
+      </button>
+      <button class="cart-btn" aria-label="Cart">
+        <i data-lucide="shopping-bag" style="width:20px;height:20px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i>
+        <span class="badge" id="cart-badge-top">3</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO + STEPPER -->
+  <section class="checkout-hero">
+    <div class="checkout-eyebrow">CHECKOUT FLOW · IB SELLER FOR TRACKING</div>
+    <h1 class="checkout-h1" id="hero-h1">Your <em>basket</em></h1>
+    <div class="stepper" id="stepper">
+      <div class="step done" data-step="1">
+        <span class="step-n">1</span> CART
+      </div>
+      <span class="step-sep done"></span>
+      <div class="step active" data-step="2">
+        <span class="step-n">2</span> YOUR INFO
+      </div>
+      <span class="step-sep"></span>
+      <div class="step" data-step="3">
+        <span class="step-n">3</span> CONFIRM
+      </div>
+    </div>
+  </section>
+
+  <!-- LAYOUT -->
+  <div class="checkout-layout">
+
+    <!-- LEFT — Step panels -->
+    <main id="panels">
+
+      <!-- STEP 1 · CART -->
+      <section class="panel active" data-panel="1">
+        <div class="panel-h">
+          <h2>Review your <em>basket</em></h2>
+          <span class="meta" id="cart-count-label">3 items</span>
+        </div>
+
+        <div class="cart-list" id="cart-list"></div>
+
+        <div class="cart-empty-foot">
+          <a href="Daisopody Shop.html" class="link-back">
+            <i data-lucide="arrow-left" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+            CONTINUE SHOPPING
+          </a>
+          <button class="clear-btn" id="clear-cart">
+            <i data-lucide="trash-2" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+            CLEAR CART
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 2 · YOUR INFO -->
+      <section class="panel" data-panel="2">
+        <div class="panel-h">
+          <h2>Where do we <em>ship to</em>?</h2>
+          <span class="meta">REQUIRED FIELDS *</span>
+        </div>
+
+        <form id="info-form">
+
+          <div class="form-block">
+            <div class="b-title">
+              <h3>Your <em>contact</em></h3>
+              <span class="b-meta">SO WE CAN MESSAGE TRACKING</span>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label>FULL NAME <span class="req">*</span></label>
+                <input type="text" id="f-name" placeholder="e.g. Linh Nguyen" required/>
+              </div>
+              <div class="field with-prefix">
+                <label>PHONE NUMBER <span class="req">*</span></label>
+                <span class="prefix">+84</span>
+                <input type="tel" id="f-phone" placeholder="28 3823 1102" required/>
+              </div>
+              <div class="field full" style="grid-column:1/-1">
+                <label>EMAIL <span class="opt">(optional, for order receipt)</span></label>
+                <input type="email" id="f-email" placeholder="you@daisopody.com"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-block">
+            <div class="b-title">
+              <h3>Shipping <em>address</em></h3>
+              <span class="b-meta">VIETNAM &amp; SE ASIA</span>
+            </div>
+            <div class="address-grid" style="margin-bottom:16px">
+              <div class="field">
+                <label>PROVINCE <span class="req">*</span></label>
+                <select id="f-province" required>
+                  <option value="">Select province</option>
+                  <option>Hồ Chí Minh City</option>
+                  <option>Hà Nội</option>
+                  <option>Đà Nẵng</option>
+                  <option>Lâm Đồng (Da Lat)</option>
+                  <option>Cần Thơ</option>
+                  <option>Hải Phòng</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>DISTRICT <span class="req">*</span></label>
+                <select id="f-district" required>
+                  <option value="">Select district</option>
+                  <option>District 1</option>
+                  <option>District 3</option>
+                  <option>District 7</option>
+                  <option>Bình Thạnh</option>
+                  <option>Tân Bình</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>WARD <span class="req">*</span></label>
+                <select id="f-ward" required>
+                  <option value="">Select ward</option>
+                  <option>Phường Bến Thành</option>
+                  <option>Phường 4</option>
+                  <option>Phường 7</option>
+                </select>
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:8px">
+              <label>STREET ADDRESS <span class="req">*</span></label>
+              <input type="text" id="f-address" placeholder="House number, street, building, apartment" required/>
+              <span class="help">Be specific — couriers do not call ahead for live shipments.</span>
+            </div>
+          </div>
+
+          <div class="form-block">
+            <div class="b-title">
+              <h3>How should we <em>message</em> you?</h3>
+              <span class="b-meta">PICK ONE · FOR ORDER TRACKING</span>
+            </div>
+
+            <div class="channel-grid" id="channels">
+              <button type="button" class="channel-opt active" data-ch="facebook">
+                <span class="ic"><i data-lucide="facebook" style="width:18px;height:18px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i></span>
+                <span>
+                  <span class="lt">Facebook Messenger</span>
+                  <span class="ld">Fastest · we usually reply &lt; 30 min</span>
+                </span>
+              </button>
+              <button type="button" class="channel-opt" data-ch="zalo">
+                <span class="ic" style="font-weight:700;font-size:13px;color:#FFF2BB">Z</span>
+                <span>
+                  <span class="lt">Zalo</span>
+                  <span class="ld">Good for VN domestic shipments</span>
+                </span>
+              </button>
+              <button type="button" class="channel-opt" data-ch="whatsapp">
+                <span class="ic"><i data-lucide="message-circle" style="width:18px;height:18px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i></span>
+                <span>
+                  <span class="lt">WhatsApp</span>
+                  <span class="ld">For SE Asia &amp; international</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="channel-detail show" id="ch-facebook">
+              <div class="field" style="margin-top:16px">
+                <label>FACEBOOK PROFILE OR USERNAME <span class="req">*</span></label>
+                <input type="text" id="f-facebook" placeholder="facebook.com/yourname or @yourname"/>
+                <span class="help">Paste your profile URL or just your username — we'll find you.</span>
+              </div>
+            </div>
+            <div class="channel-detail" id="ch-zalo">
+              <div class="field with-prefix" style="margin-top:16px">
+                <label>ZALO PHONE NUMBER <span class="req">*</span></label>
+                <span class="prefix">+84</span>
+                <input type="tel" id="f-zalo" placeholder="901 234 567"/>
+              </div>
+            </div>
+            <div class="channel-detail" id="ch-whatsapp">
+              <div class="field with-prefix" style="margin-top:16px">
+                <label>WHATSAPP NUMBER (WITH COUNTRY CODE) <span class="req">*</span></label>
+                <span class="prefix" style="border-right:none">+</span>
+                <input type="tel" id="f-whatsapp" placeholder="84 901 234 567" style="padding-left:42px"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-block">
+            <div class="b-title">
+              <h3>Note for the <em>keeper</em></h3>
+              <span class="b-meta">OPTIONAL</span>
+            </div>
+            <div class="field">
+              <textarea class="note-area" id="f-note" placeholder="Delivery preferences, sex ratio requests, anything else we should know…"></textarea>
+            </div>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- STEP 3 · CONFIRM -->
+      <section class="panel" data-panel="3">
+        <div class="panel-h">
+          <h2>Final <em>review</em></h2>
+          <span class="meta">ORDER ID PENDING</span>
+        </div>
+
+        <div class="confirm-block">
+          <div class="cb-head">
+            <h3>Contact &amp; shipping</h3>
+            <button class="edit" data-goto="2">
+              <i data-lucide="pencil" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.7" aria-hidden="true"></i>
+              EDIT
+            </button>
+          </div>
+          <div class="confirm-grid" id="confirm-info"></div>
+        </div>
+
+        <div class="confirm-block">
+          <div class="cb-head">
+            <h3>Items <span style="color:var(--cream-60);font-weight:300;text-transform:none;letter-spacing:normal;font-size:13px;margin-left:6px" id="confirm-count">(3)</span></h3>
+            <button class="edit" data-goto="1">
+              <i data-lucide="pencil" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.7" aria-hidden="true"></i>
+              EDIT
+            </button>
+          </div>
+          <div id="confirm-items" class="summary-items" style="max-height:none"></div>
+        </div>
+
+        <div class="confirm-block">
+          <div class="cb-head">
+            <h3>Payment method</h3>
+            <span style="color:var(--cream-50);font-size:10px;letter-spacing:0.22em;text-transform:uppercase">PICK ONE</span>
+          </div>
+
+          <div class="pay-grid" id="pay-grid">
+            <button type="button" class="pay-opt active" data-pay="cod">
+              <div class="head">
+                <span class="lt">Cash on delivery</span>
+                <span class="radio"></span>
+              </div>
+              <span class="ld">Pay the courier when your specimens arrive. Inspect first.</span>
+              <div class="ic-block"><span class="ic-tag">COD</span></div>
+            </button>
+            <button type="button" class="pay-opt" data-pay="bank">
+              <div class="head">
+                <span class="lt">Bank transfer</span>
+                <span class="radio"></span>
+              </div>
+              <span class="ld">VCB · Techcombank · MB Bank. QR code sent after order.</span>
+              <div class="ic-block"><span class="ic-tag">VCB</span><span class="ic-tag">TCB</span></div>
+            </button>
+            <button type="button" class="pay-opt" data-pay="momo">
+              <div class="head">
+                <span class="lt">Momo wallet</span>
+                <span class="radio"></span>
+              </div>
+              <span class="ld">Instant — your tracking unlocks the moment we confirm.</span>
+              <div class="ic-block"><span class="ic-tag">MOMO</span></div>
+            </button>
+          </div>
+        </div>
+
+        <label class="agree">
+          <input type="checkbox" id="agree-cb" checked/>
+          <span class="box"></span>
+          <span class="t">I understand live specimens cannot be returned, and I'll be available to message Daisopody on my chosen channel within 30 minutes of placing this order. <a href="#">Live-arrival terms</a>.</span>
+        </label>
+      </section>
+
+    </main>
+
+    <!-- RIGHT — Sticky summary -->
+    <aside class="summary">
+      <h3>Order <em>summary</em></h3>
+
+      <div class="summary-items" id="summary-items"></div>
+
+      <div class="promo-row" id="promo-row">
+        <i data-lucide="ticket" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.6;margin-left:14px" aria-hidden="true"></i>
+        <input type="text" id="promo-input" placeholder="Promo code"/>
+        <button id="promo-apply">APPLY</button>
+      </div>
+      <div class="promo-applied" id="promo-applied" style="display:none">
+        <span><span class="code">KEEPER10</span> applied · 10% off</span>
+        <button class="x" id="promo-remove" aria-label="Remove">
+          <i data-lucide="x" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="summary-totals">
+        <div class="tot-row"><span class="l">Subtotal</span><span class="v" id="sub-total">$310.00</span></div>
+        <div class="tot-row discount" id="discount-row" style="display:none"><span class="l">Discount</span><span class="v" id="discount-val">−$31.00</span></div>
+        <div class="tot-row"><span class="l">Shipping · domestic</span><span class="v">$8.00</span></div>
+        <div class="tot-row"><span class="l">Insulated packaging</span><span class="v">Included</span></div>
+        <div class="tot-row total"><span class="l">Total</span><span class="v" id="grand-total">$318.00</span></div>
+      </div>
+
+      <button class="next-btn" id="next-btn">
+        <span id="next-label">CONTINUE</span>
+        <i data-lucide="arrow-right" style="width:14px;height:14px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+      </button>
+      <button class="back-btn" id="back-btn" style="display:none">
+        <i data-lucide="arrow-left" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
+        BACK
+      </button>
+
+      <div class="assurance">
+        <div><i data-lucide="shield-check" style="width:14px;height:14px;stroke-width:1.6" aria-hidden="true"></i> 98% live-arrival guarantee</div>
+        <div><i data-lucide="message-circle" style="width:14px;height:14px;stroke-width:1.6" aria-hidden="true"></i> Tracking sent via your chosen channel</div>
+        <div><i data-lucide="lock" style="width:14px;height:14px;stroke-width:1.6" aria-hidden="true"></i> Your info never leaves Daisopody</div>
+      </div>
+    </aside>
+  </div>
+
+</div>
+
+<!-- ============ SUCCESS MODAL ============ -->
+<div class="modal-bg" id="success-modal">
+  <div class="modal" role="dialog" aria-modal="true">
+    <span class="modal-glow"></span>
+    <button class="modal-close" id="modal-close" aria-label="Close">
+      <i data-lucide="x" style="width:16px;height:16px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
+    </button>
+
+    <div class="success-body">
+      <div class="success-check">
+        <i data-lucide="check" style="width:38px;height:38px;color:#182B25;stroke-width:2.4" aria-hidden="true"></i>
+      </div>
+      <div class="success-eyebrow">ORDER RECEIVED</div>
+      <h3>Your order has been<br/><em>sent to the seller</em>.</h3>
+      <p>We've received the details. <strong>IB the seller</strong> on your chosen channel within 30 minutes and we'll send your <strong>tracking number</strong> right back.</p>
+
+      <div class="order-id">
+        <span class="k">ORDER ID</span>
+        <span class="v" id="order-id-v">#DSP-26-00214</span>
+        <button class="copy" id="copy-id" aria-label="Copy">
+          <i data-lucide="copy" style="width:13px;height:13px;color:currentColor;stroke-width:1.7" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="contact-buttons" id="contact-buttons">
+        <a href="#" class="contact-btn">
+          <span class="ic-circle"><i data-lucide="facebook" style="width:18px;height:18px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i></span>
+          <span class="label-block">
+            <span class="lt">MESSAGE US ON</span>
+            <span class="lv">Facebook</span>
+          </span>
+        </a>
+        <a href="#" class="contact-btn zalo">
+          <span class="ic-circle zalo">Z</span>
+          <span class="label-block">
+            <span class="lt">OR MESSAGE ON</span>
+            <span class="lv">Zalo</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="success-foot">
+      <div class="info-row">
+        <span class="item"><i data-lucide="clock" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i> <strong>&lt; 30 MIN</strong> REPLY</span>
+        <span class="item"><i data-lucide="truck" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i> <strong>1–2 DAYS</strong> DELIVERY</span>
+        <span class="item"><i data-lucide="shield-check" style="width:11px;height:11px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i> <strong>98%</strong> LIVE ARRIVAL</span>
+      </div>
+      <p>You'll receive a tracking number once the keeper confirms your order. <strong>Don't see our reply?</strong> Check your message requests folder.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <i data-lucide="check" style="width:14px;height:14px;color:#182B25;stroke-width:2.2" aria-hidden="true"></i>
+  <span id="toast-msg">Done</span>
+</div>
+
+<script>
+  // ============ State ============
+  const CART = [
+    {
+      id: 'amber',
+      name: 'Amber Ducky',
+      sci: "Cubaris sp. 'Amber Ducky'",
+      chip: 'Rare',
+      opt: 'Count of 5 · F4',
+      unit: 165,
+      qty: 1,
+      img: 'assets/product-rubber-ducky.jpg'
+    },
+    {
+      id: 'zebra',
+      name: 'Zebra Isopod',
+      sci: 'Armadillidium maculatum',
+      chip: 'Intermediate',
+      opt: 'Count of 10',
+      unit: 45,
+      qty: 2,
+      img: 'assets/product-detail.jpg'
+    },
+    {
+      id: 'moss',
+      name: 'Premium Moss Kit',
+      sci: 'Sphagnum & cushion blend',
+      chip: 'Substrate',
+      opt: '2 L bioactive blend',
+      unit: 30,
+      qty: 1,
+      img: 'assets/care-guide-2.jpg'
+    },
+  ];
+
+  const STATE = {
+    step: 1,
+    promo: null,
+    channel: 'facebook',
+    payment: 'cod',
+  };
+
+  // ============ Toast ============
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // ============ Render cart ============
+  const cartList = document.getElementById('cart-list');
+  const summaryItems = document.getElementById('summary-items');
+  const confirmItems = document.getElementById('confirm-items');
+  const cartCountLabel = document.getElementById('cart-count-label');
+  const cartBadgeTop = document.getElementById('cart-badge-top');
+
+  function totalItems() { return CART.reduce((s,i)=>s+i.qty, 0); }
+  function subtotal() { return CART.reduce((s,i)=>s + i.unit * i.qty, 0); }
+  function discount() { return STATE.promo ? Math.round(subtotal() * 0.1) : 0; }
+  function shipping() { return CART.length ? 8 : 0; }
+  function grandTotal() { return subtotal() - discount() + shipping(); }
+
+  function renderCart() {
+    if (!CART.length) {
+      cartList.innerHTML = `
+        <div class="empty">
+          <div class="ic"><i data-lucide="shopping-bag" style="width:32px;height:32px;color:#FFF2BB;stroke-width:1.4" aria-hidden="true"></i></div>
+          <h3>Your basket is <em>empty</em></h3>
+          <p>Browse the catalogue and add a starter colony, substrate, or one of our rare collector species.</p>
+          <a href="Daisopody Shop.html" class="next-btn" style="display:inline-flex;width:auto;margin:0;padding:14px 22px">
+            BROWSE CATALOG
+            <i data-lucide="arrow-right" style="width:13px;height:13px;color:#182B25;stroke-width:2" aria-hidden="true"></i>
+          </a>
+        </div>`;
+    } else {
+      cartList.innerHTML = CART.map((it, i) => `
+        <div class="cart-row" data-i="${i}">
+          <div class="photo" style="background-image:url('${it.img}');"></div>
+          <div class="info">
+            <div class="row-chip">
+              <span class="pill ${it.chip.toLowerCase()==='rare' ? 'rare' : ''}">${it.chip}</span>
+              <span>${it.opt}</span>
+            </div>
+            <div class="nm">${it.name}</div>
+            <div class="sc">${it.sci}</div>
+            <div class="row-actions">
+              <button class="save"><i data-lucide="heart" style="width:11px;height:11px;color:currentColor;stroke-width:1.6" aria-hidden="true"></i> SAVE FOR LATER</button>
+              <button class="remove" data-i="${i}"><i data-lucide="trash-2" style="width:11px;height:11px;color:currentColor;stroke-width:1.6" aria-hidden="true"></i> REMOVE</button>
+            </div>
+          </div>
+          <div class="qty-stepper">
+            <button data-act="dec" data-i="${i}" aria-label="Decrease"><i data-lucide="minus" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i></button>
+            <span class="v">${it.qty}</span>
+            <button data-act="inc" data-i="${i}" aria-label="Increase"><i data-lucide="plus" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i></button>
+          </div>
+          <div class="price-col">
+            <span class="price">$${(it.unit * it.qty).toFixed(2)}</span>
+            <span class="each">$${it.unit} × ${it.qty}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+    cartCountLabel.textContent = CART.length ? `${totalItems()} item${totalItems()>1?'s':''}` : '0 items';
+
+    summaryItems.innerHTML = CART.map(it => `
+      <div class="summary-row">
+        <div class="ph" style="background-image:url('${it.img}');">
+          <span class="badge-qty">${it.qty}</span>
+        </div>
+        <div>
+          <div class="nm">${it.name}</div>
+          <div class="opt">${it.opt}</div>
+        </div>
+        <div class="pr">$${(it.unit * it.qty).toFixed(2)}</div>
+      </div>
+    `).join('');
+
+    confirmItems.innerHTML = summaryItems.innerHTML;
+    document.getElementById('confirm-count').textContent = `(${CART.length})`;
+
+    document.getElementById('sub-total').textContent = `$${subtotal().toFixed(2)}`;
+    document.getElementById('discount-val').textContent = `−$${discount().toFixed(2)}`;
+    document.getElementById('discount-row').style.display = STATE.promo ? 'flex' : 'none';
+    document.getElementById('grand-total').textContent = `$${grandTotal().toFixed(2)}`;
+
+    cartBadgeTop.textContent = totalItems();
+
+    window.__renderLucide?.();
+  }
+  renderCart();
+
+  // ============ Cart events ============
+  cartList.addEventListener('click', (e) => {
+    const inc = e.target.closest('[data-act="inc"]');
+    const dec = e.target.closest('[data-act="dec"]');
+    const rm = e.target.closest('.remove');
+    if (inc) {
+      const i = +inc.dataset.i;
+      CART[i].qty = Math.min(99, CART[i].qty + 1);
+      renderCart();
+    } else if (dec) {
+      const i = +dec.dataset.i;
+      CART[i].qty = Math.max(1, CART[i].qty - 1);
+      renderCart();
+    } else if (rm) {
+      const i = +rm.dataset.i;
+      const removed = CART.splice(i, 1)[0];
+      showToast(`Removed: ${removed.name}`);
+      renderCart();
+    }
+  });
+
+  document.getElementById('clear-cart').addEventListener('click', () => {
+    if (!CART.length) return;
+    CART.length = 0;
+    renderCart();
+    showToast('Cart cleared');
+  });
+
+  // ============ Promo ============
+  document.getElementById('promo-apply').addEventListener('click', () => {
+    const v = document.getElementById('promo-input').value.trim().toUpperCase();
+    if (v === 'KEEPER10' || v === 'WELCOME10') {
+      STATE.promo = v;
+      document.getElementById('promo-row').style.display = 'none';
+      document.getElementById('promo-applied').style.display = 'flex';
+      document.querySelector('#promo-applied .code').textContent = v;
+      showToast(`Promo "${v}" applied`);
+      renderCart();
+    } else {
+      showToast('Invalid promo code');
+    }
+  });
+  document.getElementById('promo-remove').addEventListener('click', () => {
+    STATE.promo = null;
+    document.getElementById('promo-row').style.display = 'flex';
+    document.getElementById('promo-applied').style.display = 'none';
+    document.getElementById('promo-input').value = '';
+    renderCart();
+  });
+
+  // ============ Channel selector ============
+  document.getElementById('channels').addEventListener('click', (e) => {
+    const opt = e.target.closest('.channel-opt');
+    if (!opt) return;
+    document.querySelectorAll('.channel-opt').forEach(x => x.classList.remove('active'));
+    opt.classList.add('active');
+    STATE.channel = opt.dataset.ch;
+    document.querySelectorAll('.channel-detail').forEach(d => d.classList.remove('show'));
+    document.getElementById('ch-' + STATE.channel).classList.add('show');
+  });
+
+  // ============ Payment selector ============
+  document.getElementById('pay-grid').addEventListener('click', (e) => {
+    const opt = e.target.closest('.pay-opt');
+    if (!opt) return;
+    document.querySelectorAll('.pay-opt').forEach(x => x.classList.remove('active'));
+    opt.classList.add('active');
+    STATE.payment = opt.dataset.pay;
+  });
+
+  // ============ Stepper logic ============
+  const HERO_TITLES = {
+    1: 'Your <em>basket</em>',
+    2: 'Tell us where to <em>ship</em>',
+    3: 'Confirm &amp; <em>send order</em>',
+  };
+  const NEXT_LABELS = {
+    1: 'CONTINUE TO INFO',
+    2: 'REVIEW ORDER',
+    3: 'PLACE ORDER',
+  };
+
+  function gotoStep(n) {
+    if (!CART.length) { showToast('Add at least one item'); return; }
+    STATE.step = n;
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', +p.dataset.panel === n));
+    document.querySelectorAll('.step').forEach(s => {
+      const sn = +s.dataset.step;
+      s.classList.toggle('active', sn === n);
+      s.classList.toggle('done', sn < n);
+    });
+    document.querySelectorAll('.step-sep').forEach((s, i) => {
+      s.classList.toggle('done', i < n - 1);
+    });
+    document.getElementById('hero-h1').innerHTML = HERO_TITLES[n];
+    document.getElementById('next-label').textContent = NEXT_LABELS[n];
+    document.getElementById('back-btn').style.display = n > 1 ? 'inline-flex' : 'none';
+
+    if (n === 3) renderConfirm();
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderConfirm() {
+    const channelLabels = {
+      facebook: { label: 'Facebook Messenger', ic: '<i data-lucide="facebook" style="width:14px;height:14px;color:#182B25;stroke-width:1.6" aria-hidden="true"></i>' },
+      zalo: { label: 'Zalo', ic: '<span style="font-weight:700;font-size:11px">Z</span>' },
+      whatsapp: { label: 'WhatsApp', ic: '<i data-lucide="message-circle" style="width:14px;height:14px;color:#182B25;stroke-width:1.6" aria-hidden="true"></i>' },
+    };
+    const name = document.getElementById('f-name').value || 'Linh Nguyen';
+    const phone = '+84 ' + (document.getElementById('f-phone').value || '28 3823 1102');
+    const email = document.getElementById('f-email').value || '—';
+    const prov = document.getElementById('f-province').value || 'Hồ Chí Minh City';
+    const dist = document.getElementById('f-district').value || 'District 3';
+    const ward = document.getElementById('f-ward').value || 'Phường 4';
+    const addr = document.getElementById('f-address').value || '14 Nguyễn Thị Diệu';
+    const note = document.getElementById('f-note').value || '—';
+
+    let channelDetail = '';
+    if (STATE.channel === 'facebook') channelDetail = document.getElementById('f-facebook').value || '@you';
+    if (STATE.channel === 'zalo') channelDetail = '+84 ' + (document.getElementById('f-zalo').value || '901 234 567');
+    if (STATE.channel === 'whatsapp') channelDetail = '+' + (document.getElementById('f-whatsapp').value || '84 901 234 567');
+
+    document.getElementById('confirm-info').innerHTML = `
+      <div><span class="k">Name</span><span class="v">${name}</span></div>
+      <div><span class="k">Phone</span><span class="v">${phone}</span></div>
+      <div><span class="k">Email</span><span class="v">${email}</span></div>
+      <div><span class="k">Tracking channel</span>
+        <span class="confirm-channel" style="margin-top:4px"><span class="channel-ic">${channelLabels[STATE.channel].ic}</span> ${channelLabels[STATE.channel].label} · ${channelDetail}</span>
+      </div>
+      <div class="full"><span class="k">Shipping address</span><span class="v">${addr}, ${ward}, ${dist}, ${prov}</span></div>
+      <div class="full"><span class="k">Note for keeper</span><span class="v">${note}</span></div>
+    `;
+    window.__renderLucide?.();
+  }
+
+  // Step navigation
+  document.getElementById('next-btn').addEventListener('click', () => {
+    if (STATE.step === 1) {
+      if (!CART.length) { showToast('Your basket is empty'); return; }
+      gotoStep(2);
+    } else if (STATE.step === 2) {
+      // Basic validation
+      const required = ['f-name','f-phone','f-province','f-district','f-ward','f-address'];
+      for (const id of required) {
+        if (!document.getElementById(id).value.trim()) {
+          showToast('Please fill all required fields');
+          document.getElementById(id).focus();
+          return;
+        }
+      }
+      // Channel-specific
+      const chanField = {facebook:'f-facebook', zalo:'f-zalo', whatsapp:'f-whatsapp'}[STATE.channel];
+      if (!document.getElementById(chanField).value.trim()) {
+        showToast('Add your messaging contact');
+        document.getElementById(chanField).focus();
+        return;
+      }
+      gotoStep(3);
+    } else if (STATE.step === 3) {
+      if (!document.getElementById('agree-cb').checked) {
+        showToast('Please confirm the live-arrival terms');
+        return;
+      }
+      placeOrder();
+    }
+  });
+
+  document.getElementById('back-btn').addEventListener('click', () => gotoStep(STATE.step - 1));
+
+  document.getElementById('stepper').addEventListener('click', (e) => {
+    const s = e.target.closest('.step');
+    if (!s) return;
+    const n = +s.dataset.step;
+    if (n < STATE.step) gotoStep(n);
+  });
+
+  document.querySelectorAll('[data-goto]').forEach(b => {
+    b.addEventListener('click', () => gotoStep(+b.dataset.goto));
+  });
+
+  // ============ Place order → modal ============
+  function placeOrder() {
+    const orderId = '#DSP-26-' + String(Math.floor(Math.random()*900) + 100).padStart(5,'0');
+    document.getElementById('order-id-v').textContent = orderId;
+
+    // Build contact buttons based on channel
+    const ch = STATE.channel;
+    const buttons = document.getElementById('contact-buttons');
+    if (ch === 'whatsapp') {
+      buttons.innerHTML = `
+        <a href="#" class="contact-btn" style="grid-column:1/-1">
+          <span class="ic-circle"><i data-lucide="message-circle" style="width:18px;height:18px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i></span>
+          <span class="label-block">
+            <span class="lt">MESSAGE US ON</span>
+            <span class="lv">WhatsApp</span>
+          </span>
+        </a>`;
+    } else if (ch === 'zalo') {
+      buttons.innerHTML = `
+        <a href="#" class="contact-btn">
+          <span class="ic-circle zalo">Z</span>
+          <span class="label-block">
+            <span class="lt">MESSAGE US ON</span>
+            <span class="lv">Zalo</span>
+          </span>
+        </a>
+        <a href="#" class="contact-btn">
+          <span class="ic-circle"><i data-lucide="facebook" style="width:18px;height:18px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i></span>
+          <span class="label-block">
+            <span class="lt">OR MESSAGE ON</span>
+            <span class="lv">Facebook</span>
+          </span>
+        </a>`;
+    } else {
+      buttons.innerHTML = `
+        <a href="#" class="contact-btn">
+          <span class="ic-circle"><i data-lucide="facebook" style="width:18px;height:18px;color:#FFF2BB;stroke-width:1.5" aria-hidden="true"></i></span>
+          <span class="label-block">
+            <span class="lt">MESSAGE US ON</span>
+            <span class="lv">Facebook</span>
+          </span>
+        </a>
+        <a href="#" class="contact-btn zalo">
+          <span class="ic-circle zalo">Z</span>
+          <span class="label-block">
+            <span class="lt">OR MESSAGE ON</span>
+            <span class="lv">Zalo</span>
+          </span>
+        </a>`;
+    }
+    window.__renderLucide?.();
+    document.getElementById('success-modal').classList.add('show');
+  }
+
+  // Copy order id
+  document.getElementById('copy-id').addEventListener('click', () => {
+    const v = document.getElementById('order-id-v').textContent;
+    navigator.clipboard?.writeText(v);
+    showToast(`Copied ${v}`);
+  });
+
+  // Close modal
+  function closeModal() {
+    document.getElementById('success-modal').classList.remove('show');
+  }
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('success-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'success-modal') closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Language
+  document.querySelectorAll('#lang button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#lang button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+</script>
+
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script>
+  if (window.lucide) { lucide.createIcons(); }
+  window.__renderLucide = () => { if (window.lucide) lucide.createIcons(); };
+
+  // Auto-print: stack all step panels, open success modal, wait, then print
+  (async function autoPrint() {
+    // Show every panel
+    document.querySelectorAll('.panel').forEach(p => p.classList.add('active'));
+    // Render the confirm panel content
+    if (typeof renderConfirm === 'function') {
+      try { renderConfirm(); } catch (e) {}
+    }
+    // Open the success modal so it's part of the print
+    if (typeof placeOrder === 'function') {
+      try { placeOrder(); } catch (e) {}
+    }
+    // Re-render lucide for the freshly-injected DOM
+    if (window.lucide) lucide.createIcons();
+    // Wait for fonts + a beat
+    try { await document.fonts.ready; } catch (e) {}
+    await new Promise(r => setTimeout(r, 700));
+    window.print();
+  })();
+</script>
+
+</body>
+</html>
