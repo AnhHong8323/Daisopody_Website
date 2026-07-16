@@ -101,20 +101,6 @@
       </div>
 
       <div class="filter-group">
-        <h4>Care level
-          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
-        </h4>
-        <div class="filter-body">
-          <div class="chips">
-            <button class="chip-toggle active">Beginner</button>
-            <button class="chip-toggle">Intermediate</button>
-            <button class="chip-toggle">Advanced</button>
-            <button class="chip-toggle">Expert</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="filter-group">
         <h4>Price range
           <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
         </h4>
@@ -123,54 +109,14 @@
             <div class="price-track">
               <div class="rail"></div>
               <div class="fill" id="price-fill"></div>
-              <input type="range" id="price-min" min="0" max="300" value="15" step="5"/>
-              <input type="range" id="price-max" min="0" max="300" value="220" step="5"/>
+              <input type="range" id="price-min" min="0" max="600000" value="0" step="5000"/>
+              <input type="range" id="price-max" min="0" max="600000" value="600000" step="5000"/>
             </div>
-            <div class="price-vals"><span id="price-min-val">15</span><span id="price-max-val">220</span></div>
+            <div class="price-vals"><span id="price-min-val">0đ</span><span id="price-max-val">600.000đ</span></div>
           </div>
         </div>
       </div>
 
-      <div class="filter-group">
-        <h4>Coloration
-          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
-        </h4>
-        <div class="filter-body">
-          <div class="swatches" id="swatches">
-            <button class="swatch active" style="background:#F4D55B" title="Yellow"></button>
-            <button class="swatch" style="background:#F89A6E" title="Orange"></button>
-            <button class="swatch" style="background:#C2A77A" title="Tan"></button>
-            <button class="swatch" style="background:#7C8569" title="Olive"></button>
-            <button class="swatch" style="background:#444A3B" title="Charcoal"></button>
-            <button class="swatch" style="background:#EFE7D2" title="Cream"></button>
-            <button class="swatch" style="background:#9C6D5A" title="Rust"></button>
-            <button class="swatch" style="background:#23241F" title="Ink"></button>
-          </div>
-        </div>
-      </div>
-
-      <div class="filter-group">
-        <h4>Origin
-          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
-        </h4>
-        <div class="filter-body">
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Vietnam (captive)</span><span class="num">38</span></label>
-          <label class="check"><input type="checkbox" checked/><span class="box"></span><span class="label">Southeast Asia</span><span class="num">22</span></label>
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Europe</span><span class="num">14</span></label>
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Americas</span><span class="num">9</span></label>
-        </div>
-      </div>
-
-      <div class="filter-group">
-        <h4>Availability
-          <i data-lucide="chevron-down" style="width:10px;height:10px;stroke-width:2" aria-hidden="true"></i>
-        </h4>
-        <div class="filter-body">
-          <label class="check"><input type="checkbox" checked/><span class="box"></span><span class="label">In stock</span><span class="num">98</span></label>
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Pre-order</span><span class="num">18</span></label>
-          <label class="check"><input type="checkbox"/><span class="box"></span><span class="label">Waitlist only</span><span class="num">12</span></label>
-        </div>
-      </div>
     </aside>
 
     <!-- MAIN -->
@@ -369,10 +315,12 @@
   const grid = document.getElementById('grid');
   const resultsCount = document.getElementById('results-count');
   let activeCat = 'all';
+  let priceMin = 0, priceMax = 600000;
   function renderProducts() {
     const items = PRODUCTS
       .map((p, i) => ({ p, i }))
-      .filter(({ p }) => activeCat === 'all' || catOf(p) === activeCat);
+      .filter(({ p }) => activeCat === 'all' || catOf(p) === activeCat)
+      .filter(({ p }) => p.price >= priceMin && p.price <= priceMax);
     resultsCount.textContent = `${items.length} of ${PRODUCTS.length}`;
     grid.innerHTML = items.map(({ p, i }) => `
       <article class="product" data-i="${i}">
@@ -450,18 +398,6 @@
     h.addEventListener('click', () => h.parentElement.classList.toggle('collapsed'));
   });
 
-  // ============ Chip toggles ============
-  document.querySelectorAll('.chip-toggle').forEach(c => {
-    c.addEventListener('click', () => c.classList.toggle('active'));
-  });
-
-  // ============ Swatches ============
-  document.getElementById('swatches').addEventListener('click', (e) => {
-    const s = e.target.closest('.swatch');
-    if (!s) return;
-    s.classList.toggle('active');
-  });
-
   // ============ Price slider ============
   const minR = document.getElementById('price-min');
   const maxR = document.getElementById('price-max');
@@ -470,11 +406,14 @@
   const maxV = document.getElementById('price-max-val');
   function updatePrice() {
     let lo = +minR.value, hi = +maxR.value;
-    if (lo > hi - 10) { if (event && event.target === minR) lo = hi - 10; else hi = lo + 10; minR.value = lo; maxR.value = hi; }
-    minV.textContent = lo; maxV.textContent = hi;
+    const step = 5000;
+    if (lo > hi - step) { if (event && event.target === minR) lo = hi - step; else hi = lo + step; minR.value = lo; maxR.value = hi; }
+    minV.textContent = formatPrice(lo); maxV.textContent = formatPrice(hi);
     const maxV2 = +maxR.max;
     fill.style.left = (lo / maxV2 * 100) + '%';
     fill.style.right = (100 - hi / maxV2 * 100) + '%';
+    priceMin = lo; priceMax = hi;
+    renderProducts();
   }
   minR.addEventListener('input', updatePrice);
   maxR.addEventListener('input', updatePrice);
@@ -490,10 +429,12 @@
 
   // ============ Clear all ============
   document.getElementById('clear-all').addEventListener('click', () => {
-    document.querySelectorAll('.active-filters .pill').forEach(p => p.remove());
-    document.querySelectorAll('.check input').forEach(i => i.checked = false);
-    document.querySelectorAll('.chip-toggle').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.check input').forEach(i => i.checked = true);
+    document.querySelectorAll('#tabs .tab').forEach(x => x.classList.remove('active'));
+    document.querySelector('#tabs .tab[data-cat="all"]').classList.add('active');
+    activeCat = 'all';
+    minR.value = minR.min; maxR.value = maxR.max;
+    updatePrice();
   });
 </script>
 

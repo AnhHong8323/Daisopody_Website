@@ -267,30 +267,6 @@ aside.filters::-webkit-scrollbar-thumb { background: var(--cream-20); border-rad
   cursor: pointer; pointer-events: auto;
 }
 .price-vals { display: flex; justify-content: space-between; margin-top: 14px; font-size: 11px; color: var(--cream-70); letter-spacing: 0.1em; }
-.price-vals span:first-child::before { content: "$"; color: var(--cream-50); }
-.price-vals span:last-child::before { content: "$"; color: var(--cream-50); }
-
-/* Swatches */
-.swatches { display: flex; gap: 10px; flex-wrap: wrap; }
-.swatch {
-  width: 28px; height: 28px; border-radius: 9999px;
-  border: 1px solid var(--cream-20);
-  cursor: pointer; position: relative;
-  transition: transform 200ms, box-shadow 200ms;
-}
-.swatch:hover { transform: scale(1.1); }
-.swatch.active { box-shadow: 0 0 0 2px var(--moss-900), 0 0 0 4px var(--cream); }
-
-/* Care chips */
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip-toggle {
-  border: 1px solid var(--cream-20); background: transparent;
-  color: var(--cream-70); font-size: 10.5px; letter-spacing: 0.14em;
-  padding: 7px 12px; border-radius: 9999px; cursor: pointer;
-  font-family: inherit;
-}
-.chip-toggle:hover { color: var(--cream); border-color: var(--cream-30); }
-.chip-toggle.active { background: var(--cream); color: var(--moss-900); border-color: var(--cream); }
 
 /* ============ MAIN PANEL ============ */
 .main-panel { min-width: 0; }
