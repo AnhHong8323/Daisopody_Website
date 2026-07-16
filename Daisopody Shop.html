@@ -1,4 +1,4 @@
- init<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -344,24 +344,64 @@
 <script>
   // ============ Product data ============
   const PRODUCTS = [
-    { name:"Rubber Ducky",       sci:"Cubaris sp. 'Rubber Ducky'", price:120, old:null, chip:"Advanced",     level:"Lvl 03", img:"assets/isopod/cubaris/Amber%20Ducky.jpg", stock:"low",  origin:"Vietnam",     desc:"The crown jewel of designer Cubaris. Vivid yellow segments contrast a deep slate body — slow growing, slow breeding, always in demand.", rare:false },
-    { name:"Dairy Cow",          sci:"Porcellio laevis",            price:25,  old:null, chip:"Beginner",     level:"Lvl 01", img:"assets/isopod/Porcellio/Dairy%20cow.jpg", stock:"in",   origin:"Vietnam",     desc:"The perfect first colony. Hardy, prolific, forgiving. Striking black-and-cream marbling on every specimen.", rare:false },
-    { name:"Zebra Isopod",       sci:"Armadillidium maculatum",     price:45,  old:55,   chip:"Intermediate", level:"Lvl 02", img:"assets/isopod/Armadillidium/Zebra.jpg", stock:"in",   origin:"Europe",      desc:"Crisp black stripes on bone-white. A keeper's favorite display species that thrives at moderate humidity.", rare:false },
-    { name:"Magic Potion",       sci:"Cubaris sp. 'Magic Potion'",  price:185, old:null, chip:"Expert",       level:"Lvl 04", img:"assets/isopod/cubaris/magic%20potion.jpg", stock:"low",  origin:"SE Asia",     desc:"Iridescent violet-to-amber shift. Sensitive to humidity swings — recommended for keepers with at least one stable Cubaris culture.", rare:true },
-    { name:"Springtail Culture", sci:"Folsomia candida",            price:15,  old:null, chip:"Beginner",     level:"Lvl 01", img:"assets/isopod/Porcellio/Sevilla.jpg", stock:"in",   origin:"Vietnam",     desc:"The cleanup crew for any bioactive setup. 500 ct starter culture with breeding substrate.", rare:false },
-    { name:"Premium Moss Kit",   sci:"Sphagnum &amp; cushion blend",    price:30,  old:null, chip:"Substrate",    level:"Essential", img:"assets/isopod/Porcellio/Violet.jpg", stock:"in",   origin:"Vietnam",     desc:"Hand-harvested sphagnum and cushion moss — pre-cleaned and hydrated. Two-month supply for a 30 cm setup.", rare:false },
-    { name:"Calcium Supplement", sci:"Crushed cuttlebone &amp; oyster",  price:12,  old:null, chip:"Food",         level:"Essential", img:"assets/isopod/Armadillidium/Orange%20Kluggi.jpg", stock:"in",   origin:"Vietnam",     desc:"Critical for molting and exoskeleton health. Bag of 250 g — typically lasts 4–6 months per colony.", rare:false },
-    { name:"Panda King",         sci:"Cubaris sp. 'Panda King'",    price:165, old:null, chip:"Expert",       level:"Lvl 04", img:"assets/isopod/cubaris/Panda%20King.jpg", stock:"out",  origin:"SE Asia",     desc:"Bold panda-style markings on a powder-white body. Currently on waitlist — joining now reserves the next captive-bred batch.", rare:true },
-    { name:"Cork Bark Hides",    sci:"Quercus suber, cured",        price:22,  old:null, chip:"Habitat",      level:"Essential", img:"assets/isopod/Troglodillo/Vex.jpg", stock:"in",   origin:"Europe",      desc:"Cured and ant-treated cork pieces in three sizes. The single best hide material for moisture-retention species.", rare:false },
+    { name:"BADIUM", sci:"Armadillidium", price:120000, img:"assets/isopod/Armadillidium/Badium.jpg" },
+    { name:"CORFU", sci:"Armadillidium", price:50000, img:"assets/isopod/Armadillidium/Corfu.jpg" },
+    { name:"GESTROI", sci:"Armadillidium", price:100000, img:"assets/isopod/Armadillidium/Gestroid.jpg" },
+    { name:"GRANULATUM", sci:"Armadillidium", price:80000, img:"assets/isopod/Armadillidium/Granulatum.jpg" },
+    { name:"MAGIC POTION", sci:"Armadillidium", price:100000, img:"assets/isopod/Armadillidium/magic%20potion.jpg" },
+    { name:"ORANGE KLUGGI", sci:"Armadillidium", price:140000, img:"assets/isopod/Armadillidium/Orange%20Kluggi.jpg" },
+    { name:"ORANGE VULGARE", sci:"Armadillidium", price:200000, img:"assets/isopod/Armadillidium/orange%20virgo.jpg" },
+    { name:"PERACCAE", sci:"Armadillidium", price:60000, img:"assets/isopod/Armadillidium/peraccea.jpg" },
+    { name:"SICILY", sci:"Armadillidium", price:200000, img:"assets/isopod/Armadillidium/Sicily.jpg" },
+    { name:"ZEBRA", sci:"Armadillidium", price:150000, img:"assets/isopod/Armadillidium/Zebra.jpg" },
+    { name:"AMBER DUCKY", sci:"Cubaris SP.", price:220000, img:"assets/isopod/cubaris/Amber%20Ducky.jpg" },
+    { name:"CAPPUCCINO", sci:"Cubaris SP.", price:200000, img:"assets/isopod/cubaris/Cappuchino.jpg" },
+    { name:"CARAMEL CREAM", sci:"Cubaris SP.", price:350000, img:"assets/isopod/cubaris/Caramel%20Cream.jpg" },
+    { name:"DARK MILL", sci:"Cubaris SP.", price:50000, img:"assets/isopod/cubaris/Darkmill.jpg" },
+    { name:"GLACIER", sci:"Cubaris SP.", price:50000, img:"assets/isopod/cubaris/Glacier.jpg" },
+    { name:"JUPITER", sci:"Cubaris SP.", price:500000, img:"assets/isopod/cubaris/Jupiter.jpg" },
+    { name:"LEMON BLUE", sci:"Cubaris SP.", price:550000, img:"assets/isopod/cubaris/lemon.jpg" },
+    { name:"LITTLE SEA", sci:"Cubaris SP.", price:30000, img:"assets/isopod/cubaris/Little%20Sea.jpg" },
+    { name:"MARBLELIZE", sci:"Cubaris SP.", price:200000, img:"assets/isopod/cubaris/Marblelize.jpg" },
+    { name:"MURINA ORANGE", sci:"Cubaris SP.", price:40000, img:"assets/isopod/cubaris/Murina%20Orange.jpg" },
+    { name:"PANDA KING", sci:"Cubaris SP.", price:130000, img:"assets/isopod/cubaris/Panda%20King.jpg" },
+    { name:"PAPAYA", sci:"Cubaris SP.", price:50000, img:"assets/isopod/cubaris/papaya.jpg" },
+    { name:"RED PAK CHONG", sci:"Cubaris SP.", price:110000, img:"assets/isopod/cubaris/Red%20Packchong.jpg" },
+    { name:"RED PANDA", sci:"Cubaris SP.", price:300000, img:"assets/isopod/cubaris/Red%20Panda.jpg" },
+    { name:"THAI ANGLE BLUE", sci:"Cubaris SP.", price:180000, img:"assets/isopod/cubaris/thai%20angle%20blue.png" },
+    { name:"WHITE SIDE", sci:"Cubaris SP.", price:120000, img:"assets/isopod/cubaris/whiteside.jpg" },
+    { name:"DAIRY COW", sci:"Porcellio Laevis", price:30000, img:"assets/isopod/Porcellio/Dairy%20cow.jpg" },
+    { name:"HAASI", sci:"Porcellio", price:400000, img:"assets/isopod/Porcellio/Haasi.jpg" },
+    { name:"ORANGE(POWSER)", sci:"Porcellio Laevis", price:30000, img:"assets/isopod/Porcellio/Leavis%20Orange.jpg" },
+    { name:"SEVILLA/TITAN", sci:"Porcellio", price:80000, img:"assets/isopod/Porcellio/Sevilla.jpg" },
+    { name:"VIOLET", sci:"Porcellio Baeticensis", price:350000, img:"assets/isopod/Porcellio/Violet.jpg" },
+    { name:"WHITE", sci:"Porcellio Laevis", price:50000, img:"assets/isopod/Porcellio/white%20laevis.jpg" },
+    { name:"VEX", sci:"Troglodillo", price:290000, img:"assets/isopod/Troglodillo/Vex.jpg" },
+    { name:"SOIL", sci:"Troglodillo", price:290000, img:null },
+    { name:"BÌNH XỊT", sci:"Phụ kiện", price:15000, img:"assets/Phu%20Kien/binhxit.jpg" },
+    { name:"THỨC ĂN CHUYÊN DỤNG", sci:"Phụ kiện", price:10000, img:"assets/Phu%20Kien/camchim.jpg" },
+    { name:"VỎ GỖ SỒI (L)", sci:"Phụ kiện", price:50000, img:"assets/Phu%20Kien/golon.jpg" },
+    { name:"VỎ GỖ SỒI (S)", sci:"Phụ kiện", price:15000, img:"assets/Phu%20Kien/gonho.jpg" },
+    { name:"CHÉN ĂN", sci:"Phụ kiện", price:15000, img:"assets/Phu%20Kien/chenanvit.jpg" },
+    { name:"COMBO HỘP NUÔI", sci:"Phụ kiện", price:70000, img:"assets/Phu%20Kien/combo.jpg" },
+    { name:"ĐẤT CHUYÊN DỤNG", sci:"Phụ kiện", price:45000, img:"assets/Phu%20Kien/dat.jpg" },
+    { name:"DỚN", sci:"Phụ kiện", price:10000, img:"assets/Phu%20Kien/don.jpg" },
+    { name:"HỘP NUÔI", sci:"Phụ kiện", price:30000, img:"assets/Phu%20Kien/hop.jpg" },
+    { name:"LÁ KHÔ", sci:"Phụ kiện", price:10000, img:"assets/Phu%20Kien/la.jpg" },
+    { name:"LÁ MÓNG BÒ TƯƠI", sci:"Phụ kiện", price:10000, img:"assets/Phu%20Kien/mongbo.jpg" },
+    { name:"LÁ MÓNG BÒ KHÔ", sci:"Phụ kiện", price:5000, img:"assets/Phu%20Kien/mongbo.jpg" },
+    { name:"NANG MỰC", sci:"Phụ kiện", price:20000, img:"assets/Phu%20Kien/nangmuc.jpg" },
   ];
+
+  function formatPrice(v) { return v.toLocaleString('vi-VN') + 'đ'; }
 
   const grid = document.getElementById('grid');
   function renderProducts() {
     grid.innerHTML = PRODUCTS.map((p, i) => `
       <article class="product" data-i="${i}">
-        <div class="photo" style="background-image:url('${p.img}');">
-          <span class="chip">${p.chip}</span>
-          ${p.rare ? '<span class="rare-flag">Rare</span>' : ''}
+        <div class="photo" style="${p.img ? `background-image:url('${p.img}');` : 'display:flex;align-items:center;justify-content:center;color:var(--fg-disabled);font-size:12px;'}">
+          <span class="chip">${p.sci}</span>
+          ${!p.img ? 'Chưa có ảnh' : ''}
           <button class="heart" aria-label="Save">
             <i data-lucide="heart" style="width:14px;height:14px;color:#FFF2BB;stroke-width:1.6" aria-hidden="true"></i>
           </button>
@@ -369,21 +409,12 @@
         <div class="body">
           <div class="top-row">
             <span class="name">${p.name}</span>
-            <span class="level">${p.level}</span>
           </div>
-          <span class="sci">${p.sci}</span>
-          <div class="stats-row">
-            <span><i data-lucide="sun" style="width:11px;height:11px;stroke-width:1.8" aria-hidden="true"></i> 75% rH</span>
-            <span><i data-lucide="thermometer" style="width:11px;height:11px;stroke-width:1.8" aria-hidden="true"></i> 22–26°C</span>
-            <span>${p.origin}</span>
-          </div>
-          <p class="desc">${p.desc}</p>
           <div class="price-row">
-            <span class="price">${p.old ? `<span class="old">$${p.old}.00</span>` : ''}$${p.price}.00</span>
-            <span class="stock ${p.stock}"><span class="dot"></span>${p.stock === 'in' ? 'In stock' : p.stock === 'low' ? 'Low stock' : 'Waitlist'}</span>
+            <span class="price">${formatPrice(p.price)}</span>
           </div>
           <button class="add-btn" data-i="${i}">
-            ${p.stock === 'out' ? 'JOIN WAITLIST' : 'ADD TO CART'}
+            ADD TO CART
             <i data-lucide="shopping-bag" style="width:12px;height:12px;color:#FFF2BB;stroke-width:1.8" aria-hidden="true"></i>
           </button>
         </div>
