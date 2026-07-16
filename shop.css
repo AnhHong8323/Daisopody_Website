@@ -581,7 +581,7 @@ aside.filters::-webkit-scrollbar-thumb { background: var(--cream-20); border-rad
 
   .shop-layout { grid-template-columns: 220px 1fr; gap: 32px; }
 
-  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .products-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .pack-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .trust { grid-template-columns: repeat(2, 1fr); gap: 28px; }
 }
@@ -610,7 +610,13 @@ aside.filters::-webkit-scrollbar-thumb { background: var(--cream-20); border-rad
     padding: 20px; border: 1px solid var(--cream-10); border-radius: 12px;
   }
 
-  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .products-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .products-grid .product .body { padding: 14px 14px 16px; gap: 4px; }
+  .products-grid .product .name { font-size: 13.5px; }
+  .products-grid .product .sci { font-size: 11px; }
+  .products-grid .product .stats-row { display: none; }
+  .products-grid .product .price { font-size: 14px; }
+  .products-grid .product .add-btn { margin-top: 10px; padding: 10px; font-size: 9.5px; }
 
   /* list view: stack photo/body instead of squeezing fixed columns */
   .products-grid.list .product { grid-template-columns: 1fr; }
@@ -642,7 +648,28 @@ aside.filters::-webkit-scrollbar-thumb { background: var(--cream-20); border-rad
 
   .shop-layout { padding: 32px var(--gutter-page) 64px; gap: 24px; }
 
-  .products-grid { grid-template-columns: 1fr; gap: 16px; }
+  .products-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .products-grid .product { border-radius: 6px; }
+  .products-grid .product .photo { aspect-ratio: 1 / 1; }
+  .products-grid .product .chip,
+  .products-grid .product .rare-flag,
+  .products-grid .product .heart,
+  .products-grid .product .level,
+  .products-grid .product .sci,
+  .products-grid .product .stats-row,
+  .products-grid .product .stock { display: none; }
+  .products-grid .product .body { padding: 8px; gap: 3px; }
+  .products-grid .product .name {
+    font-size: 10.5px; line-height: 1.25;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .products-grid .product .price-row { margin-top: 2px; }
+  .products-grid .product .price { font-size: 11px; }
+  .products-grid .product .price .old { font-size: 8.5px; margin-right: 3px; }
+  .products-grid .product .add-btn {
+    margin-top: 6px; padding: 7px 4px; font-size: 8px; letter-spacing: 0.05em; gap: 3px;
+  }
+  .products-grid .product .add-btn svg { width: 9px; height: 9px; }
 
   .packs { padding: 48px var(--gutter-page); }
   .packs h2 { font-size: 26px; }
